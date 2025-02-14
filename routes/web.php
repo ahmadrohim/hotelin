@@ -19,5 +19,5 @@ Route::get('/', function () {
 
 // route home
 Route::get('/home', function(){
-    return view('home');
+    return view('user.home');
 });
