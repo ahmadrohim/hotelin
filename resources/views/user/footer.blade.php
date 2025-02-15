@@ -54,6 +54,6 @@
         </div>
     </div>
     <div class="container-fluid copyright-section bg-danger">
-        <p>Copyright <a href="#">© Hotelin.</a> All Rights Reserved</p>
+        <p>Copyright <a href="#">© Hotelin 2025.</a> All Rights Reserved</p>
     </div>
 </section>

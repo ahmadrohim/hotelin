@@ -11,7 +11,7 @@ class Hotel extends Model
     use HasFactory;
     protected $table = 'hotels';
 
-    protected $fillable = [
+    protected $fillabel = [
         'name',
         'slug',
         'address',

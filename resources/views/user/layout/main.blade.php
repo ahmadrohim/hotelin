@@ -26,13 +26,13 @@
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
     
     {{-- Navbar --}}
-    @include('user.partials.navbar')
+    @include('user.navbar')
 
 
     @yield('container')
 
     <!-- Footer section -->
-   @include('user.partials.footer')
+   @include('user.footer')
     <!-- Footer section exit -->
 
     <!-- Bootstrap 5 JS CDN Links -->
