@@ -16,16 +16,16 @@
                         <a class="nav-link active" aria-current="page" href="#home">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#rooms">Tentang Kami</a>
+                        <a class="nav-link" href="#about">Tentang Kami</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">Kamar</a>
+                        <a class="nav-link" href="#rooms">Kamar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#services">Fasilitas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#team">Kontak</a>
+                        <a class="nav-link" href="#contact">Kontak</a>
                     </li>
                     <li class="nav-item mt-3 mt-lg-0">
                         <a class="main-btn" href="#">Pesan Sekarang</a>

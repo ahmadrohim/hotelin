@@ -67,7 +67,7 @@
         <div class="row flex-lg-row flex-column-reverse ">
             <div class="col-lg-6 text-center text-lg-start">
                 <h3>Tentang Kami</h3>
-                <p>Kenali lebih dekat Hotelin, penginapan yang mengutamakan kenyamanan, keramahan, dan kualitas pelayanan. Kami hadir untuk menjadi rumah kedua bagi Anda, menciptakan pengalaman menginap yang tak terlupakan, dengan sentuhan kehangatan di setiap sudut.</p>
+                <p>{{ $hotel->description }}</p>
                 {{-- <a href="#" class="main-btn mt-4">Jelajahi</a> --}}
             </div>
             <div class="col-lg-6 mb-4 mb-lg-0 ps-lg-4 text-center">

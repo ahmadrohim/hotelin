@@ -8,14 +8,12 @@
         </div>
         <div class="row d-flex justify-content-center">
             <div class="col-lg-4 col-md-6">
-                <h5>Hotel Location</h5>
-                <p class="ps-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dignissim erat ut laoreet
-                    pharetra....</p>
+                <h5>Kontak Hotel</h5>
                 <div class="contact-info">
                     <ul class="list-unstyled">
-                        <li><a href="#"><i class="fa fa-home me-3"></i> No. 96, South City, London</a></li>
-                        <li><a href="#"><i class="fa fa-phone me-3"></i>+1 222 3333</a></li>
-                        <li><a href="#"><i class="fa fa-envelope me-3"></i>info@example.com</a></li>
+                        <li><a href="#"><i class="fa fa-home me-3"></i>{{$hotel->address}}</a></li>
+                        <li><a href="#"><i class="fa fa-phone me-3"></i>{{$hotel->phone}}</a></li>
+                        <li><a href="#"><i class="fa fa-envelope me-3"></i>{{ $hotel->email }}</a></li>
                     </ul>
                 </div>
             </div>
