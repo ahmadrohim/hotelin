@@ -10,17 +10,7 @@ class Hotel extends Model
 {
     use HasFactory;
     protected $table = 'hotels';
-
-    protected $fillabel = [
-        'name',
-        'slug',
-        'address',
-        'description',
-        'email',
-        'phone',
-        'image',
-    ];
-
+    protected $guarded = ['id'];
     protected static function boot()
     {
         parent::boot();

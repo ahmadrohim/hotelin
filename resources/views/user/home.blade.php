@@ -4,22 +4,18 @@
  <section id="home" class="banner_wrapper p-0">
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background-image: url(./images/slider/slider2.webp);">
+            @foreach ($heroSection as $hero)
+                
+            <div class="swiper-slide" style="background-image: url(./images/slider/{{ $hero->image }});">
                 <div class="slide-caption text-center">
                     <div>
-                        <h1>Selamat Datang di Hotelin</h1>
-                        <p>Pilihan Tepat untuk Kenyamanan Anda </p>
+                        <h1>{{ $hero->title }}</h1>
+                        <p>{{ $hero->subtitle }} </p>
                     </div>
                 </div>
             </div>
-            <div class="swiper-slide" style="background-image: url(./images/slider/slider1.webp);">
-                <div class="slide-caption text-center">
-                    <div>
-                        <h1>Selamat Datang di Hotelin</h1>
-                        <p>Pilihan Tepat untuk Kenyamanan Anda </p>
-                    </div>
-                </div>
-            </div>
+
+            @endforeach
         </div>
         <div class="swiper-pagination"></div>
     </div>

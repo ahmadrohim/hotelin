@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+use App\Models\HeroSection;
 
 class HotelController extends Controller
 {
@@ -15,7 +16,9 @@ class HotelController extends Controller
     public function index()
     {
         $hotel = Hotel::first();
-        return view('user.home', compact('hotel'));
+        $heroSection = HeroSection::all();
+
+        return view('user.home', compact('hotel', 'heroSection'));
     }
 
     /**

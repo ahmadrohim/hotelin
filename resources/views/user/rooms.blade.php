@@ -2,8 +2,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12 section-title text-center mb-5">
-                <h6>Apa yang bisa saya lakukan untuk Anda</h6>
-                <h3>Rekomendasi Kamar Terbaik</h3>
+                <h6></h6>
+                <h3>Kategori Kamar</h3>
             </div>
         </div>
         <div class="row m-0">
