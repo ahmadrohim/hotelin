@@ -22,7 +22,7 @@ class HotelSeeder extends Seeder
     public function run(): void
     {
         // Seeder untuk Hotels
-        $hotel = Hotel::updateOrCreate(
+        Hotel::updateOrCreate(
             ['email' => 'info@hotelin.com'],
             [
                 'name' => 'Hotelin',
@@ -36,9 +36,9 @@ class HotelSeeder extends Seeder
 
         // Seeder untuk Room Categories
         $categories = [
-            ['name' => 'Deluxe', 'image' => 'deluxe.jpg'],
-            ['name' => 'Superior', 'image' => 'superior.jpg'],
-            ['name' => 'Suite', 'image' => 'suite.jpg'],
+            ['name' => 'Deluxe', 'image' => 'room1.webp'],
+            ['name' => 'Superior', 'image' => 'room2.webp'],
+            ['name' => 'Suite', 'image' => 'room3.webp'],
         ];
 
         foreach ($categories as $category) {
@@ -53,9 +53,9 @@ class HotelSeeder extends Seeder
 
         // Seeder untuk Rooms
         $roomData = [
-            ['category' => 'Deluxe', 'price' => 500000, 'facilities' => 'AC, TV, WiFi, Breakfast', 'availability_status' => 'available', 'image' => 'deluxe-room.jpg'],
-            ['category' => 'Superior', 'price' => 700000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar', 'availability_status' => 'available', 'image' => 'superior-room.jpg'],
-            ['category' => 'Suite', 'price' => 1200000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar, Jacuzzi', 'availability_status' => 'available', 'image' => 'suite-room.jpg'],
+            ['name'=> 'kamar 1','category' => 'Deluxe', 'price' => 500000, 'facilities' => 'AC, TV, WiFi, Breakfast', 'availability_status' => 'available', 'image' => 'room1.webp'],
+            ['name'=> 'kamar 2','category' => 'Superior', 'price' => 700000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar', 'availability_status' => 'available', 'image' => 'room2.webp'],
+            ['name'=> 'kamar3', 'category' => 'Suite', 'price' => 1200000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar, Jacuzzi', 'availability_status' => 'available', 'image' => 'room3.webp'],
         ];
 
         foreach ($roomData as $room) {
@@ -64,6 +64,7 @@ class HotelSeeder extends Seeder
                 Room::updateOrCreate(
                     ['slug' => Str::slug($room['category'])],
                     [
+                        'name' => $room['name'],
                         'category_id' => $category->id,
                         'price' => $room['price'],
                         'facilities' => $room['facilities'],
@@ -74,15 +75,35 @@ class HotelSeeder extends Seeder
             }
         }
 
-        // Seeder untuk Hero Section
-        HeroSection::updateOrCreate(
-            ['title' => 'Welcome to Hotelin'],
+        // Data Seeder untuk Hero Section
+        $HeroSection = [
             [
+                'title' => 'Welcome to Hotelin',
                 'subtitle' => 'Nikmati kenyamanan dan fasilitas terbaik bersama kami.',
                 'button_text' => 'Pesan Sekarang',
                 'button_link' => '/booking',
-                'image' => 'hero.jpg',
-            ]
-        );
+                'image' => 'slider1.webp',],
+            [
+                'title' => 'Welcome to Hotelin',
+                'subtitle' => 'Nikmati kenyamanan dan fasilitas terbaik bersama kami.',
+                'button_text' => 'Pesan Sekarang',
+                'button_link' => '/booking',
+                'image' => 'slider2.webp',],
+        ];
+        // Seeder untuk Hero Section
+       
+        foreach ($HeroSection as $hero) {
+            HeroSection::updateOrCreate(
+               [
+                'title' => $hero['title'],
+                'subtitle' => $hero['subtitle'],
+                'button_text' => $hero['button_text'],
+                'button_link' => $hero['button_link'],
+                'image' => $hero['image']
+               ]
+
+            );
+        }
+
     }
 }

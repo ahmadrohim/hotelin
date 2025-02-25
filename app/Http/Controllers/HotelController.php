@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
 use App\Models\HeroSection;
+use App\Models\RoomCategory;
 
 class HotelController extends Controller
 {
@@ -17,8 +18,9 @@ class HotelController extends Controller
     {
         $hotel = Hotel::first();
         $heroSection = HeroSection::all();
+        $RoomCategory = RoomCategory::all();
 
-        return view('user.home', compact('hotel', 'heroSection'));
+        return view('user.home', compact('hotel', 'heroSection', 'RoomCategory'));
     }
 
     /**
