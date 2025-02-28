@@ -20,7 +20,8 @@
                             <p class="text-white">Discover five of our favourite dresses from our new collection that
                                 are destined to be worn and loved immediately</p>
                             <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-                            <a class="main-btn border-white text-white mt-lg-5" href="#">Book now</a>
+                            <a href="/rooms/{{ $category->slug}}" class="main-btn border-white text-white mt-lg-5">Lihat Kamar</a>
+
                         </div>
                     </div> 
                 </div> 

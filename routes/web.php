@@ -21,3 +21,5 @@ Route::get('/', function () {
 // route home
 Route::get('/home', [HotelController::class, 'index']);
 
+Route::get('/rooms/{slug}', [HotelController::class, 'rooms']);
+

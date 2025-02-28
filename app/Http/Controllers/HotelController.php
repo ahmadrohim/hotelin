@@ -20,7 +20,18 @@ class HotelController extends Controller
         $heroSection = HeroSection::all();
         $RoomCategory = RoomCategory::all();
 
-        return view('user.home', compact('hotel', 'heroSection', 'RoomCategory'));
+        return view('user.home', compact('hotel', 'heroSection', 'RoomCategory', 'room'));
+    }
+
+    public function rooms($slug)
+    {
+        $hotel = Hotel::first();
+        $room = RoomCategory::where('slug', $slug)->firstOrFail();
+        $rooms = $room->rooms; 
+
+        return view('user.room.index', compact('hotel','rooms', 'room'));
+
+
     }
 
     /**
