@@ -676,6 +676,28 @@ p {
 }
 
 
+/* My Css */
+
+.cards {
+    background-color: lightblue; !important
+}
+
+  .cards .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease-in-out;
+  }
+
+  .cards:hover .overlay {
+    background: rgba(0, 0, 0, 0.3); /* Warna hitam dengan transparansi 30% */
+  }
+
+
+
 <!-Responsive Design--->
 
 @media (max-width: 1199px) {

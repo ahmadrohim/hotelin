@@ -44,6 +44,18 @@
 
     <!-- Custom Js Link -->
     <script src="/js/hotel.js"></script>
+
+    {{-- my js --}}
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.querySelector('.overlay').style.background = 'rgba(0, 0, 0, 0.3)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('.overlay').style.background = 'rgba(0, 0, 0, 0)';
+            });
+        });
+    </script>
 </body>
 
 </html>
