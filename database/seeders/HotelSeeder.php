@@ -12,6 +12,7 @@ use App\Models\Hotel;
 use App\Models\RoomCategory;
 use App\Models\Room;
 use App\Models\HeroSection;
+use App\Models\HotelFaicilities;
 use Illuminate\Support\Str;
 
 class HotelSeeder extends Seeder
@@ -159,5 +160,45 @@ class HotelSeeder extends Seeder
             );
         }
 
+
+        // seeder untuk Hotel Facilities
+        $facilities = [
+            [
+                'name' => 'Spa, Kecantikan & Kesehatan',
+                'description' => 'Nikmati relaksasi spa, perawatan kecantikan, dan fasilitas kebugaran untuk menjaga tubuh tetap sehat selama menginap di Hotelin.',
+                'image' => 'service1.webp',
+                'icon' => 'service-icon1.webp'
+            ],
+            [
+                'name' => 'Restoran',
+                'description' => 'Nikmati beragam hidangan lezat dengan cita rasa terbaik di restoran kami. Sajian spesial untuk melengkapi pengalaman menginap Anda di Hotelin.',
+                'image' => 'service2.webp',
+                'icon' => 'service-icon2.webp'
+            ],
+            [
+                'name' => 'Kolam Renang',
+                'description' => 'Rasakan kesegaran dengan berenang di kolam renang kami, tempat yang sempurna untuk bersantai dan menikmati suasana Hotelin.',
+                'image' => 'service3.webp',
+                'icon' => 'service-icon3.webp'
+            ],
+            [
+                'name' => 'Ruang Pertemuan',
+                'description' => 'Tempat ideal untuk rapat, seminar, dan acara penting Anda, dengan fasilitas lengkap dan suasana yang nyaman di Hotelin.',
+                'image' => 'service4.webp',
+                'icon' => 'service-icon4.webp'
+            ],
+        ];
+
+        foreach ($facilities as $f){
+            HotelFaicilities::updateOrCreate(
+                [
+                    'name' => $f['name'],
+                    'description' => $f['description'],
+                    'image' => $f['image'],
+                    'icon' => $f['icon'],
+                    'slug' => Str::slug($f['name']),
+                ]
+            );
+        }
     }
 }

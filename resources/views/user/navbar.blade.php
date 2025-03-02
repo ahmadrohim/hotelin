@@ -13,10 +13,10 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav menu-navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page"  href="{{ !request()->is('/home/...') ? '/home#home' : '#home' }}">Beranda</a>
+                        <a class="nav-link active" aria-current="page"  href="{{ !request()->is('/home') ? '/home#home' : '#home' }}">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ !request()->is('/home') ? '/home#about' : '#about' }}">Tentang Kami</a>
+                        <a  class="nav-link" href="{{ !request()->is('/home') ? '/home#about' : '#about' }}">Tentang Kami</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#rooms">Kamar</a>

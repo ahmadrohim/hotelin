@@ -20,6 +20,7 @@
     <!-- Custom File's Link -->
     {{-- <link rel="stylesheet" href="/css/style.css"> --}}
     <link rel="stylesheet" href="/css/hotel.css">
+  
 
 </head>
 
@@ -55,6 +56,7 @@
                 card.querySelector('.overlay').style.background = 'rgba(0, 0, 0, 0)';
             });
         });
+
     </script>
 </body>
 
