@@ -320,4 +320,73 @@
 </section> --}}
 <!-- Pricing Section Exit  -->
 
+<!-- Testimonial Section with Swiper.js -->
+<section id="testimonials" class="testimonials_wrapper pb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 section-title text-center mb-5">
+                <h6>What Our Guests Say</h6>
+                <h3>Customer Testimonials</h3>
+            </div>
+        </div>
+
+        <!-- Swiper Slider Wrapper -->
+        <div class="swiper testimonial-slider">
+            <div class="swiper-wrapper">
+                
+                {{-- Testimonial 1 --}}
+                <div class="swiper-slide">
+                    <div class="card p-4 border-0 shadow-sm text-center d-flex flex-column align-items-center">
+                        <img src="/images/team/team1.webp" class="rounded-circle mb-3 mx-auto" width="80" alt="Customer 1">
+                        <h5>Sarah A.</h5>
+                        <p class="text-muted">Jakarta, Indonesia</p>
+                        <div class="stars mb-3">⭐⭐⭐⭐⭐</div>
+                        <p>"Hotelin memberikan pengalaman menginap yang luar biasa! Kamar bersih, nyaman, dan pelayanan sangat ramah."</p>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="swiper-slide">
+                    <div class="card p-4 border-0 shadow-sm text-center d-flex flex-column align-items-center">
+                        <img src="/images/team/team2.webp" class="rounded-circle mb-3 mx-auto" width="80" alt="Customer 2">
+                        <h5>Michael R.</h5>
+                        <p class="text-muted">Bandung, Indonesia</p>
+                        <div class="stars mb-3">⭐⭐⭐⭐⭐</div>
+                        <p>"Lokasi strategis, dekat dengan pusat kota. Fasilitas hotel lengkap dan suasananya sangat nyaman."</p>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="swiper-slide">
+                    <div class="card p-4 border-0 shadow-sm text-center d-flex flex-column align-items-center">
+                        <img src="/images/team/team3.webp" class="rounded-circle mb-3 mx-auto" width="80" alt="Customer 3">
+                        <h5>Lisa M.</h5>
+                        <p class="text-muted">Surabaya, Indonesia</p>
+                        <div class="stars mb-3">⭐⭐⭐⭐⭐</div>
+                        <p>"Makanan di restoran hotel sangat enak! Saya pasti akan kembali lagi untuk menginap di sini."</p>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- Swiper Navigation Buttons -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <!-- Swiper Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Swiper.js Styles -->
+
+
+<!-- Swiper.js Script -->
+
+
+
+
+
+
+
+
 @endsection

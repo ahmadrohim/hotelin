@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Hotel;
 use App\Models\HeroSection;
 use App\Models\RoomCategory;
+use App\Models\HotelFaicilities;
+use App\Models\Gallery;
 
 class HotelController extends Controller
 {
@@ -19,8 +21,10 @@ class HotelController extends Controller
         $hotel = Hotel::first();
         $heroSection = HeroSection::all();
         $RoomCategory = RoomCategory::all();
+        $HotelFacilities = HotelFaicilities::all();
+        $Gallery = Gallery::all();
 
-        return view('user.home', compact('hotel', 'heroSection', 'RoomCategory'));
+        return view('user.home', compact('hotel', 'heroSection', 'RoomCategory', 'HotelFacilities', 'Gallery'));
     }
 
     public function rooms($slug)

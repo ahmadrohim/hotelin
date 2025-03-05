@@ -5,31 +5,13 @@
                 <h3>Galeri Foto Hotelin</h3>
             </div>
         </div>
-        <div class="row g-0">
+        <div class="row g-3">
+            @foreach($Gallery as $G)
             <div class="col-lg-3 col-md-6 gallery-item">
-                <img decoding="async" src="./images/gallery/1.webp" class="img-fluid w-100">
+                <img decoding="async" src="./images/gallery/{{ $G->image }}" class="img-fluid w-100" style="height: 300px">
                 <div class="gallery-item-content"></div>
             </div>
-            <div class="col-lg-3 col-md-6 gallery-item">
-                <img decoding="async" src="./images/gallery/2.webp" class="img-fluid w-100">
-                <div class="gallery-item-content"></div>
-            </div>
-            <div class="col-lg-3 col-md-6 gallery-item">
-                <img decoding="async" src="./images/gallery/3.webp" class="img-fluid w-100">
-                <div class="gallery-item-content"></div>
-            </div>
-            <div class="col-lg-3 col-md-6 gallery-item">
-                <img decoding="async" src="./images/gallery/4.webp" class="img-fluid w-100">
-                <div class="gallery-item-content"></div>
-            </div>
-            <div class="col-md-6 gallery-item">
-                <img decoding="async" src="./images/gallery/5.webp" class="img-fluid w-100">
-                <div class="gallery-item-content"> </div>
-            </div>
-            <div class="col-md-6 gallery-item">
-                <img decoding="async" src="./images/gallery/6.webp" class="img-fluid w-100">
-                <div class="gallery-item-content"> </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

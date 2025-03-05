@@ -23,10 +23,6 @@
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Our Office</a></li>
                     <li><a href="#">Delivery</a></li>
-                    <li><a href="#">Our Store</a></li>
-                    <li><a href="#">Guarantee</a></li>
-                    <li><a href="#">Buy Gift Card</a></li>
-                    <li><a href="#">Return Policy</a></li>
                 </ul>
             </div>
             <div class="col-lg-4 col-md-6">
@@ -35,10 +31,6 @@
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Our Office</a></li>
                     <li><a href="#">Delivery</a></li>
-                    <li><a href="#">Our Store</a></li>
-                    <li><a href="#">Guarantee</a></li>
-                    <li><a href="#">Buy Gift Card</a></li>
-                    <li><a href="#">Return Policy</a></li>
                 </ul>
             </div>
         </div>

@@ -20,6 +20,31 @@
     <!-- Custom File's Link -->
     {{-- <link rel="stylesheet" href="/css/style.css"> --}}
     <link rel="stylesheet" href="/css/hotel.css">
+    <!-- Swiper.js Styles -->
+    <style>
+        .testimonial-slider {
+            width: 100%;
+            padding: 20px 0;
+        }
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+        }
+        .card {
+            max-width: 500px;
+            border-radius: 10px;
+        }
+        .stars {
+            font-size: 18px;
+            color: #FFD700;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: #000;
+        }
+        .swiper-pagination-bullet {
+            background: #000;
+        }
+    </style>
   
 
 </head>
@@ -58,6 +83,30 @@
         });
 
     </script>
+
+<!-- Swiper.js Script -->
+<script>
+    var swiper = new Swiper(".testimonial-slider", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+            }
+        }
+    });
+</script>
+
 </body>
 
 </html>

@@ -15,7 +15,7 @@
           @foreach ($rooms as $r)
           <div class="col">
             <div class="card over" style="overflow: hidden;">
-                <img src="/images/gallery/{{ $r->image }}" class="card-img-top" alt="..." 
+                <img src='/images/gallery/{{ $r->image }}' class="card-img-top" alt="..." 
                     style="height: 300px; transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; filter: brightness(100%);" 
                     onmouseover="this.style.transform='scale(1.1)'; this.style.filter='brightness(70%)'" 
                     onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(100%)'">
