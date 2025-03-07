@@ -28,7 +28,7 @@
                         <a class="nav-link" href="{{ !request()->is('/home') ? '/home#contact' : '#contact'}}">Kontak</a>
                     </li>
                     <li class="nav-item mt-3 mt-lg-0">
-                        <a class="main-btn" href="#">Pesan Sekarang</a>
+                        <a class="main-btn" href="#rooms">Pesan Sekarang</a>
                     </li>
                 </ul>
             </div>
