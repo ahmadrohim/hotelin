@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HotelController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +20,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// route register
+Route::get('/register', [AuthController::class, 'register']); 
+
+// route login
+Route::get('/login', [AuthController::class, 'login']);
+
 // route home
 Route::get('/home', [HotelController::class, 'index']);
 
+// route rooms
 Route::get('/rooms/{slug}', [HotelController::class, 'rooms']);
 
+// route admin
 Route::get('/admin', [AdminController::class, 'index']);

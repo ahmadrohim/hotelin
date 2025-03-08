@@ -22,7 +22,7 @@
 
     <style>
         hr {
-            background-color: #d4af37;
+            background-color: #caa169;
         }
     </style>
 

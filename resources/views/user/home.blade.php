@@ -11,6 +11,7 @@
                     <div>
                         <h1>{{ $hero->title }}</h1>
                         <p>{{ $hero->subtitle }} </p>
+                        <a style="border-color: white" href="" class="main-btn mt-3 text-white">Pesan Sekarang</a>
                     </div>
                 </div>
             </div>

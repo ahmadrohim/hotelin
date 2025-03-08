@@ -72,7 +72,7 @@ section {
     color: var(--primary-color);
     text-transform: uppercase;
     background-color: transparent;
-    border: .0625rem solid var(--primary-color);
+    border: .0625rem solid var(--secondary-color);
     padding: .375rem 1.875rem;
     border-radius: 3.125rem;
     line-height: 1.75rem;
