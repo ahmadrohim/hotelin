@@ -19,15 +19,28 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
-
 </head>
 
-<body>
+<body style="background-image: url('/images/bg1.jpg'); background-repeat: no-repeat; background-size: cover;">
 
     <div class="container">
 
-        <!-- content -->
-        @yield('content')
+       
+        <div class="row justify-content-center">
+
+            <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto">
+        
+                <div class="card o-hidden border-0 shadow-lg my-5" style="background-color: rgba(0, 0, 0, 0.8)">
+                    <div class="card-body p-0" >
+                        <!-- Nested Row within Card Body -->
+                       @yield('content')
+
+                    </div>
+                </div>
+        
+            </div>
+        
+        </div>
 
     </div>
 

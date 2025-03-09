@@ -2,52 +2,57 @@
 
 @section('content')
 
-<div class="row justify-content-center">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 mb-4 text-white font-weight-bold">Form Login</h1>
+            </div>
+            @if(session('loginError'))
+            <div class="alert alert-danger">
+                {{ session('loginError') }}
+            </div>
+            @endif
 
-    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto">
-
-        <div class="card o-hidden border-0 shadow-lg my-5" style="background: linear-gradient(135deg, #2c2c2c, #000);">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-white mb-4">Form Login</h1>
-                            </div>
-                            <form class="user">
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-user"
-                                        id="exampleInputEmail" aria-describedby="emailHelp"
-                                        placeholder="Enter Email Address...">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control form-control-user"
-                                        id="exampleInputPassword" placeholder="Password">
-                                </div>
-                                <a href="index.html" class="btn btn-warning btn-user btn-block">
-                                    Login
-                                </a>
-                                <hr>
-                                <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Login dengan Google
-                                </a>
-                            </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="forgot-password.html">Lupa Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="/register">Buat Akun!</a>
-                            </div>
+            <form class="user" action="/authenticate" method="POST">
+                @csrf
+                <div class="form-group">
+                    <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror"
+                        id="email" aria-describedby="email"
+                        placeholder="Enter Email Address..." style="font-size: 15px;" name="email" required>
+                        @error('email')
+                        <div class="invalid-feedback px-3">
+                            {{ $message }}
                         </div>
-                    </div>
+                       @enderror
                 </div>
+                <div class="form-group">
+                    <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror"
+                        id="password" placeholder="Password" style="font-size: 15px" name="password">
+                        @error('password')
+                        <div class="invalid-feedback px-3">
+                            {{ $message }}
+                        </div>
+                       @enderror
+                </div>
+                <button type="submit" class="btn btn-warning btn-user btn-block font-weight-bold">
+                    Login
+                </button>
+                <hr>
+                <a href="index.html" class="btn btn-primary btn-user btn-block">
+                    <i class="fab fa-google fa-fw"></i> Login dengan Google
+                </a>
+            </form>
+            
+            <hr>
+            <div class="text-center">
+                <a class="small text-white" href="forgot-password.html">Lupa Password?</a>
+            </div>
+            <div class="text-center ">
+                <a class="small text-white" href="/register">Buat Akun!</a>
             </div>
         </div>
-
     </div>
-
 </div>
 
 @endsection
