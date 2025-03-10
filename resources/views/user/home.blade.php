@@ -4,6 +4,11 @@
  <section id="home" class="banner_wrapper p-0">
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
             @foreach ($heroSection as $hero)
                 
             <div class="swiper-slide" style="background-image: url(./images/slider/{{ $hero->image }});">

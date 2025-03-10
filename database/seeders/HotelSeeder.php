@@ -14,6 +14,7 @@ use App\Models\Room;
 use App\Models\HeroSection;
 use App\Models\HotelFaicilities;
 use App\Models\Gallery;
+use App\Models\Role;
 use Illuminate\Support\Str;
 
 class HotelSeeder extends Seeder
@@ -78,6 +79,20 @@ class HotelSeeder extends Seeder
                     'status' => $category['status']
                 ]
                 );
+        }
+
+        // Seeder role user
+        $roleUser = [
+            ['role_name' => 'admin'],
+            ['role_name' => 'staff'],
+            ['role_name' => 'customer']
+        ];
+
+        foreach ($roleUser as $role){
+            Role::updateOrCreate(
+            [
+                'role_name' => $role['role_name']
+            ]);
         }
 
 

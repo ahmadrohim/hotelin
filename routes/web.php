@@ -24,6 +24,7 @@ Route::post('/store', [AuthController::class, 'store']);
 // route login
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/authenticate', [AuthController::class, 'authenticate']);
+Route::get('/logout', [AuthController::class, 'logout']);
 
 // route home
 Route::get('/', [HotelController::class, 'index']);

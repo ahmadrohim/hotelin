@@ -35,7 +35,7 @@
                 <ul class="navbar-nav menu-navbar-nav">
                     {{-- belum login --}}
                     <li class="nav-item mt-3 mt-lg-0">
-                        <a onmouseover="this.style.color='white'" onmouseout="this.style.color='black'" style="border-color: #caa169;" class="login nav-link main-btn" href="/login">Login</a>
+                        <a onmouseover="this.style.color='white'" onmouseout="this.style.color='black'" style="border-color: #caa169; text-transform: capitalize" class="login nav-link main-btn" href="/login">Login</a>
                     </li>
 
                     {{-- sudah login --}}
