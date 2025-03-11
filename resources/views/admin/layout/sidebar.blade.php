@@ -1,7 +1,7 @@
 <ul style="background-color: #1a1a1a" class="navbar-nav sidebar sidebar-dark accordion shadow" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
         {{-- <div class="sidebar-brand-icon rotate-n-15"> --}}
             {{-- <i class="fas fa-laugh-wink"></i> --}}
             {{-- <img src="/images/logo.png" alt="Hotelin Logo" class="img-fluid" style="max-width: 50px; height: auto;"> --}}
@@ -15,7 +15,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/admin">
             <i style="color: #caa169" class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>

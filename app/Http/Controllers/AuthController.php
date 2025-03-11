@@ -26,6 +26,7 @@ class AuthController extends Controller
        ]);
 
        $validate['password'] = Hash::make($validate['password']);
+       $validate['role_id'] = 3;
        $user = User::create($validate);
 
        Mail::send([],[], function($message) use ($user){
@@ -58,7 +59,16 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/home')->with('success', 'Selamat datang '. $user->name);
+            // mengambil data user yang sedang login
+            $user = Auth::user();
+
+            // cek role user
+            if($user->role->role_name == 'admin'){
+                return redirect()->intended('/admin')->with('success', 'Selamat datang' . $user->name);
+            }else{
+                return redirect()->intended('/home')->with('success', 'Selamat datang '. $user->name);
+            }
+
         }
 
         return back()->with('loginError', 'Login gagal !');

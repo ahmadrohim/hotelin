@@ -33,41 +33,33 @@
 
                 </ul>
                 <ul class="navbar-nav menu-navbar-nav">
-                    {{-- belum login --}}
-                    <li class="nav-item mt-3 mt-lg-0">
-                        <a onmouseover="this.style.color='white'" onmouseout="this.style.color='black'" style="border-color: #caa169; text-transform: capitalize" class="login nav-link main-btn" href="/login">Login</a>
-                    </li>
 
                     {{-- sudah login --}}
-                    
-                    {{-- <li class="nav-item dropdown no-arrow">
+                    @if(Auth::check())
+                    <li class="nav-item dropdown no-arrow">
+                        
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img width="50px" class="img-profile rounded-circle"
-                                src="images/undraw_profile.svg">
+                            <small class="text-warning font-weight-bold text-uppercase">{{ Auth::user()->name }}</small>
+                            {{-- <img width="50px" class="img-profile rounded-circle"
+                                src="images/undraw_profile.svg"> --}}
                         </a>
                       
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                             aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
-                            </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="/logout" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>
                         </div>
-                    </li> --}}
+                    </li>
+                    @else
+                      {{-- belum login --}}
+                      <li class="nav-item mt-3 mt-lg-0">
+                        <a onmouseover="this.style.color='white'" onmouseout="this.style.color='black'" style="border-color: #caa169; text-transform: capitalize" class="login nav-link main-btn" href="/login">Login</a>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </div>
