@@ -12,7 +12,8 @@ class AuthController extends Controller
 {
     public function register()
     {
-        return view('auth.register');
+        $title = 'Form Register';
+        return view('auth.register', compact('title'));
     }
 
     // Data Register
@@ -40,7 +41,8 @@ class AuthController extends Controller
 
     public function login()
     {
-        return view('auth.login');
+        $title = 'Form Login';
+        return view('auth.login', compact('title'));
     }
 
     public function authenticate(Request $request)

@@ -17,14 +17,22 @@ use App\Http\Controllers\VerificationController;
 |
 */
 
+// Route untuk user yang belum login
+Route::middleware(['guest'])->group(function () {
+    // route register
+    Route::get('/register', [AuthController::class, 'register'])->name('register'); 
+    Route::post('/store', [AuthController::class, 'store'])->name('store');
 
-// route register
-Route::get('/register', [AuthController::class, 'register']); 
-Route::post('/store', [AuthController::class, 'store']);
-// route login
-Route::get('/login', [AuthController::class, 'login']);
-Route::post('/authenticate', [AuthController::class, 'authenticate']);
-Route::post('/logout', [AuthController::class, 'logout']);
+    // route login
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
+});
+
+// Route untuk user yang sudah login
+Route::middleware(['auth'])->group(function(){
+    Route::post('/logout', [AuthController::class, 'logout']); //logout yng belum login tidak bisa akses
+    Route::get('/logout', [AuthController::class, 'logout']);
+});
 
 // route home
 Route::get('/', [HotelController::class, 'index']);
@@ -33,8 +41,11 @@ Route::get('/home', [HotelController::class, 'index']);
 // route rooms
 Route::get('/rooms/{slug}', [HotelController::class, 'rooms']);
 
-// route admin
-Route::get('/admin', [AdminController::class, 'index']);
+// route untuk role admin
+Route::middleware(['admin'])->group(function(){
+    Route::get('/admin', [AdminController::class, 'index']); //hanya user dengan role admin yng bisa akses
+
+});
 
 // route email verify
 Route::get('/verifyEmail/{id}', [VerificationController::class, 'verify']);
