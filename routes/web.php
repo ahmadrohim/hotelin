@@ -31,21 +31,16 @@ Route::middleware(['guest'])->group(function () {
 // Route untuk user yang sudah login
 Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [AuthController::class, 'logout']); //logout yng belum login tidak bisa akses
-    Route::get('/logout', [AuthController::class, 'logout']);
 });
 
 // route home
 Route::get('/', [HotelController::class, 'index']);
-Route::get('/home', [HotelController::class, 'index']);
 
 // route rooms
 Route::get('/rooms/{slug}', [HotelController::class, 'rooms']);
 
 // route untuk role admin
-Route::middleware(['admin'])->group(function(){
-    Route::get('/admin', [AdminController::class, 'index']); //hanya user dengan role admin yng bisa akses
-
-});
+Route::get('/admin', [AdminController::class, 'index']);
 
 // route email verify
 Route::get('/verifyEmail/{id}', [VerificationController::class, 'verify']);

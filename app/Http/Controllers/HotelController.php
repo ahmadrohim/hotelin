@@ -18,13 +18,13 @@ class HotelController extends Controller
      */
     public function index()
     {
-        $hotel = Hotel::first();
-        $heroSection = HeroSection::all();
+        $Hotel = Hotel::first();
+        $HeroSection = HeroSection::all();
         $RoomCategory = RoomCategory::all();
         $HotelFacilities = HotelFaicilities::all();
         $Gallery = Gallery::all();
 
-        return view('user.home', compact('hotel', 'heroSection', 'RoomCategory', 'HotelFacilities', 'Gallery'));
+        return view('user.index', compact('Hotel', 'HeroSection', 'RoomCategory', 'HotelFacilities', 'Gallery'));
     }
 
     public function rooms($slug)
