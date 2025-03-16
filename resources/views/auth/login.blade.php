@@ -35,11 +35,11 @@
                         </div>
                        @enderror
                 </div>
-                <button type="submit" class="btn btn-warning btn-user btn-block font-weight-bold">
+                <button type="submit" class="btn btn-danger btn-user btn-block font-weight-bold" style="font-size: 15px">
                     Login
                 </button>
                 <hr>
-                <a href="index.html" class="btn btn-primary btn-user btn-block">
+                <a href="index.html" class="btn btn-primary btn-user btn-block" style="font-size: 15px">
                     <i class="fab fa-google fa-fw"></i> Login dengan Google
                 </a>
             </form>

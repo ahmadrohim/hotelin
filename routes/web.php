@@ -40,7 +40,9 @@ Route::get('/', [HotelController::class, 'index']);
 Route::get('/rooms/{slug}', [HotelController::class, 'rooms']);
 
 // route untuk role admin
-Route::get('/admin', [AdminController::class, 'index']);
+Route::middleware(['admin'])->group(function(){
+    Route::get('/admin', [AdminController::class, 'index']);
+});
 
 // route email verify
 Route::get('/verifyEmail/{id}', [VerificationController::class, 'verify']);

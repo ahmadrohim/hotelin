@@ -1,0 +1,538 @@
+/* NAVBAR */
+#mainNav .navbar-nav .nav-item .nav-link.active, 
+#mainNav .navbar-nav .nav-item .nav-link:hover {
+    color: #F39C12;
+}
+#mainNav .navbar-nav .nav-item .nav-link {
+    color: #fff;
+}
+
+/* Buat Navbar lebih responsif */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.8); /* Tambah transparansi */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Navbar ketika discroll */
+.navbar.scrolled {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Tombol hamburger menu agar terlihat di layar kecil */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* RESPONSIVE NAVBAR */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 10px;
+    }
+}
+
+/* HERO SECTION */
+.carousel-item {
+    height: 90vh;
+    background-position: center top;
+    background-size: cover;
+    position: relative;
+}
+
+/* Tambahkan shadow di bawah hero */
+.carousel-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* Tinggi shadow */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+    pointer-events: none;
+}
+
+
+/* Responsif untuk Tablet */
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 70vh;
+    }
+
+    .carousel-item .container {
+        padding: 0 20px;
+    }
+
+    .carousel-item h1 {
+        font-size: 1.8rem;
+    }
+
+    .carousel-item p {
+        font-size: 1rem;
+    }
+
+    .carousel-item .btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* Responsif untuk Smartphone */
+@media (max-width: 576px) {
+    .carousel-item {
+        height: 60vh;
+    }
+
+    .carousel-item h1 {
+        font-size: 1.5rem;
+        line-height: 1.8rem;
+    }
+
+    .carousel-item p {
+        font-size: 0.9rem;
+        line-height: 1.4rem;
+    }
+
+    .carousel-item .btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ABOUT IMAGE */
+/* Wrapper Gambar */
+.about-image-wrapper {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efek Overlay */
+.about-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(163, 29, 29, 0.5); /* Sedikit lebih gelap untuk kontras lebih baik */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: scale(1.05); /* Mulai sedikit lebih besar untuk efek halus */
+}
+
+/* Efek Hover Gambar */
+.about-image-wrapper:hover .about-image-overlay {
+    opacity: 1;
+    transform: scale(1); /* Kembali normal untuk efek muncul yang lebih halus */
+}
+
+.about-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 5px solid transparent;
+    transition: border-color 0.5s ease-in-out, transform 0.5s ease-in-out, filter 0.5s ease-in-out;
+}
+
+/* Efek hover pada gambar */
+.about-image-wrapper:hover img {
+    border-color: rgba(163, 29, 29, 0.6); /* Warna border lebih halus */
+    transform: scale(1.03); /* Efek zoom ringan untuk interaksi yang lebih smooth */
+    filter: brightness(1.1); /* Sedikit lebih terang saat hover */
+}
+
+
+
+/* Fakta Singkat */
+.about-stat {
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(163, 29, 29, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.about-stat h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #A31D1D;
+}
+
+.about-stat p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.about-stat:hover {
+    transform: scale(1.05);
+    background: rgba(163, 29, 29, 0.2);
+}
+
+
+/* FOOTER */
+.footer {
+    background: #222;
+    padding: 20px 0;
+    text-align: center;
+    color: white;
+}
+
+/* Sosial Media Buttons */
+.btn-social {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.btn-social:hover {
+    background: #BF3131;
+}
+
+/* CARD */
+.card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow awal */
+}
+
+/* Efek hover: kartu naik, lebih besar, dan background merah */
+.card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); /* Shadow lebih tebal */
+    background:rgb(206, 32, 49); /* Warna merah */
+    color: white; /* Ubah teks jadi putih saat hover */
+}
+
+/* Gambar kamar */
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Saat hover, gambar sedikit zoom-in dan lebih cerah */
+.card:hover .card-img-top {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+/* Bagian isi kartu */
+.card-body {
+    padding: 20px;
+    background:rgb(212, 62, 62);
+    border-radius: 0 0 12px 12px;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.card:hover .card-body {
+    background: #A31D1D;
+}
+
+/* Judul kamar */
+.card-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+/* Ubah warna teks saat hover */
+.card:hover .card-title {
+    color: white;
+}
+
+/* Harga & kapasitas */
+.card-text {
+    font-size: 1rem;
+    color:white;
+    transition: color 0.3s ease;
+}
+
+/* Ubah warna teks saat hover */
+.card:hover .card-text {
+    color: white;
+}
+
+/* Tombol */
+.btn-primary {
+    border: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Efek hover pada tombol */
+.card:hover .btn-primary {
+    transform: scale(1.05);
+}
+
+/* Responsif: kartu lebih lebar di layar kecil */
+@media (max-width: 768px) {
+    .col-lg-4, .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+
+/* HEADING */
+.title-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #6D0F0F, #A31D1D, #D84040, #FF5E5E);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    position: relative;
+}
+
+
+/* Tablet (max-width: 768px) */
+@media (max-width: 768px) {
+    .title-heading {
+        font-size: 1.4rem;
+    }
+}
+
+/* Smartphone (max-width: 576px) */
+@media (max-width: 576px) {
+    .title-heading {
+        font-size: 1.2rem;
+    }
+}
+
+/* Smartphone Kecil (max-width: 480px) */
+@media (max-width: 480px) {
+    .title-heading {
+        font-size: 1rem;
+    }
+}
+
+/* Efek Underline Animasi */
+.title-heading::after {
+    content: "";
+    width: 50px;
+    height: 4px;
+    background-color: #A31D1D;
+    display: block;
+    margin: 8px auto 0;
+    transition: width 0.3s ease;
+}
+
+.title-heading:hover::after {
+    width: 80px;
+}
+
+/* TEXT ANIMASI */
+.text-center {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* BACKGROUND TEXTURE */
+.section-texture {
+    background-image: url('/images/texture1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.service-item {
+    position: relative;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
+    background: rgba(163, 29, 29, 0.1);
+}
+
+/* Efek hover lebih terasa */
+.service-item:hover {
+    transform: translateY(-8px) scale(1.07) rotate(1deg);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    background: rgba(163, 29, 29, 0.15);
+}
+
+/* Efek pada gambar */
+.service-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px 12px 0 0;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Saat hover, gambar sedikit zoom-in dan lebih terang */
+.service-item:hover .service-image {
+    transform: scale(1.1);
+    filter: brightness(1.15);
+}
+
+/* Konten layanan */
+.service-content {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 0 0 12px 12px;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+/* Judul layanan */
+.service-content h4 {
+    font-size: 1.3rem;
+    color: #dc3545;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+/* Efek hover pada judul */
+.service-item:hover .service-content h4 {
+    color: #a31d1d;
+}
+
+/* Deskripsi layanan */
+.service-content p {
+    font-size: 1rem;
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+
+/* Efek hover pada deskripsi */
+.service-item:hover .service-content p {
+    color: #495057;
+}
+
+/* Responsif: Layanan full-width di layar kecil */
+@media (max-width: 768px) {
+    .col-md-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+
+.testimonial-card {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+}
+
+.testimonial-card:hover {
+    transform: scale(1.05);
+}
+
+.testimonial-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid #dc3545;
+}
+
+.testimonial-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.testimonial-name {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.testimonial-location {
+    font-size: 0.9rem;
+}
+
+.testimonial-rating {
+    font-size: 20px;
+    color: gold;
+    margin: 5px 0;
+}
+
+.gallery-item-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.gallery-item-wrapper:hover .gallery-image {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.gallery-item-wrapper:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.gallery-description {
+    font-size: 0.9rem;
+}
