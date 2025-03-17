@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
         {{-- <link href="/css/styles2.css" rel="stylesheet" /> --}}
         <link href="/css/styles.css" rel="stylesheet" />
-        <link rel="stylesheet" href="/css/style2.css">
+        <link rel="stylesheet" href="/css/styleku.css">
 
 
         <style>
@@ -39,7 +39,7 @@
                     <div class="container d-flex flex-column justify-content-center align-items-center text-center text-white h-100">
                         <h1 class="fw-bold text-uppercase">{{ $hero->title }}</h1>
                         <p class="lead">{{ $hero->subtitle }}</p>
-                        <a href="#rooms" class="btn btn-primary btn-lg text-uppercase">Pesan Sekarang</a>
+                        <a href="#rooms" class="btn btn-dark btn-lg text-uppercase">Pesan Sekarang</a>
                     </div>
                 </div>
                 @endforeach
@@ -68,9 +68,15 @@
         <!-- Gallery -->
         @include('user.layout.gallery')
 
-        <!-- Testimonial->
-        @include('user.layout.testimonial')
+        <!-- Around The Hotel -->
+        @include('user.layout.aroundthehotel')
 
+        <!-- Testimonial -->
+       @include('user.layout.testimonial')
+            
+            {{-- client --}}
+        @include('user.layout.client')
+            
         <!-- Contact-->
        @include('user.layout.contact')
 
@@ -142,18 +148,8 @@
                     }
                 }
             });
-    
+
         </script>
-
-        <!-- AOS Animation -->
-       
-      
-        
-
-        
-        
-
-
 
     </body>
 </html>

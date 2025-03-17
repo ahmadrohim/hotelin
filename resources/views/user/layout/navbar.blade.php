@@ -10,9 +10,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0 font-weight-bold" >
                 <li class="nav-item"><a class="nav-link" href="#page-top">Beranda</a></li>
-                <li class="nav-item"><a class="nav-link" href="#portfolio">Kamar</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about">Fasilitas</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about">Sekitar Hotel</a></li>
+                <li class="nav-item"><a class="nav-link" href="#rooms">Kamar</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Fasilitas</a></li>
+                <li class="nav-item"><a class="nav-link" href="#nearby-attractions">Sekitar Hotel</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
                 <li class="nav-item">
                     @guest

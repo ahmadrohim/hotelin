@@ -1,5 +1,5 @@
 <!-- Bagian Kamar di Beranda -->
-<section class="page-section section-texture" id="kamar">
+<section class="page-section section-texture" id="rooms">
     <div class="container">
         <div class="text-center">
             <h2 class="text-uppercase title-heading">Pilihan Kamar</h2>
@@ -17,7 +17,7 @@
                         <h5 class="card-title">{{ $Room->name }}</h5>
                         <p class="card-text">Mulai dari <strong>Rp. {{ number_format($Room->base_price, 0, ',', '.') }}</strong> / malam</p>
                         <p class="card-text"><strong>Kapasitas:</strong> {{ $Room->max_guests }} orang</p> <!-- Menambahkan kapasitas tamu -->
-                        <a href="kamar.html" class="btn btn-primary">Lihat Kamar</a>
+                        <a href="kamar.html" class=" btn-read-more">Lihat Kamar</a>
                     </div>
                 </div>
             </div>            

@@ -26,12 +26,12 @@
                     </div>
                     <div class="col-md-6">
                         <div class="about-stat">
-                            <h3>4.8/5</h3>
-                            <p>Rating Pelanggan</p>
+                            <h3>10.000+</h3>
+                            <p>Tamu Puas</p>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
-                <a href="#kontak" class="btn btn-primary mt-4 btn-custom">Hubungi Kami</a>
+                <a href="#contact" class=" btn-read-more mt-4">Hubungi Kami</a>
             </div>
         </div>
     </div>

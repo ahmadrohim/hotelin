@@ -1,5 +1,5 @@
 <!-- Section Testimoni -->
-<section class="page-section testimonials py-5 bg-light">
+<section class="page-section section-texture testimonials py-5 bg-light">
     <div class="container text-center">
         <h2 class="mb-4 title-heading text-uppercase">Pendapat Tamu Kami?</h2>
         <h3 class="section-subheading subtitle">Ulasan dari tamu yang telah menikmati layanan kami.</h3>
