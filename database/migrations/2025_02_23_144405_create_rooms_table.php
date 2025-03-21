@@ -16,7 +16,7 @@ class CreateRoomsTable extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('code_room')->unique();
             $table->foreignId('category_id')->constrained('room_categories')->onDelete('cascade');
             $table->decimal('price', 10, 2);
             $table->text('facilities');

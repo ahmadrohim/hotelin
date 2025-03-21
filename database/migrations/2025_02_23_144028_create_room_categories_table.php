@@ -15,7 +15,7 @@ class CreateRoomCategoriesTable extends Migration
     {
         Schema::create('room_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('slug')->unique(); // Slug untuk URL-friendly identifier
+            $table->string('code_category_room')->unique(); // Slug untuk URL-friendly identifier
             $table->string('name'); // Nama kategori kamar
             $table->string('image')->nullable(); // Gambar kategori (opsional)
             $table->text('description')->nullable(); // Deskripsi kategori kamar

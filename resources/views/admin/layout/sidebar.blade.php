@@ -6,8 +6,8 @@
             {{-- <i class="fas fa-laugh-wink"></i> --}}
             {{-- <img src="/images/logo.png" alt="Hotelin Logo" class="img-fluid" style="max-width: 50px; height: auto;"> --}}
         {{-- </div> --}}
-        <img src="/images/logo.png" alt="Hotelin Logo" class="img-fluid sidebar-brand-icon" style="max-width: 100px; height: auto;">
-        {{-- <div class="sidebar-brand-text mx-3">Hotelin <sup></sup></div> --}}
+        {{-- <img src="/images/logo.png" alt="Hotelin Logo" class="img-fluid sidebar-brand-icon" style="max-width: 100px; height: auto;"> --}}
+        <div class="img-fluid sidebar-brand-icon" style="font-size: 20px">Hotelin <sup></sup></div>
     </a>
 
     <!-- Divider -->

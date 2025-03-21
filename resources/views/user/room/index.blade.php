@@ -1,42 +1,37 @@
 @extends('user.layout.main')
 
-@section('container')
+@section('content')
 
-<section id="rooms" class="rooms_wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12 section-title text-center mb-5">
-                <h6></h6>
-                <h3>Kategori Kamar <span class="text-uppercase text-white bg-danger badge">{{ $room->name }}</span></h3>
-            </div>
+<!-- Bagian Kamar Berdasarkan Kategori -->
+<!-- Bagian Kamar -->
+<section class="page-section section-texture" id="rooms">
+    <div class="container">
+        <br>
+        <div class="text-center">
+            <h2 class="text-uppercase title-heading">Pilihan Kamar {{ $room->name }}</h2>
+            <h3 class="section-subheading subtitle">Temukan kenyamanan terbaik dengan berbagai pilihan kamar kami.</h3>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
-          @foreach ($rooms as $r)
-          <div class="col">
-            <div class="card over" style="overflow: hidden;">
-                <img src='/images/gallery/{{ $r->image }}' class="card-img-top" alt="..." 
-                    style="height: 300px; transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; filter: brightness(100%);" 
-                    onmouseover="this.style.transform='scale(1.1)'; this.style.filter='brightness(70%)'" 
-                    onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(100%)'">
-                <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-between align-items-center">
-                        {{ $r->name }}
-                        <span style="font-size: 15px" class="badge {{ $r->availability_status == 'available' ? 'bg-success' : 'bg-danger' }} text-white">
-                            Status: {{ $r->availability_status == 'available' ? 'Tersedia' : 'Tidak Tersedia' }}
-                        </span>
-                    </h5>
-                    <p class="card-text fs-4 text-danger"><strong>{{ 'Rp. ' . number_format($r->price, 2, '.', '.') }}</strong></p>
-                    <p class="card-text">Fasilitas: {{ $r->facilities }}</p>
-                    <a href="" class="btn btn-primary">Pesan Kamar</a>
+        <div class="row">
+            @foreach($rooms as $room)
+            <div class="col-lg-4 col-md-6 mb-4"> <!-- 3 kamar per baris -->
+                <div class="room-box">
+                    <img src="/images/gallery/{{ $room->image }}" class="room-image" alt="{{ $room->name }}">
+                    <div class="room-info">
+                        <h5 class="room-title badge bg-dark">{{ $room->name }}</h5>
+                        <p class="room-price">Mulai dari <strong>Rp. {{ number_format($room->price, 0, ',', '.') }}</strong> / malam</p>
+                        <p class="room-facilities">{{ $room->facilities }}</p>
+                        <p class="room-code"><i class="fas fa-key"></i> Kode Kamar: <strong>{{ $room->code_room }}</strong></p>
+                        <a href="/rooms/{{ $room->code_room }}" class="btn-read-more">Pesan Kamar</a>
+                    </div>
                 </div>
             </div>
+            @endforeach
         </div>
-          @endforeach
-        </div>
-
-
     </div>
 </section>
 
+
+
 @endsection
+

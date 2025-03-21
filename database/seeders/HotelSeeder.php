@@ -69,7 +69,7 @@ class HotelSeeder extends Seeder
 
         foreach ($categories as $category){
             RoomCategory::updateOrCreate(
-                ['slug' => Str::slug($category['name'])],
+                ['code_category_room' => Str::slug($category['name'])],
                 [
                     'name' => $category['name'],
                     'image' => $category['image'],
@@ -125,16 +125,24 @@ class HotelSeeder extends Seeder
             $category = RoomCategory::where('name', $room['category'])->first();
         
             if ($category) {
-                // Simpan atau update data kamar berdasarkan nama agar tidak tertimpa
+                // Ambil prefix dari kode kategori
+                $prefix = strtoupper($category->code_category_room);
+        
+                // Hitung jumlah kamar yang sudah ada dalam kategori ini
+                $roomCount = Room::where('category_id', $category->id)->count() + 1;
+        
+                // Format code_room jadi "DEL001", "DEL002", dst.
+                $codeRoom = $prefix . str_pad($roomCount, 3, '0', STR_PAD_LEFT);
+        
                 Room::updateOrCreate(
-                    ['name' => $room['name']], // Kunci unik sekarang berdasarkan nama kamar
+                    ['name' => $room['name']],
                     [
                         'category_id' => $category->id,
                         'price' => $room['price'],
                         'facilities' => $room['facilities'],
                         'availability_status' => $room['availability_status'],
-                        'image' => rand(1,6) . '.webp',
-                        'slug' => Str::slug($room['name']) // Slug tetap ada tapi unik per kamar
+                        'image' => rand(1, 6) . '.webp',
+                        'code_room' => $codeRoom, // Kode unik
                     ]
                 );
             } else {

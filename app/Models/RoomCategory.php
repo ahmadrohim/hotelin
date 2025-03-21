@@ -22,12 +22,32 @@ class RoomCategory extends Model
     {
         parent::boot();
 
-        static::creating(function ($RoomCategory){
-            $RoomCategory->slug = Str::slug($RoomCategory->name, '-');
+        static::creating(function($RoomCategory){
+            // ambil 3 huruf pertama dari setiap kata
+            $code = strtoupper(
+                collect(explode(' ', $RoomCategory->name))
+                    ->map(fn($word) => substr($word, 0, 3))
+                    ->join('')
+            );
+
+            // cek apakah sudah ada kategori dengan kode yang sama
+            $latestCategory = self::where('code_category_room', 'LIKE', $code . '%')->count();
+
+            // jika ada duplikat, tambahkan angka urut
+            $RoomCategory->code_category_room = $code . ($latestCategory +1);
         });
 
-        static::updating(function ($RoomCategory){
-            $RoomCategory->slug = Str::slug($RoomCategory->name, '-');
-        });
+       static::updating(function($RoomCategory){
+            $code = strtoupper(
+                collect(explode(' ', $RoomCategory->name))
+                    ->map(fn($word) => substr($word, 0, 3))
+                    ->join('')
+            );
+
+            $latestCategory = self::where('code_category_room', 'LIKE', $code . '%')->count();
+
+            $RoomCategory->code_category_room = $code . ($latestCategory + 1);
+       });
+
     }
 }

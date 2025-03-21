@@ -9,17 +9,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0 font-weight-bold" >
-                <li class="nav-item"><a class="nav-link" href="#page-top">Beranda</a></li>
-                <li class="nav-item"><a class="nav-link" href="#rooms">Kamar</a></li>
-                <li class="nav-item"><a class="nav-link" href="#services">Fasilitas</a></li>
-                <li class="nav-item"><a class="nav-link" href="#nearby-attractions">Sekitar Hotel</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
+                <li class="nav-item"><a class="nav-link" href="/#page-top">Beranda</a></li>
+                <li class="nav-item"><a class="nav-link" href="/#rooms">Kamar</a></li>
+                <li class="nav-item"><a class="nav-link" href="/#services">Fasilitas</a></li>
+                <li class="nav-item"><a class="nav-link" href="/#nearby-attractions">Sekitar Hotel</a></li>
+                <li class="nav-item"><a class="nav-link" href="/#contact">Kontak</a></li>
                 <li class="nav-item">
                     @guest
-                        <a class="btn btn-primary text-uppercase px-3" href="/login">Login</a>
+                        <a class="btn btn-warning text-uppercase px-3" href="/login">Login</a>
                     @else
                         <div class="dropdown">
-                            <button class="btn btn-primary text-uppercase px-3 dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-warning text-uppercase px-3 dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Auth::user()->name }}
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="userDropdown">

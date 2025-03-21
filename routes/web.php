@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\VerificationController;
 
 /*
@@ -37,12 +38,14 @@ Route::middleware(['auth'])->group(function(){
 Route::get('/', [HotelController::class, 'index']);
 
 // route rooms
-Route::get('/rooms/{slug}', [HotelController::class, 'rooms']);
+Route::get('/rooms/{code_category_room}', [RoomController::class, 'index']);
 
 // route untuk role admin
-Route::middleware(['admin'])->group(function(){
+/*Route::middleware(['admin'])->group(function(){
     Route::get('/admin', [AdminController::class, 'index']);
-});
+});*/
+
+Route::get('/admin', [AdminController::class, 'index']);
 
 // route email verify
 Route::get('/verifyEmail/{id}', [VerificationController::class, 'verify']);
