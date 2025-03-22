@@ -14,28 +14,15 @@
 
         <div class="row">
             @foreach($rooms as $room)
-            <div class="col-lg-4 col-md-6 mb-4"> <!-- 3 kamar per baris -->
-                <div class="room-box">
-                    <img src="/images/gallery/{{ $room->image }}" class="room-image" alt="{{ $room->name }}">
-                    <div class="room-info">
-                        <h5 class="room-title badge bg-dark">{{ $room->name }}</h5>
-                        <p class="room-price">Mulai dari <strong>Rp. {{ number_format($room->price, 0, ',', '.') }}</strong> / malam</p>
-                        <p class="room-facilities">{{ $room->facilities }}</p>
-                        <p class="room-code"><i class="fas fa-key"></i> Kode Kamar: <strong>{{ $room->code_room }}</strong></p>
-                        <a href="/rooms/{{ $room->code_room }}" class="btn-read-more">Pesan Kamar</a>
-                    </div>
-                </div>
-            </div>
-
-
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card shadow-sm">
-                    <img src="/images/room/{{ $Room->image }}" class="card-img-top" alt="Kamar Deluxe">
+                    <img src="/images/gallery/{{ $room->image }}" class="card-img-top" alt="Kamar Deluxe">
                     <div class="card-body text-center">
-                        <h5 class="card-title">{{ $Room->name }}</h5>
-                        <p class="card-text">Mulai dari <strong>Rp. {{ number_format($Room->base_price, 0, ',', '.') }}</strong> / malam</p>
-                        <p class="card-text">Kapasitas: <strong>{{ $Room->max_guests }} orang </strong></p> <!-- Menambahkan kapasitas tamu -->
-                        <a href="/rooms/{{ $Room->code_category_room }}" class=" btn-read-more">Lihat Kamar</a>
+                        <h5 class="card-title">{{ $room->name }}</h5>
+                        <p class="card-text">Harga: <strong>Rp. {{ number_format($room->price, 0, ',', '.') }}</strong> / malam</p>
+                        <p class="room-facilities">{{ $room->facilities }}</p>
+                        <p class="card-text">Kapasitas: <strong>{{ $room->category->max_guests }} orang </strong></p>
+                        <a href="/rooms/{{ $room->code_room }}" class=" btn-read-more">Pesan Kamar</a>
                     </div>
                 </div>
             </div>  

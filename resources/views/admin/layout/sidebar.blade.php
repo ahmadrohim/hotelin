@@ -1,118 +1,148 @@
-<ul style="background-color: #1a1a1a" class="navbar-nav sidebar sidebar-dark accordion shadow" id="accordionSidebar">
-
+<ul style="background-color: #7D0A0A" class="navbar-nav sidebar sidebar-dark accordion shadow" id="accordionSidebar">
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-        {{-- <div class="sidebar-brand-icon rotate-n-15"> --}}
-            {{-- <i class="fas fa-laugh-wink"></i> --}}
-            {{-- <img src="/images/logo.png" alt="Hotelin Logo" class="img-fluid" style="max-width: 50px; height: auto;"> --}}
-        {{-- </div> --}}
-        {{-- <img src="/images/logo.png" alt="Hotelin Logo" class="img-fluid sidebar-brand-icon" style="max-width: 100px; height: auto;"> --}}
-        <div class="img-fluid sidebar-brand-icon" style="font-size: 20px">Hotelin <sup></sup></div>
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-heading"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Hotelin</div>
     </a>
-
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="/admin">
-            <i style="color: #caa169" class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Interface
-    </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i style="color: #caa169" class="fas fa-fw fa-cog"></i>
-            <span>Components</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="buttons.html">Buttons</a>
-                <a class="collapse-item" href="cards.html">Cards</a>
+        <!-- Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/dashboard">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+    
+        <!-- Heading: Manajemen -->
+        <div class="sidebar-heading">Manajemen</div>
+    
+        <!-- Manajemen Kamar -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKamar"
+                aria-expanded="true" aria-controls="collapseKamar">
+                <i class="fas fa-fw fa-bed"></i>
+                <span>Manajemen Kamar</span>
+            </a>
+            <div id="collapseKamar" class="collapse" aria-labelledby="headingKamar" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Kelola Kamar:</h6>
+                    <a class="collapse-item" href="/admin/kamar">Daftar Kamar</a>
+                    <a class="collapse-item" href="/admin/kamar/tipe">Tipe Kamar</a>
+                </div>
             </div>
-        </div>
-    </li>
-
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
-            <i style="color: #caa169" class="fas fa-fw fa-wrench"></i>
-            <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Utilities:</h6>
-                <a class="collapse-item" href="utilities-color.html">Colors</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+        </li>
+    
+        <!-- Manajemen Pemesanan -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePemesanan"
+                aria-expanded="true" aria-controls="collapsePemesanan">
+                <i class="fas fa-fw fa-calendar-check"></i>
+                <span>Manajemen Pemesanan</span>
+            </a>
+            <div id="collapsePemesanan" class="collapse" aria-labelledby="headingPemesanan" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Kelola Pemesanan:</h6>
+                    <a class="collapse-item" href="/admin/pemesanan">Semua Pemesanan</a>
+                    <a class="collapse-item" href="/admin/pemesanan/aktif">Pemesanan Aktif</a>
+                    <a class="collapse-item" href="/admin/pemesanan/selesai">Pemesanan Selesai</a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Addons
-    </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-            aria-expanded="true" aria-controls="collapsePages">
-            <i style="color: #caa169" class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Login Screens:</h6>
-                <a class="collapse-item" href="login.html">Login</a>
-                <a class="collapse-item" href="register.html">Register</a>
-                <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                <div class="collapse-divider"></div>
-                <h6 class="collapse-header">Other Pages:</h6>
-                <a class="collapse-item" href="404.html">404 Page</a>
-                <a class="collapse-item" href="blank.html">Blank Page</a>
+         <!-- Manajemen Pengguna -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+                aria-expanded="true" aria-controls="collapseUsers">
+                <i class="fas fa-users"></i>
+                <span>Manajemen Pengguna</span>
+            </a>
+            <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Kelola Pengguna:</h6>
+                    <a class="collapse-item" href="admin.html">Admin</a>
+                    <a class="collapse-item" href="users.html">Tamu/Pelanggan</a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
+    
+        <!-- Heading: Fasilitas -->
+        <div class="sidebar-heading">Fasilitas</div>
 
-    <!-- Nav Item - Charts -->
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i style="color: #caa169" class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
-    </li>
+          <!-- Fasilitas-->
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/dashboard">
+                <i class="fas fa-fw fa-concierge-bell"></i>
+                <span>Fasilitas Hotel</span>
+            </a>
+        </li>
 
-    <!-- Nav Item - Tables -->
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i style="color: #caa169" class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
-    </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+        <!-- Heading: Informasi Sekitar -->
+        <div class="sidebar-heading">Informasi Sekitar</div>
+
+        <!-- Sekitar Hotel -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSekitar"
+                aria-expanded="true" aria-controls="collapseSekitar">
+                <i class="fas fa-fw fa-map-marker-alt"></i>
+                <span>Sekitar Hotel</span>
+            </a>
+            <div id="collapseSekitar" class="collapse" aria-labelledby="headingSekitar" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Wisata Terdekat:</h6>
+                    <a class="collapse-item" href="/admin/sekitar-hotel">Daftar Wisata</a>
+                    <a class="collapse-item" href="/admin/sekitar-hotel/kategori">Kategori Wisata</a>
+                </div>
+            </div>
+        </li>
+
+    
+        <!-- Heading: Laporan & Pengaturan -->
+        <div class="sidebar-heading">Laporan & Pengaturan</div>
+    
+        <!-- Laporan -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
+                aria-expanded="true" aria-controls="collapseLaporan">
+                <i class="fas fa-fw fa-chart-line"></i>
+                <span>Laporan</span>
+            </a>
+            <div id="collapseLaporan" class="collapse" aria-labelledby="headingLaporan" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Laporan:</h6>
+                    <a class="collapse-item" href="/admin/laporan/pendapatan">Laporan Pendapatan</a>
+                    <a class="collapse-item" href="/admin/laporan/pemesanan">Laporan Pemesanan</a>
+                </div>
+            </div>
+        </li>
+    
+        <!-- Pengaturan -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePengaturan"
+                aria-expanded="true" aria-controls="collapsePengaturan">
+                <i class="fas fa-fw fa-cogs"></i>
+                <span>Pengaturan</span>
+            </a>
+            <div id="collapsePengaturan" class="collapse" aria-labelledby="headingPengaturan" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Pengaturan Umum:</h6>
+                    <a class="collapse-item" href="/admin/pengaturan/profil">Profil Hotel</a>
+                    <a class="collapse-item" href="/admin/pengaturan/sosial-media">Sosial Media</a>
+                    <a class="collapse-item" href="/admin/pengaturan/umum">Pengaturan Umum</a>
+                    <a class="collapse-item" href="/admin/pengaturan/galeri">Galeri Hotel</a>
+                    <a class="collapse-item" href="/admin/pengaturan/email">Email & Notifikasi</a>
+                    <a class="collapse-item" href="/admin/pengaturan/pembayaran">Metode Pembayaran</a>
+                </div>
+            </div>
+        </li>
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-
 
 </ul>
