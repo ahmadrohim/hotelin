@@ -26,6 +26,19 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <img src="/images/room/{{ $Room->image }}" class="card-img-top" alt="Kamar Deluxe">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ $Room->name }}</h5>
+                        <p class="card-text">Mulai dari <strong>Rp. {{ number_format($Room->base_price, 0, ',', '.') }}</strong> / malam</p>
+                        <p class="card-text">Kapasitas: <strong>{{ $Room->max_guests }} orang </strong></p> <!-- Menambahkan kapasitas tamu -->
+                        <a href="/rooms/{{ $Room->code_category_room }}" class=" btn-read-more">Lihat Kamar</a>
+                    </div>
+                </div>
+            </div>  
             @endforeach
         </div>
     </div>

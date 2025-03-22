@@ -222,14 +222,12 @@
 /* Efek hover: kartu naik, lebih besar, dan background merah */
 .card:hover {
     transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); /* Shadow lebih tebal */
-    background:rgb(206, 32, 49); /* Warna merah */
-    color: white; /* Ubah teks jadi putih saat hover */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); /* Shadow lebih tebal */
 }
 
 /* Gambar kamar */
 .card-img-top {
-    height: 220px;
+    height: 300px;
     object-fit: cover;
     border-radius: 12px 12px 0 0;
     transition: transform 0.3s ease, filter 0.3s ease;
@@ -238,57 +236,35 @@
 /* Saat hover, gambar sedikit zoom-in dan lebih cerah */
 .card:hover .card-img-top {
     transform: scale(1.1);
-    filter: brightness(1.2);
+    filter: brightness(1.1);
 }
 
 /* Bagian isi kartu */
 .card-body {
     padding: 20px;
-    background:rgb(212, 62, 62);
+    background: #ffff;
     border-radius: 0 0 12px 12px;
     text-align: center;
     transition: color 0.3s ease;
-}
-
-.card:hover .card-body {
-    background: #A31D1D;
+    border-top: 5px solid #BF3131;
 }
 
 /* Judul kamar */
 .card-title {
     font-size: 1.4rem;
+    color: #BF3131;
     font-weight: bold;
-    color: white;
     transition: color 0.3s ease;
-}
-
-/* Ubah warna teks saat hover */
-.card:hover .card-title {
-    color: white;
+    text-transform: uppercase;
 }
 
 /* Harga & kapasitas */
 .card-text {
     font-size: 1rem;
-    color:white;
+    color: #1e1d1d;
     transition: color 0.3s ease;
 }
 
-/* Ubah warna teks saat hover */
-.card:hover .card-text {
-    color: white;
-}
-
-/* Tombol */
-.btn-primary {
-    border: none;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-/* Efek hover pada tombol */
-.card:hover .btn-primary {
-    transform: scale(1.05);
-}
 
 /* Responsif: kartu lebih lebar di layar kecil */
 @media (max-width: 768px) {
@@ -676,7 +652,7 @@
 
 .room-image {
     width: 100%;
-    height: 220px;
+    height: 300px;
     object-fit: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
