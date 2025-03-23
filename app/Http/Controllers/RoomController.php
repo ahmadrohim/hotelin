@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
 use App\Models\RoomCategory;
+use App\Models\Room;
 
 class RoomController extends Controller
 {
@@ -13,6 +14,8 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //  semua pengguna
     public function index($code_category_room)
     {
         $Hotel = Hotel::first();
@@ -22,6 +25,17 @@ class RoomController extends Controller
         return view('user.room.index', compact('Hotel','rooms', 'room'));
     }
 
+
+    // admin 
+    public function ourRooms()
+    {
+
+        $halaman = request('page') ? request('page') : 1;
+        $rooms = Room::paginate(10)->withQueryString();
+
+
+        return view('admin.room.index', compact('rooms', 'halaman'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +43,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.room.create');
     }
 
     /**
@@ -40,7 +54,7 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

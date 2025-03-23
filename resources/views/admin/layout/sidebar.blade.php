@@ -11,7 +11,7 @@
 
         <!-- Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="/admin/dashboard">
+            <a class="nav-link" href="/dashboard">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
@@ -30,7 +30,7 @@
             <div id="collapseKamar" class="collapse" aria-labelledby="headingKamar" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Kelola Kamar:</h6>
-                    <a class="collapse-item" href="/admin/kamar">Daftar Kamar</a>
+                    <a class="collapse-item" href="/ourRoom">Daftar Kamar</a>
                     <a class="collapse-item" href="/admin/kamar/tipe">Tipe Kamar</a>
                 </div>
             </div>

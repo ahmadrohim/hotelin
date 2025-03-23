@@ -66,7 +66,7 @@ class AuthController extends Controller
 
             // cek role user
             if($user->role->role_name == 'admin'){
-                return redirect()->intended('/admin')->with('success', 'Selamat datang' . $user->name);
+                return redirect()->intended('/dashboard')->with('success', 'Selamat datang' . $user->name);
             }else{
                 return redirect()->intended('/')->with('success', 'Selamat datang '. $user->name);
             }

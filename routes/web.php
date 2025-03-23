@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\VerificationController;
-use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +18,13 @@ use App\Http\Controllers\HomeController;
 |
 */
 
+
+// route home
+Route::get('/', [HomeController::class, 'index']);
+
 // Route untuk user yang belum login
 Route::middleware(['guest'])->group(function () {
+
     // route register
     Route::get('/register', [AuthController::class, 'register'])->name('register'); 
     Route::post('/store', [AuthController::class, 'store'])->name('store');
@@ -31,11 +36,8 @@ Route::middleware(['guest'])->group(function () {
 
 // Route untuk user yang sudah login
 Route::middleware(['auth'])->group(function(){
-    Route::post('/logout', [AuthController::class, 'logout']); //logout yng belum login tidak bisa akses
+    Route::post('/logout', [AuthController::class, 'logout']); 
 });
-
-// route home
-Route::get('/', [HomeController::class, 'index']);
 
 // route rooms
 Route::get('/rooms/{code_category_room}', [RoomController::class, 'index']);
@@ -45,7 +47,13 @@ Route::get('/rooms/{code_category_room}', [RoomController::class, 'index']);
     Route::get('/admin', [AdminController::class, 'index']);
 });*/
 
-Route::get('/admin', [AdminController::class, 'index']);
+// ROUTE ADMIN
+Route::get('/dashboard', [AdminController::class, 'index']);
+// manajemen kamar
+Route::get('/ourRoom', [RoomController::class, 'ourRooms']);
+Route::get('/room/create', [RoomController::class, 'create']);
+Route::post('/room/store', [RoomController::class, 'store']);
+
 
 // route email verify
 Route::get('/verifyEmail/{id}', [VerificationController::class, 'verify']);
