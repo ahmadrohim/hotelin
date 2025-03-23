@@ -12,7 +12,7 @@
     <div class="card-header bg-danger">
     </div>
     <div class="card-body">
-        <form method="post" action="/room/store" enctype="multipart/form-data">
+        <form method="post" action="{{ $url }}" enctype="multipart/form-data">
             @csrf
 
             <!-- Nama Kamar -->
@@ -55,9 +55,9 @@
             <!-- Fasilitas -->
             <div class="form-group">
                 <label class="text-dark" for="facilities">Fasiitas</label>
-                <input class="form-control @error('facilities') is-invalid @enderror" 
-                          id="facilities" name="facilities" placeholder="Masukkan fafilitas kamar" 
-                          rows="3">{{ old('facilities') }}</input>
+                <input type="text" class="form-control @error('facilities') is-invalid @enderror" 
+                id="facilities" name="facilities" placeholder="Masukkan fasilitas kamar" 
+                value="{{ old('facilities') }}" required>
                 @error('facilities')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -68,8 +68,8 @@
                 <label class="text-dark" for="image">Upload Gambar Kamar</label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input @error('image') is-invalid @enderror" 
-                        id="image" name="image" accept="image/jpg, image/jpeg, image/png" required onchange="previewImage()">
-                    <label class="custom-file-label text-white bg-success" for="image">Pilih Gambar</label>
+                        id="image" name="image" accept="image/jpg, image/jpeg, image/webp" required onchange="previewImage()">
+                    <label class="custom-file-label text-white bg-danger" for="image">Pilih Gambar</label>
                 </div>
                 @error('image')
                 <div class="invalid-feedback">{{ $message }}</div>

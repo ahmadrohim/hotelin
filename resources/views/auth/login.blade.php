@@ -6,6 +6,9 @@
     <div class="col-lg-12">
         <div class="p-5">
             <div class="text-center">
+                <h1 class="text-warning font-weight-bold">HOTELIN</h1>
+            </div>
+            <div class="text-center">
                 <h1 class="h4 mb-4 text-white font-weight-bold">Form Login</h1>
             </div>
             @if(session('loginError'))

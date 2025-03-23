@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\Models\Hotel;
 use App\Models\RoomCategory;
 use App\Models\Room;
@@ -43,7 +44,8 @@ class RoomController extends Controller
      */
     public function create()
     {
-        return view('admin.room.create');
+        $url = '/room/store';
+        return view('admin.room.create', compact('url'));
     }
 
     /**
@@ -54,7 +56,58 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+         // Validasi input
+        $validate = $request->validate([
+            'name' => 'required',
+            'category_id' => ['required', 'exists:room_categories,id'],
+            'price' => 'required|numeric',
+            'facilities' => 'required', // Bisa array
+            'image' => ['required', 'image', 'mimes:jpeg,jpg,webp', 'max:1024']
+        ]);
+
+        // Konversi `facilities` ke string (pisahkan dengan koma jika array)
+        $validate['facilities'] = is_array($validate['facilities']) 
+            ? implode(',', $validate['facilities']) 
+            : $validate['facilities'];
+
+        // Ambil kategori kamar
+        $category = RoomCategory::findOrFail($validate['category_id']);
+
+        if ($category) {
+            // Ambil prefix dari kode kategori
+            $prefix = strtoupper($category->code_category_room);
+
+            // Hitung jumlah kamar dalam kategori ini
+            $roomCount = Room::where('category_id', $category->id)->count() + 1;
+
+            // Format code_room
+            $codeRoom = $prefix . str_pad($roomCount, 3, '0', STR_PAD_LEFT);
+
+            // Simpan ke array yang akan dimasukkan ke database
+            $validate['code_room'] = $codeRoom;
+        }
+
+        // Proses upload gambar ke `public/image/room`
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $imagePath = 'images/room/' . $imageName;
+
+            // Pastikan folder ada
+            File::ensureDirectoryExists(public_path('images/room'), 0755, true);
+
+            // Pindahkan file ke `public/image/room`
+            $image->move(public_path('images/room'), $imageName);
+
+            // Simpan path gambar ke database
+            $validate['image'] = $imageName;
+        }
+
+
+        // Simpan data ke database
+        Room::create($validate);
+
+        return redirect('/ourRoom')->with('success', 'Data kamar berhasil ditambahkan!');
     }
 
     /**

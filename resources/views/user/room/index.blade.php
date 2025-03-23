@@ -16,7 +16,7 @@
             @foreach($rooms as $room)
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card shadow-sm">
-                    <img src="/images/gallery/{{ $room->image }}" class="card-img-top" alt="Kamar Deluxe">
+                    <img src="/images/room/{{ $room->image }}" class="card-img-top" alt="{{ $room->category->name }}">
                     <div class="card-body text-center">
                         <h5 class="card-title">{{ $room->name }}</h5>
                         <p class="card-text">Harga: <strong>Rp. {{ number_format($room->price, 0, ',', '.') }}</strong> / malam</p>
