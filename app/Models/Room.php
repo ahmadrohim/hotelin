@@ -18,4 +18,9 @@ class Room extends Model
         return $this->belongsTo(RoomCategory::class, 'category_id');
     }
 
+
+    public function getRouteKeyName()
+    {
+        return 'code_room';
+    }
 }

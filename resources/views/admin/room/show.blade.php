@@ -27,13 +27,13 @@
     
                 <!-- Detail Kamar -->
                 <div class="col-md-6">
-                    <div class="card-body">
+                    <div class="card-body text-dark">
                         <h2 class="card-title text-danger text-uppercase font-weight-bold">{{ $room->name }}</h2>
     
                         <p><i class="fas fa-barcode"></i> <strong>Kode Kamar:</strong> {{ $room->code_room }}</p>
                         <p><i class="fas fa-door-closed"></i> <strong>Tipe Kamar:</strong> {{ $room->category->name }}</p>
                         <p><i class="fas fa-money-bill-wave"></i> <strong>Harga:</strong> 
-                            <span class="text-success font-weight-bold">Rp {{ number_format($room->price, 0, ',', '.') }} / Malam</span>
+                            <span class="font-weight-bold">Rp {{ number_format($room->price, 0, ',', '.') }} / Malam</span>
                         </p>
     
                         <!-- Status Ketersediaan -->
@@ -47,11 +47,14 @@
                         <!-- Fasilitas -->
                         <div class="d-flex flex-wrap">
                             <p><i class="fas fa-concierge-bell"></i> <strong>Fasilitas:</strong>  @foreach(explode(',', $room->facilities) as $facility)
-                                <span class="badge badge-pill badge-danger px-3 py-2 m-1">
+                                <span class="badge badge-pill badge-info px-3 py-2 m-1">
                                     <i class="fas fa-check-circle"></i> {{ trim($facility) }}
                                 </span>
                             @endforeach</p>
                         </div>
+                        <hr>
+                        <a href="/room/edit/{{ $room->code_room }}" class="btn btn-warning">Edit</a>
+                        <a href="" class="btn btn-danger ">Hapus</a>
                     </div>
                 </div>
             </div>   

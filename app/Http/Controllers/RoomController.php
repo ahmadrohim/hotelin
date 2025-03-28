@@ -10,12 +10,7 @@ use App\Models\Room;
 
 class RoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
+    
     //  semua pengguna
     public function index($code_category_room)
     {
@@ -37,23 +32,14 @@ class RoomController extends Controller
 
         return view('admin.room.index', compact('rooms', 'halaman'));
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         $url = '/room/store';
         return view('admin.room.create', compact('url'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
          // Validasi input
@@ -91,7 +77,6 @@ class RoomController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $imagePath = 'images/room/' . $imageName;
 
             // Pastikan folder ada
             File::ensureDirectoryExists(public_path('images/room'), 0755, true);
@@ -110,12 +95,7 @@ class RoomController extends Controller
         return redirect('/ourRoom')->with('success', 'Data kamar berhasil ditambahkan!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show($code_room)
     {
         $room = Room::where('code_room', $code_room)->firstOrFail();
@@ -123,35 +103,74 @@ class RoomController extends Controller
         return view('/admin/room/show', compact('room'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+  
+    public function edit($code_room)
     {
-        //
+        $room = Room::where('code_room', $code_room)->firstOrFail();
+        $url = '/room/update/';
+
+        return view('/admin/room/edit', compact('room', 'url'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+  
+    public function update(Request $request, $code_room)
     {
-        //
+        $room = Room::where('code_room', $code_room)->firstOrFail();
+
+        $validate = $request->validate([
+            'name' => 'required',
+            'category_id' => ['required', 'exists:room_categories,id'],
+            'price' => 'required|numeric',
+            'facilities' => 'required',
+        ]);
+
+        // cek apakah kategori berubah
+        if($room->category_id != $validate['category_id']){
+            // ambil kategori baru
+            $category = RoomCategory::findOrFail($validate['category_id']);
+            $prefix = strtoupper($category->code_category_room);
+
+            // hitung jumlah kamar dalam kategori ini
+            $roomCount = Room::where('category_id', $category->id)->count() + 1;
+
+            // format code_room
+            $validate['code_room'] = $prefix . str_pad($roomCount, 3, '0', STR_PAD_LEFT);
+        }else{
+            // jika kategori tidak berubah, pakai code_room lama
+            $validate['code_room'] = $room->code_room;
+        }
+       
+        // proses upload gambar jika ada gambar baru
+        if($request->hasFile('image')){
+            // hapus gambar lama jika ada
+            if($room->image && file_exists(public_path('images/room/' . $room->image))){
+                unlink(public_path('images/room/' . $room->image));
+            }
+
+            $image = $request->file('image');
+            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // pastikan folder ada
+            File::ensureDirectoryExists(public_path('images/room'), 0755, true);
+
+            // pindahkan file ke 'public/images/room'
+            $image->move(public_path('images/room'), $imageName);
+
+            // simpan path gambar ke database
+            $validate['image'] = $imageName;
+        }else{
+            // jika tidak ada gambar baru, gunakan gambar lama
+            $validate['image'] = $room->image;
+        }
+
+        // update data di database
+        $room->update($validate);
+
+        return redirect('/ourRoom')->with('success', 'Data kamar behasil diperbarui!');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function destroy($id)
     {
         //
