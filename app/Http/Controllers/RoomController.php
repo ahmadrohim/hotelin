@@ -116,9 +116,11 @@ class RoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($code_room)
     {
-        //
+        $room = Room::where('code_room', $code_room)->firstOrFail();
+
+        return view('/admin/room/show', compact('room'));
     }
 
     /**

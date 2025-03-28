@@ -54,6 +54,10 @@ Route::get('/ourRoom', [RoomController::class, 'ourRooms']);
 Route::get('/room/create', [RoomController::class, 'create']);
 Route::post('/room/store', [RoomController::class, 'store']);
 
+Route::get('/room/show/{code_room}', [RoomController::class, 'show']);
+
+Route::get('/room/edit/{code_room}', [RoomController::class, 'edit']);
+
 
 // route email verify
 Route::get('/verifyEmail/{id}', [VerificationController::class, 'verify']);

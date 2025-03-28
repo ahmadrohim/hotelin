@@ -59,7 +59,8 @@
                             <td>Rp. {{ number_format($room->price, 0, ',', '.')  }}</td>
                             <td class="text-center {{ $room->availability_status == 'available' ? 'text-success' : 'text-danger' }}">{{ $room->availability_status == 'available' ? 'Tersedia' : 'Tidak Tersedia' }}</td>
                             <td class="text-center">
-                                <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="/room/show/{{ $room->code_room }}" class="btn btn-info btn-sm">Detail</a>
+                                <a href="/room/edit/{{ $room->code_room }}" class="btn btn-primary btn-sm">Edit</a>
                                 <button class="btn btn-danger btn-sm">Hapus</button>
                             </td>
                         </tr>
