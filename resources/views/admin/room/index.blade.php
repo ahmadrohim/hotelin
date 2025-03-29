@@ -24,7 +24,7 @@
             <form action="/ourRoom"
             class="d-none d-sm-inline-block form-inline ml-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
-                <input type="text" class="form-control bg-light border-1 small" placeholder="Search for..."
+                <input type="text" class="form-control bg-light border-1 small" placeholder="Kata kunci..."
                     aria-label="Search" aria-describedby="basic-addon2" name="search" value="{{ request('search') }}">
                 <div class="input-group-append">
                     <button class="btn btn-danger"" type="submit">

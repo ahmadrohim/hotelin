@@ -50,4 +50,16 @@ class RoomCategory extends Model
        });
 
     }
+
+
+    // fitur filter pencarian (search)
+    public function scopeFilter($query, array $filter)
+    {
+        $query->when($filter['search'] ?? false, function($query, $search){
+            return $query->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('code_category_room', 'like', '%' . $search . '%')
+                        ->orWhere('best_price', 'like', '%' . $search . '%')
+                        ->orWhere('max_guests', 'like', '%' . $search . '%');
+        });
+    }
 }

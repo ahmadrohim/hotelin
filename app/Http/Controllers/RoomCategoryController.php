@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\RoomCategory;
 
 class RoomCategoryController extends Controller
 {
@@ -13,7 +14,9 @@ class RoomCategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.roomcategory.index');
+        $halaman = request('page') ? request('page') : 1;
+        $categories = RoomCategory::with('rooms')->filter(request(['search']))->paginate(10)->withQueryString();
+        return view('admin.roomcategory.index', compact('categories', 'halaman'));
     }
 
     /**
