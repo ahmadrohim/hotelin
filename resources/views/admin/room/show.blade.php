@@ -53,8 +53,12 @@
                             @endforeach</p>
                         </div>
                         <hr>
-                        <a href="/room/edit/{{ $room->code_room }}" class="btn btn-warning">Edit</a>
-                        <a href="" class="btn btn-danger ">Hapus</a>
+                        <a href="/room/edit/{{ $room->code_room }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                        <form action="/room/destroy/{{ $room->code_room }}" class="d-inline" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger"> <i class="fas fa-trash"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>   

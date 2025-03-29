@@ -59,6 +59,8 @@ Route::get('/room/{room:code_room}', [RoomController::class, 'show']);
 Route::get('/room/edit/{room:code_room}', [RoomController::class, 'edit']);
 Route::put('/room/update/{room:code_room}', [RoomController::class, 'update']);
 
+Route::delete('/room/destroy/{room:code_room}', [RoomController::class, 'destroy']);
+
 
 // route email verify
 Route::get('/verifyEmail/{id}', [VerificationController::class, 'verify']);

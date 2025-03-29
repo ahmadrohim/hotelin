@@ -59,9 +59,13 @@
                             <td>Rp. {{ number_format($room->price, 0, ',', '.')  }}</td>
                             <td class="text-center {{ $room->availability_status == 'available' ? 'text-success' : 'text-danger' }}">{{ $room->availability_status == 'available' ? 'Tersedia' : 'Tidak Tersedia' }}</td>
                             <td class="text-center">
-                                <a href="/room/{{ $room->code_room }}" class="btn btn-info btn-sm">Detail</a>
-                                <a href="/room/edit/{{ $room->code_room }}" class="btn btn-warning btn-sm">Edit</a>
-                                <button class="btn btn-danger btn-sm">Hapus</button>
+                                <a href="/room/{{ $room->code_room }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                                <a href="/room/edit/{{ $room->code_room }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                <form class="d-inline" action="/room/destroy/{{ $room->code_room }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button onclick="return confirm('Apakah anda yakin menghapus data kamar {{ $room->name }} ? data yang dihapus tidak bisa dipulihkan!')" type="submit" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

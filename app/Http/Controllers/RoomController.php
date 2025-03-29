@@ -130,16 +130,18 @@ class RoomController extends Controller
             $category = RoomCategory::findOrFail($validate['category_id']);
             $prefix = strtoupper($category->code_category_room);
 
-            // hitung jumlah kamar dalam kategori ini
-            $roomCount = Room::where('category_id', $category->id)->count() + 1;
+            // pastikan 'code_room' yang baru belum ada di database
+            do{
+                $roomCount = Room::where('category_id', $category->id)->count() + 1;
+                $newCodeRoom = $prefix . str_pad($roomCount, 3, '0', STR_PAD_LEFT);
+            }while(Room::where('code_room', $newCodeRoom)->exists());
 
-            // format code_room
-            $validate['code_room'] = $prefix . str_pad($roomCount, 3, '0', STR_PAD_LEFT);
+            $validate['code_room'] = $newCodeRoom;
         }else{
-            // jika kategori tidak berubah, pakai code_room lama
+            // jika kategori tidak berubah, gunakan 'code_room' lama
             $validate['code_room'] = $room->code_room;
         }
-       
+
         // proses upload gambar jika ada gambar baru
         if($request->hasFile('image')){
             // hapus gambar lama jika ada
@@ -170,9 +172,29 @@ class RoomController extends Controller
 
     }
 
-  
-    public function destroy($id)
+    public function destroy($code_room)
     {
-        //
+        // ambil data kamar
+        $room = Room::where('code_room', $code_room)->first();
+
+
+        // cek apakah kamar ada
+        if(!$room){
+            return redirect()->back()->with('error', 'Kamar tidak ditemukan!');
+        }
+
+        //path gambar disimpan
+        $imagePath = public_path('images/room/'. $room->image);
+
+        // hapus file gambar jika ada
+        if(File::exists($imagePath)){
+            File::delete($imagePath);
+        }
+        
+        // hapus data dari database
+        $room->delete();
+        
+        return redirect('ourRoom')->with('success', 'Kamar berhasil dihapus!');
+       
     }
 }
