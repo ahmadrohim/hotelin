@@ -32,9 +32,9 @@
                     <select class="form-control @error('category_id') is-invalid @enderror" 
                             id="category_id" name="category_id" required>
                         <option value="" disabled>Pilih tipe kamar</option>
-                        <option value="1" {{ old('category_id', $room->category_id) == '1' ? 'selected' : '' }}>Deluxe</option>
-                        <option value="2" {{ old('category_id', $room->category_id) == '2' ? 'selected' : '' }}>Superior</option>
-                        <option value="3" {{ old('category_id', $room->category_id) == '3' ? 'selected' : '' }}>Suite</option>
+                        @foreach($roomCategory as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id', $room->category_id) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                        @endforeach
                     </select>
                     @error('category_id')
                     <div class="invalid-feedback">{{ $message }}</div>

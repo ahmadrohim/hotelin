@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoomCategoryController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\VerificationController;
 
@@ -60,6 +61,9 @@ Route::get('/room/edit/{room:code_room}', [RoomController::class, 'edit']);
 Route::put('/room/update/{room:code_room}', [RoomController::class, 'update']);
 
 Route::delete('/room/destroy/{room:code_room}', [RoomController::class, 'destroy']);
+
+// manajemen kategoi kamar
+Route::get('categoryRoom', [RoomCategoryController::class, 'index']);
 
 
 // route email verify

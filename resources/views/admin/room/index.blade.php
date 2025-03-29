@@ -21,13 +21,13 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
             <a class="btn btn-danger" href="/room/create">Tambah Kamar</a>
-            <form
+            <form action="/ourRoom"
             class="d-none d-sm-inline-block form-inline ml-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
                 <input type="text" class="form-control bg-light border-1 small" placeholder="Search for..."
-                    aria-label="Search" aria-describedby="basic-addon2">
+                    aria-label="Search" aria-describedby="basic-addon2" name="search" value="{{ request('search') }}">
                 <div class="input-group-append">
-                    <button class="btn btn-danger"" type="button">
+                    <button class="btn btn-danger"" type="submit">
                         <i  class="fas fa-search fa-sm text-white"></i>
                     </button>
                 </div>
@@ -49,6 +49,7 @@
                         </tr>
                     </thead>
                     <tbody class="text-dark">
+                        @if(count($rooms) > 0)
                         @php $no = 1 + (10 * ($halaman - 1)); @endphp
                         @foreach($rooms as $room)
                         <tr>
@@ -69,6 +70,11 @@
                             </td>
                         </tr>
                         @endforeach
+                        @else
+                        <tr>
+                            <td class="text-center" colspan="7">Tidak ada kamar untuk ditampilkan</td>
+                        </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>

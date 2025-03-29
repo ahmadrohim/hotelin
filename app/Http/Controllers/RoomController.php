@@ -27,8 +27,7 @@ class RoomController extends Controller
     {
 
         $halaman = request('page') ? request('page') : 1;
-        $rooms = Room::paginate(10)->withQueryString();
-
+        $rooms = Room::with('category')->filter(request(['search']))->paginate(10)->withQueryString();
 
         return view('admin.room.index', compact('rooms', 'halaman'));
     }
@@ -36,7 +35,8 @@ class RoomController extends Controller
     public function create()
     {
         $url = '/room/store';
-        return view('admin.room.create', compact('url'));
+        $roomCategory = RoomCategory::all();
+        return view('admin.room.create', compact('url', 'roomCategory'));
     }
 
    
@@ -56,21 +56,39 @@ class RoomController extends Controller
             ? implode(',', $validate['facilities']) 
             : $validate['facilities'];
 
+       
         // Ambil kategori kamar
         $category = RoomCategory::findOrFail($validate['category_id']);
 
-        if ($category) {
-            // Ambil prefix dari kode kategori
+        if($category){
+            // ambil prefix dari kode kategory
             $prefix = strtoupper($category->code_category_room);
 
-            // Hitung jumlah kamar dalam kategori ini
-            $roomCount = Room::where('category_id', $category->id)->count() + 1;
+            // cari kode kamar terakhir berdasarkan prefik kategory
+            $lasRoom = Room::where('category_id', $category->id)
+                ->where('code_room', 'LIKE', $prefix, '%')
+                ->orderBy('code_room', 'desc')->first();
 
-            // Format code_room
-            $codeRoom = $prefix . str_pad($roomCount, 3, '0', STR_PAD_LEFT);
+                if($lasRoom){
+                    // ekstrak angka dari kode terakhir
+                    $lastNumber = (int) substr($lasRoom->code_room, strlen($prefix));
+                    $newNumber = $lastNumber + 1;
+                }else{
+                    $newNumber = 1; //jika belum ada kamar dalam kategori ini
+                }
 
-            // Simpan ke array yang akan dimasukkan ke database
-            $validate['code_room'] = $codeRoom;
+                // format code_room dengan padding 
+                $codeRoom = $prefix . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+
+                // pastikan code room benar-benar unik
+                while(Room::where('code_room', $codeRoom)->exists()){
+                    $newNumber++;
+                    $codeRoom = $prefix . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+                }
+
+                // simpan ke array yang akan dimasukan ke database
+                $validate['code_room'] = $codeRoom;
+
         }
 
         // Proses upload gambar ke `public/image/room`
@@ -106,10 +124,11 @@ class RoomController extends Controller
   
     public function edit($code_room)
     {
+        $roomCategory = RoomCategory::all();
         $room = Room::where('code_room', $code_room)->firstOrFail();
         $url = '/room/update/';
 
-        return view('/admin/room/edit', compact('room', 'url'));
+        return view('/admin/room/edit', compact('room', 'url', 'roomCategory'));
     }
 
   
@@ -124,23 +143,41 @@ class RoomController extends Controller
             'facilities' => 'required',
         ]);
 
-        // cek apakah kategori berubah
-        if($room->category_id != $validate['category_id']){
-            // ambil kategori baru
+       // Cek apakah kategori berubah
+        if ($room->category_id != $validate['category_id']) {
+            // Ambil kategori baru
             $category = RoomCategory::findOrFail($validate['category_id']);
             $prefix = strtoupper($category->code_category_room);
 
-            // pastikan 'code_room' yang baru belum ada di database
-            do{
-                $roomCount = Room::where('category_id', $category->id)->count() + 1;
-                $newCodeRoom = $prefix . str_pad($roomCount, 3, '0', STR_PAD_LEFT);
-            }while(Room::where('code_room', $newCodeRoom)->exists());
+            // Cari kode kamar terakhir berdasarkan kategori
+            $lastRoom = Room::where('category_id', $category->id)
+                ->where('code_room', 'LIKE', $prefix . '%')
+                ->orderBy('code_room', 'desc')
+                ->first();
+
+            if ($lastRoom) {
+                // Ekstrak angka dari kode terakhir (misal: SUP006 -> 6)
+                $lastNumber = (int) substr($lastRoom->code_room, strlen($prefix));
+                $newNumber = $lastNumber + 1;
+            } else {
+                $newNumber = 1; // Jika belum ada kamar dalam kategori ini
+            }
+
+            // Format code_room
+            $newCodeRoom = $prefix . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+
+            // Pastikan code_room benar-benar unik
+            while (Room::where('code_room', $newCodeRoom)->exists()) {
+                $newNumber++;
+                $newCodeRoom = $prefix . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+            }
 
             $validate['code_room'] = $newCodeRoom;
-        }else{
-            // jika kategori tidak berubah, gunakan 'code_room' lama
+        } else {
+            // Jika kategori tidak berubah, gunakan code_room lama
             $validate['code_room'] = $room->code_room;
         }
+
 
         // proses upload gambar jika ada gambar baru
         if($request->hasFile('image')){

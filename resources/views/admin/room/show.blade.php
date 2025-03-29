@@ -57,7 +57,7 @@
                         <form action="/room/destroy/{{ $room->code_room }}" class="d-inline" method="post">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger"> <i class="fas fa-trash"></i></button>
+                            <button onclick="return confirm('Apakah anda yakin menghapus data kamar {{ $room->name }} ? data yang dihapus tidak bisa dipulihkan!')" type="submit" class="btn btn-danger"> <i class="fas fa-trash"></i></button>
                         </form>
                     </div>
                 </div>
