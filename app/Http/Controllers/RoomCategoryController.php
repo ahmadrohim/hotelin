@@ -26,7 +26,7 @@ class RoomCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.roomCategory.create');
     }
 
     /**

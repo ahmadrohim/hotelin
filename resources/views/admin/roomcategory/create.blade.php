@@ -5,67 +5,52 @@
 <div class="container-fluid">
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h4 mb-0 text-gray-800 text-uppercase">Form Tambah Kamar</h1>
+        <h1 class="h4 mb-0 text-gray-800 text-uppercase">Form Tambah Kategori</h1>
     </div>
 
     <div class="card shadow my-5">
         <div class="card-header bg-danger">
         </div>
         <div class="card-body">
-            <form method="post" action="{{ $url }}" enctype="multipart/form-data">
+            <form method="post" action="/categoryRoom/store" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Nama Kamar -->
                 <div class="form-group">
-                    <label class="text-dark" for="name">Nama Kamar</label>
+                    <label class="text-dark" for="name">Nama Kategori</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" 
-                        id="name" name="name" placeholder="Masukkan nama kamar" 
+                        id="name" name="name" placeholder="Masukkan nama kategori" 
                         value="{{ old('name') }}" required>
                     @error('name')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
-                <!-- Tipe Kamar -->
+                <!-- Harga per Malam -->
                 <div class="form-group">
-                    <label class="text-dark" for="category_id">Tipe Kamar</label>
-                    <select class="form-control @error('category_id') is-invalid @enderror" 
-                            id="category_id" name="category_id" required>
-                        <option value="" disabled selected>Pilih tipe kamar</option>
-                        @foreach($roomCategory as $category)
-                        <option value="{{ $category->id }}" {{ old('category_id') ==  $category->id  ? 'selected' : '' }}>{{ $category->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('category_id')
+                    <label class="text-dark" for="base_price">Harga Mulai Dari (Rp)</label>
+                    <input type="number" class="form-control @error('base_price') is-invalid @enderror" 
+                        id="base_price" name="base_price" placeholder="Masukkan harga awal" 
+                        value="{{ old('base_price') }}" required>
+                    @error('base_price')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
-                    <!-- Harga per Malam -->
-                    <div class="form-group">
-                        <label class="text-dark" for="price">Harga per Malam (Rp)</label>
-                        <input type="number" class="form-control @error('price') is-invalid @enderror" 
-                            id="price" name="price" placeholder="Masukkan harga kamar per malam" 
-                            value="{{ old('price') }}" required>
-                        @error('price')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
                 <!-- Fasilitas -->
                 <div class="form-group">
-                    <label class="text-dark" for="facilities">Fasiitas</label>
-                    <input type="text" class="form-control @error('facilities') is-invalid @enderror" 
-                    id="facilities" name="facilities" placeholder="Masukkan fasilitas kamar" 
-                    value="{{ old('facilities') }}" required>
-                    @error('facilities')
+                    <label class="text-dark" for="max_guests">Maksimal Tamu</label>
+                    <input type="text" class="form-control @error('max_guests') is-invalid @enderror" 
+                    id="max_guests" name="max_guests" placeholder="Masukkan maksimal tamu" 
+                    value="{{ old('max_guests') }}" required>
+                    @error('max_guests')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <!-- Upload Gambar Kamar -->
                 <div class="form-group">
-                    <label class="text-dark" for="image">Upload Gambar Kamar</label>
+                    <label class="text-dark" for="image">Upload Gambar Kategori Kamar</label>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input @error('image') is-invalid @enderror" 
                             id="image" name="image" accept="image/jpg, image/jpeg, image/webp" required onchange="previewImage()">
@@ -85,7 +70,7 @@
                 <!-- Tombol Simpan dan Kembali -->
                 <div class="form-group d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary mb-2 mx-2">Tambah</button>
-                    <a href="/ourRoom" class="btn btn-secondary mb-2 mx-2">Kembali</a>
+                    <a href="/categoryRoom" class="btn btn-secondary mb-2 mx-2">Kembali</a>
                 </div>
 
             </form>
@@ -96,4 +81,3 @@
 </div>
 
 @endsection
-

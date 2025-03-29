@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoomCategoryController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\VerificationController;
+use App\Models\RoomCategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,7 @@ Route::delete('/room/destroy/{room:code_room}', [RoomController::class, 'destroy
 
 // manajemen kategoi kamar
 Route::get('categoryRoom', [RoomCategoryController::class, 'index']);
+Route::get('/categoryRoom/create', [RoomCategoryController::class, 'create']);
 
 
 // route email verify

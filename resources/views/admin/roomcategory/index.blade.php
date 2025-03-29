@@ -20,7 +20,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <a class="btn btn-danger" href="/room/create">Tambah Kategori</a>
+            <a class="btn btn-danger" href="/categoryRoom/create">Tambah Kategori</a>
             <form action="/roomCategory"
             class="d-none d-sm-inline-block form-inline ml-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
