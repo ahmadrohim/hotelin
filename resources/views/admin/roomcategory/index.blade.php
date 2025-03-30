@@ -58,8 +58,8 @@
                             <td>Rp. {{ number_format($category->base_price, 0, ',', '.')  }}</td>
                             <td class="text-center">{{ $category->max_guests }}</td>
                             <td class="text-center">
-                                <a href="/room/{{ $category->code_category_room }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
-                                <a href="/room/edit/{{ $category->code_category_room }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                <a href="/categoryRoom/{{ $category->code_category_room }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                                <a href="/categoryRoom/edit/{{ $category->code_category_room }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                 <form class="d-inline" action="/room/destroy/{{ $category->code_category_room }}" method="post">
                                     @csrf
                                     @method('delete')

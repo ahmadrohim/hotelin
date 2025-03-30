@@ -38,7 +38,7 @@ class Room extends Model
 
         // saat membuat room baru
         static::creating(function($room){
-            $room->code_room = self::generateCodeRoom($room->categoru_id);
+            $room->code_room = self::generateCodeRoom($room->category_id);
         });
 
         // saat mengupdate room

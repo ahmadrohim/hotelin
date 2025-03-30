@@ -71,7 +71,6 @@ class RoomController extends Controller
             $validate['image'] = $imageName;
         }
 
-
         // Simpan data ke database
         Room::create($validate);
 

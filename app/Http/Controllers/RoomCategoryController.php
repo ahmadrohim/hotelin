@@ -54,22 +54,26 @@ class RoomCategoryController extends Controller
 
     }
 
-    
-    public function show($id)
+
+    public function show($code_category_room)
     {
-        //
+        $category = RoomCategory::where('code_category_room', $code_category_room)->firstOrFail();
+
+        return view('admin.roomCategory.show', compact('category'));
     }
 
    
-    public function edit($id)
+    public function edit($code_category_room)
     {
-        //
+        $category = RoomCategory::where('code_category_room', $code_category_room)->firstOrFail();
+        
+        return view('admin.roomCategory.edit', compact('category'));
     }
 
     
-    public function update(Request $request, $id)
+    public function update(Request $request, $code_category_room)
     {
-        //
+        return response()->json($request);
     }
 
     public function destroy($id)

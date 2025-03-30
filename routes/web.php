@@ -67,6 +67,10 @@ Route::delete('/room/destroy/{room:code_room}', [RoomController::class, 'destroy
 Route::get('categoryRoom', [RoomCategoryController::class, 'index']);
 Route::get('/categoryRoom/create', [RoomCategoryController::class, 'create']);
 Route::post('/categoryRoom/store', [RoomCategoryController::class, 'store']);
+Route::get('/categoryRoom/{categoryRoom:code_category_room}', [RoomCategoryController::class, 'show']);
+
+Route::get('/categoryRoom/edit/{categoryRoom:code_category_room}', [RoomCategoryController::class, 'edit']);
+Route::put('/categoryRoom/update/{categoryRoom:code_category_room}', [RoomCategoryController::class, 'update']);
 
 
 // route email verify
