@@ -18,37 +18,49 @@ class RoomCategory extends Model
         return $this->hasMany(Room::class, 'category_id');
     }
 
+
     protected static function boot()
     {
         parent::boot();
 
+        // saat kategori baru dibuat
         static::creating(function($RoomCategory){
-            // ambil 3 huruf pertama dari setiap kata
-            $code = strtoupper(
-                collect(explode(' ', $RoomCategory->name))
-                    ->map(fn($word) => substr($word, 0, 3))
-                    ->join('')
-            );
-
-            // cek apakah sudah ada kategori dengan kode yang sama
-            $latestCategory = self::where('code_category_room', 'LIKE', $code . '%')->count();
-
-            // jika ada duplikat, tambahkan angka urut
-            $RoomCategory->code_category_room = $code . ($latestCategory +1);
+            $RoomCategory->code_category_room = self::generateCodeCategory($RoomCategory->name);
         });
 
-       static::updating(function($RoomCategory){
-            $code = strtoupper(
-                collect(explode(' ', $RoomCategory->name))
-                    ->map(fn($word) => substr($word, 0, 3))
-                    ->join('')
-            );
+        // saat kategori diupdate
+        static::updating(function($RoomCategory){
+            // cek jika nama kategori diubah
+            if($RoomCategory->isDirty('name')){
+                $RoomCategory->code_category_room = self::generateCodeCategory($RoomCategory->name);
+            }
+        });
+    }
 
-            $latestCategory = self::where('code_category_room', 'LIKE', $code . '%')->count();
+    // fungsi untuk generate kode kategori unik
+    protected static function generateCodeCategory($name)
+    {
+        // ambil 3 huruf pertama dari setiap kata
+        $code = strtoupper(
+            collect(explode(' ', $name))
+                ->map(fn($word) => substr($word, 0, 3))
+                ->join('')
+        );
 
-            $RoomCategory->code_category_room = $code . ($latestCategory + 1);
-       });
+        // cari kode terakhir yang mirip, lalu ambil angka terbesar
+        $latestCategory = self::where('code_category_room', 'LIKE', $code . '%')
+            ->orderBy('code_category_room', 'desc')
+            ->first();
+            
+            if($latestCategory){
+                // ambil angka terakhir dari kode yang ada
+                preg_match('/\d+$/', $latestCategory->code_category_room, $matches);
+                $newNumber = isset($matches[0]) ? ((int) $matches[0] + 1) : 1;
+            }else{
+                $newNumber = 1;
+            }
 
+            return $code . $newNumber;
     }
 
 

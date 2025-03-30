@@ -31,7 +31,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Kelola Kamar:</h6>
                     <a class="collapse-item" href="/ourRoom">Daftar Kamar</a>
-                    <a class="collapse-item" href="/categoryRoom">Tipe Kamar</a>
+                    <a class="collapse-item" href="/categoryRoom">Kategori Kamar</a>
                 </div>
             </div>
         </li>

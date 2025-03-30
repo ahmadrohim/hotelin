@@ -56,41 +56,6 @@ class RoomController extends Controller
             ? implode(',', $validate['facilities']) 
             : $validate['facilities'];
 
-       
-        // Ambil kategori kamar
-        $category = RoomCategory::findOrFail($validate['category_id']);
-
-        if($category){
-            // ambil prefix dari kode kategory
-            $prefix = strtoupper($category->code_category_room);
-
-            // cari kode kamar terakhir berdasarkan prefik kategory
-            $lasRoom = Room::where('category_id', $category->id)
-                ->where('code_room', 'LIKE', $prefix, '%')
-                ->orderBy('code_room', 'desc')->first();
-
-                if($lasRoom){
-                    // ekstrak angka dari kode terakhir
-                    $lastNumber = (int) substr($lasRoom->code_room, strlen($prefix));
-                    $newNumber = $lastNumber + 1;
-                }else{
-                    $newNumber = 1; //jika belum ada kamar dalam kategori ini
-                }
-
-                // format code_room dengan padding 
-                $codeRoom = $prefix . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
-
-                // pastikan code room benar-benar unik
-                while(Room::where('code_room', $codeRoom)->exists()){
-                    $newNumber++;
-                    $codeRoom = $prefix . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
-                }
-
-                // simpan ke array yang akan dimasukan ke database
-                $validate['code_room'] = $codeRoom;
-
-        }
-
         // Proses upload gambar ke `public/image/room`
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -143,41 +108,6 @@ class RoomController extends Controller
             'facilities' => 'required',
         ]);
 
-       // Cek apakah kategori berubah
-        if ($room->category_id != $validate['category_id']) {
-            // Ambil kategori baru
-            $category = RoomCategory::findOrFail($validate['category_id']);
-            $prefix = strtoupper($category->code_category_room);
-
-            // Cari kode kamar terakhir berdasarkan kategori
-            $lastRoom = Room::where('category_id', $category->id)
-                ->where('code_room', 'LIKE', $prefix . '%')
-                ->orderBy('code_room', 'desc')
-                ->first();
-
-            if ($lastRoom) {
-                // Ekstrak angka dari kode terakhir (misal: SUP006 -> 6)
-                $lastNumber = (int) substr($lastRoom->code_room, strlen($prefix));
-                $newNumber = $lastNumber + 1;
-            } else {
-                $newNumber = 1; // Jika belum ada kamar dalam kategori ini
-            }
-
-            // Format code_room
-            $newCodeRoom = $prefix . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
-
-            // Pastikan code_room benar-benar unik
-            while (Room::where('code_room', $newCodeRoom)->exists()) {
-                $newNumber++;
-                $newCodeRoom = $prefix . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
-            }
-
-            $validate['code_room'] = $newCodeRoom;
-        } else {
-            // Jika kategori tidak berubah, gunakan code_room lama
-            $validate['code_room'] = $room->code_room;
-        }
-
 
         // proses upload gambar jika ada gambar baru
         if($request->hasFile('image')){
@@ -209,6 +139,7 @@ class RoomController extends Controller
 
     }
 
+
     public function destroy($code_room)
     {
         // ambil data kamar
@@ -219,17 +150,9 @@ class RoomController extends Controller
         if(!$room){
             return redirect()->back()->with('error', 'Kamar tidak ditemukan!');
         }
-
-        //path gambar disimpan
-        $imagePath = public_path('images/room/'. $room->image);
-
-        // hapus file gambar jika ada
-        if(File::exists($imagePath)){
-            File::delete($imagePath);
-        }
         
         // hapus data dari database
-        $room->delete();
+        $room->deleteRoom();
         
         return redirect('ourRoom')->with('success', 'Kamar berhasil dihapus!');
        

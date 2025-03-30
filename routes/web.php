@@ -66,6 +66,7 @@ Route::delete('/room/destroy/{room:code_room}', [RoomController::class, 'destroy
 // manajemen kategoi kamar
 Route::get('categoryRoom', [RoomCategoryController::class, 'index']);
 Route::get('/categoryRoom/create', [RoomCategoryController::class, 'create']);
+Route::post('/categoryRoom/store', [RoomCategoryController::class, 'store']);
 
 
 // route email verify

@@ -117,6 +117,41 @@
             label.textContent = input.files[0].name; // Mengganti label dengan nama file
         }
     }
+
+        // javascript untuk base price create
+        document.addEventListener("DOMContentLoaded", function () {
+            let categorySelect = document.getElementById("category_id");
+            let priceInput = document.getElementById("price");
+            let basePriceText = document.getElementById("base_price_text");
+
+            // Fungsi untuk mengupdate label harga awal dan batas minimum input harga
+            function updatePrice() {
+                let selectedOption = categorySelect.options[categorySelect.selectedIndex];
+                let basePrice = selectedOption.getAttribute("data-price");
+
+                if (basePrice) {
+                    // Tampilkan harga awal di label
+                    basePriceText.innerText = "Rp " + new Intl.NumberFormat('id-ID').format(basePrice);
+
+                    // Set minimum harga yang bisa diinputkan
+                    priceInput.setAttribute("min", basePrice);
+
+                    // Hanya ubah harga jika sedang dalam mode create atau harga sebelumnya lebih rendah dari base_price
+                    if (!priceInput.value || parseInt(priceInput.value) < parseInt(basePrice)) {
+                        priceInput.value = basePrice;
+                    }
+                } else {
+                    basePriceText.innerText = "Rp 0";
+                    priceInput.setAttribute("min", 0);
+                }
+            }
+
+            // Panggil fungsi saat pertama kali halaman dimuat
+            updatePrice();
+
+            // Tambahkan event listener ketika user mengganti kategori kamar
+            categorySelect.addEventListener("change", updatePrice);
+        });
     </script>
 
 </body>

@@ -26,27 +26,31 @@
                     @enderror
                 </div>
     
-                <!-- Tipe Kamar -->
+             <!-- Tipe Kamar -->
                 <div class="form-group">
                     <label class="text-dark" for="category_id">Tipe Kamar</label>
                     <select class="form-control @error('category_id') is-invalid @enderror" 
                             id="category_id" name="category_id" required>
                         <option value="" disabled>Pilih tipe kamar</option>
                         @foreach($roomCategory as $category)
-                        <option value="{{ $category->id }}" {{ old('category_id', $room->category_id) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                        <option value="{{ $category->id }}" 
+                                data-price="{{ $category->base_price }}" 
+                                {{ old('category_id', $room->category_id) == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
                         @endforeach
                     </select>
                     @error('category_id')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-    
+
                 <!-- Harga per Malam -->
                 <div class="form-group">
-                    <label class="text-dark" for="price">Harga per Malam (Rp)</label>
+                    <label class="text-dark" for="price">Harga per Malam (Rp) | Harga Minimum: <strong id="base_price_text">Rp 0</strong></label>
                     <input type="number" class="form-control @error('price') is-invalid @enderror" 
-                           id="price" name="price" placeholder="Masukkan harga kamar per malam" 
-                           value="{{ old('price', $room->price) }}" required>
+                        id="price" name="price" placeholder="Masukkan harga kamar per malam" 
+                        value="{{ old('price', $room->price) }}" required min="0">
                     @error('price')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
