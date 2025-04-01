@@ -12,7 +12,7 @@
         <div class="card-header bg-danger">
         </div>
         <div class="card-body">
-            <form method="post" action="/categoryRoom/update/{{ $category->id }}" enctype="multipart/form-data">
+            <form method="post" action="/categoryRoom/update/{{ $category->code_category_room }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 

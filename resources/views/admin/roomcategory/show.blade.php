@@ -33,7 +33,7 @@
                         <form action="/categoryRoom/destroy/{{ $category->code_category_room }}" class="d-inline" method="post">
                             @csrf
                             @method('delete')
-                            <button onclick="return confirm('Apakah anda yakin menghapus kategori kamar {{ $category->name }} ? Data yang dihapus tidak bisa dipulihkan!')" type="submit" class="btn btn-danger"> <i class="fas fa-trash"></i> Hapus</button>
+                            <button onclick="return confirm('Apakah anda yakin menghapus kategori {{ $category->name }} ? Data yang dihapus tidak bisa dipulihkan!')" type="submit" class="btn btn-danger"> <i class="fas fa-trash"></i> Hapus</button>
                         </form>
                     </div>
                 </div>

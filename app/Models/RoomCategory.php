@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use App\Models\Room;
 
@@ -75,6 +76,22 @@ class RoomCategory extends Model
     }
     
 
+    public function deleteCategory()
+    {
+
+        // path gambar yang disimpan
+        $imagePath = public_path('images/categoriesroom' . $this->image);
+
+        // hapus file gambar jika ada
+        if(File::exists($imagePath)){
+            File::delete($imagePath);
+        }
+        
+        // hapus data dari database
+        return $this->delete();
+
+    }
+
 
     // fitur filter pencarian (search)
     public function scopeFilter($query, array $filter)
@@ -82,7 +99,7 @@ class RoomCategory extends Model
         $query->when($filter['search'] ?? false, function($query, $search){
             return $query->where('name', 'like', '%' . $search . '%')
                         ->orWhere('code_category_room', 'like', '%' . $search . '%')
-                        ->orWhere('best_price', 'like', '%' . $search . '%')
+                        ->orWhere('base_price', 'like', '%' . $search . '%')
                         ->orWhere('max_guests', 'like', '%' . $search . '%');
         });
     }

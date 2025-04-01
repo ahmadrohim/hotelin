@@ -21,7 +21,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
             <a class="btn btn-danger" href="/categoryRoom/create">Tambah Kategori</a>
-            <form action="/roomCategory"
+            <form action="/categoryRoom"
             class="d-none d-sm-inline-block form-inline ml-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
                 <input type="text" class="form-control bg-light border-1 small" placeholder="Kata kunci..."
@@ -60,10 +60,10 @@
                             <td class="text-center">
                                 <a href="/categoryRoom/{{ $category->code_category_room }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                                 <a href="/categoryRoom/edit/{{ $category->code_category_room }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                <form class="d-inline" action="/room/destroy/{{ $category->code_category_room }}" method="post">
+                                <form class="d-inline" action="/categoryRoom/destroy/{{ $category->code_category_room }}" method="post">
                                     @csrf
                                     @method('delete')
-                                    <button onclick="return confirm('Apakah anda yakin menghapus data kamar {{ $category->name }} ? data yang dihapus tidak bisa dipulihkan!')" type="submit" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button>
+                                    <button onclick="return confirm('Apakah anda yakin menghapus data kategori {{ $category->name }} ? data yang dihapus tidak bisa dipulihkan!')" type="submit" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button>
                                 </form>
                             </td>
                         </tr>

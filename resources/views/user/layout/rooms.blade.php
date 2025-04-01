@@ -12,7 +12,7 @@
             <!-- Kamar 1 -->
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card shadow-sm" style="color:white; border:none;">
-                    <img src="/images/room/{{ $Room->image }}" class="card-img-top" alt="{{ $Room->name }}">
+                    <img src="/images/categoriesroom/{{ $Room->image }}" class="card-img-top" alt="{{ $Room->name }}">
                     <div class="card-body text-center">
                         <h5 class="card-title">{{ $Room->name }}</h5>
                         <p class="card-text">Mulai dari <strong>Rp. {{ number_format($Room->base_price, 0, ',', '.') }}</strong> / malam</p>

@@ -14,29 +14,34 @@ class RoomController extends Controller
     //  semua pengguna
     public function index($code_category_room)
     {
-        $Hotel = Hotel::first();
         $room = RoomCategory::where('code_category_room', $code_category_room)->firstOrFail();
-        $rooms = $room->rooms; 
-
-        return view('user.room.index', compact('Hotel','rooms', 'room'));
+        $data = [
+            'Hotel' => Hotel::first(),
+            'room' => $room,
+            'rooms' => $room->rooms
+        ];
+        return view('user.room.index', $data);
     }
 
 
     // admin 
     public function ourRooms()
     {
+        $data = [
+            'halaman' => request('page') ? request('page') : 1,
+            'rooms' => Room::with('category')->filter(request(['search']))->paginate(10)->withQueryString(),
+        ];
 
-        $halaman = request('page') ? request('page') : 1;
-        $rooms = Room::with('category')->filter(request(['search']))->paginate(10)->withQueryString();
-
-        return view('admin.room.index', compact('rooms', 'halaman'));
+        return view('admin.room.index', $data);
     }
     
     public function create()
     {
-        $url = '/room/store';
-        $roomCategory = RoomCategory::all();
-        return view('admin.room.create', compact('url', 'roomCategory'));
+        $data = [
+            'url' => '/room/store',
+            'roomCategory' => RoomCategory::all()
+        ];
+        return view('admin.room.create', $data);
     }
 
    
@@ -80,19 +85,23 @@ class RoomController extends Controller
    
     public function show($code_room)
     {
-        $room = Room::where('code_room', $code_room)->firstOrFail();
+        $data = [
+            'room' => Room::where('code_room', $code_room)->firstOrFail()
+        ];
 
-        return view('/admin/room/show', compact('room'));
+        return view('/admin/room/show', $data);
     }
 
   
     public function edit($code_room)
     {
-        $roomCategory = RoomCategory::all();
-        $room = Room::where('code_room', $code_room)->firstOrFail();
-        $url = '/room/update/';
+        $data = [
+            'roomCategory' => RoomCategory::all(),
+            'room' => Room::where('code_room', $code_room)->firstOrFail(),
+            'url' => '/room/update/'
+        ];
 
-        return view('/admin/room/edit', compact('room', 'url', 'roomCategory'));
+        return view('/admin/room/edit', $data);
     }
 
   
@@ -105,6 +114,7 @@ class RoomController extends Controller
             'category_id' => ['required', 'exists:room_categories,id'],
             'price' => 'required|numeric',
             'facilities' => 'required',
+            'image' => ['image', 'mimes:jpeg,jpg,webp', 'max:1024']
         ]);
 
 

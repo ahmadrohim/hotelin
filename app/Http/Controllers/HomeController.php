@@ -19,13 +19,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $Hotel = Hotel::first();
-        $HeroSection = HeroSection::all();
-        $RoomCategory = RoomCategory::all();
-        $HotelFacilities = HotelFaicilities::all();
-        $Gallery = Gallery::all();
+      
+        $data = [
+            'Hotel' => Hotel::first(),
+            'RoomCategory' => RoomCategory::all(),
+            'HeroSection' => HeroSection::all(),
+            'HotelFacilities' => HotelFaicilities::all(),
+            'Gallery' => Gallery::all()
+        ];
 
-        return view('user.index', compact('Hotel', 'HeroSection', 'RoomCategory', 'HotelFacilities', 'Gallery'));
+        return view('user.index', $data);
     }
 
     /**

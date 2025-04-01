@@ -72,6 +72,8 @@ Route::get('/categoryRoom/{categoryRoom:code_category_room}', [RoomCategoryContr
 Route::get('/categoryRoom/edit/{categoryRoom:code_category_room}', [RoomCategoryController::class, 'edit']);
 Route::put('/categoryRoom/update/{categoryRoom:code_category_room}', [RoomCategoryController::class, 'update']);
 
+Route::delete('/categoryRoom/destroy/{categoryRoom:code_category_room}', [RoomCategoryController::class, 'destroy']);
+
 
 // route email verify
 Route::get('/verifyEmail/{id}', [VerificationController::class, 'verify']);
