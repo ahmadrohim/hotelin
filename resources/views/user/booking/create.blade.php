@@ -29,29 +29,58 @@
             <div class="col-lg-6 col-md-8">
                 <div class="card shadow-lg border-0 rounded">
                     <div class="card-body p-4">
+                        
                         <form action="/booking/store/{{ $room->code_room }}" method="POST">
                             @csrf
-                            <input type="hidden" name="room_id" value="">
-
+                        
                             <div class="mb-3">
                                 <label for="check_in_date" class="form-label">Tanggal Check-in</label>
                                 <input type="date" name="check_in_date" id="check_in_date" class="form-control" required>
                             </div>
-
+                        
                             <div class="mb-3">
                                 <label for="check_out_date" class="form-label">Tanggal Check-out</label>
                                 <input type="date" name="check_out_date" id="check_out_date" class="form-control" required>
                             </div>
-
+                        
                             <div class="mb-3">
-                                <label for="guests" class="form-label">Jumlah Tamu</label>
-                                <input type="number" name="guests" id="guests" class="form-control" min="1" max="{{ $room->max_guests }}" required>
+                                <label for="extra_bed" class="form-label">Tambahan Kasur</label>
+                                <input type="number" name="extra_bed" id="extra_bed" class="form-control" required value='0' min='0' max="2">
+                                <small id="extra_bed_help" class="form-text text-muted">Max Tambahan Kasur: 2</small>
+                            </div>
+                        
+                            <div class="mb-3">
+                                <label for="total_price" class="form-label">Total Harga</label>
+                                <input type="text" name="total_price" id="total_price" class="form-control" readonly>
+                            </div>
+                        
+                            
+                            <!-- Metode Pembayaran -->
+                            <div class="mb-3">
+                                <label for="payment_method" class="form-label">Metode Pembayaran</label>
+                                <select name="payment_method" id="payment_method" class="form-control">
+                                    <option value="" selected disabled>Pilih metode pembayaran:</option>
+                                    <option value="bank_transfer">Transfer Bank</option>
+                                    <option value="qris">QRIS</option>
+                                </select>
                             </div>
 
+                            <!-- Detail Transfer Bank -->
+                            <div id="bank_transfer_details" class="payment-details mb-3" style="display: none;">
+                                <p><strong>Bank BCA</strong> - 123-456-7890 a.n. Hotel Dieng</p>
+                            </div>
+
+                            <!-- Detail QRIS -->
+                            <div id="qris_details" class="payment-details mb-3" style="display: none;">
+                                <p>Scan QRIS untuk pembayaran:</p>
+                                <img src="/images/qris.jpg" alt="QRIS Pembayaran" class="img-fluid">
+                            </div>
+                        
                             <div class="d-grid gap-2">
                                 <button type="submit" style="border: 0px" class="btn-read-more">Lanjut ke Pembayaran</button>
                             </div>
                         </form>
+                        
                     </div>
                 </div>
             </div>

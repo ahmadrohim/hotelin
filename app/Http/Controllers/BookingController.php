@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use App\Models\Booking;
 use App\Models\Hotel;
 use App\Models\Room;
@@ -36,8 +37,19 @@ class BookingController extends Controller
         $room = Room::where('code_room', $code_room)->firstOrFail();
         $user = Auth::user();
 
+        $validate = $request->validate([
+            'check_in_date' => 'required|date|after_or_equal:today',
+            'check_out_date' => 'required|date',
+            'extra_bed' => 'required',
+            'total_price' => 'required',
+            'payment_method' => 'required'
+        ]);
 
-        return response()->json($request);
+        $validate['code_booking'] = 'BOOK-' . strtoupper(Str::random(10));
+        $validate['user_id'] = $user->id;
+        $validate['room_id'] = $room->id;
+
+        return response()->json($validate);
     }
 
    
