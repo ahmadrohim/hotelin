@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RoomCategoryController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\VerificationController;
@@ -77,5 +78,13 @@ Route::delete('/categoryRoom/destroy/{categoryRoom:code_category_room}', [RoomCa
 
 // route email verify
 Route::get('/verifyEmail/{id}', [VerificationController::class, 'verify']);
+
+
+// Route untuk user yang sudah login
+Route::middleware(['auth'])->group(function(){
+    // route user booking, 
+    Route::get('/booking/create/{room:code_room}', [BookingController::class, 'create']);
+    Route::post('/booking/store/{room:code_room}', [BookingController::class, 'store']);
+});
 
 

@@ -11,6 +11,11 @@
             <div class="text-center">
                 <h1 class="h4 mb-4 text-white font-weight-bold">Form Login</h1>
             </div>
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
             @if(session('loginError'))
             <div class="alert alert-danger">
                 {{ session('loginError') }}
@@ -52,7 +57,7 @@
                 <a class="small text-white" href="forgot-password.html">Lupa Password?</a>
             </div>
             <div class="text-center ">
-                <a class="small text-white" href="/register">Buat Akun!</a>
+                <a class="small text-white font-weight-bold" href="/register">Buat Akun!</a>
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@
                         <p class="card-text">Harga: <strong>Rp. {{ number_format($room->price, 0, ',', '.') }}</strong> / malam</p>
                         <p class="room-facilities">{{ $room->facilities }}</p>
                         <p class="card-text">Kapasitas: <strong>{{ $room->category->max_guests }} orang </strong></p>
-                        <a href="/rooms/{{ $room->code_room }}" class=" btn-read-more">Pesan Kamar</a>
+                        <a href="/booking/create/{{ $room->code_room }}" class="btn-read-more">Pesan Kamar</a>
                     </div>
                 </div>
             </div>  

@@ -70,7 +70,7 @@
 
             <hr>
             <div class="text-center ">
-                <a class="small text-white" href="/login">Sudah punya akun? Login!</a>
+                <a class="small text-white" href="/login">Sudah punya akun? <span class="font-weight-bold">Login!</span></a>
             </div>
         </div>
     </div>

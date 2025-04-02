@@ -10,7 +10,7 @@
     <hr class="sidebar-divider my-0">
 
         <!-- Dashboard -->
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
             <a class="nav-link" href="/dashboard">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
@@ -21,7 +21,7 @@
         <div class="sidebar-heading">Manajemen</div>
     
         <!-- Manajemen Kamar -->
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('ourRoom*') || Request::is('categoryRoom*') ? 'active' : '' }}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKamar"
                 aria-expanded="true" aria-controls="collapseKamar">
                 <i class="fas fa-fw fa-bed"></i>
