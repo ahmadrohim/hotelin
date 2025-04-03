@@ -110,6 +110,11 @@
                 }
             });
 
+            document.getElementById('payment_proof').addEventListener('change', function(event){
+                let fileName = event.target.files[0] ? event.target.files[0].name : 'Tidak ada file dipilih';
+                document.getElementById('file-name').textContent = fileName;
+            })
+
         </script>
 
         @if(request()->is('booking/create*'))  <!-- Pengecekan halaman create -->

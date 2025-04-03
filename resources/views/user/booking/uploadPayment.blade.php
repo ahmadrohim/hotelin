@@ -14,17 +14,20 @@
             <div class="col-lg-6 col-md-8">
                 <div class="card shadow-lg border-0 rounded">
                     <div class="card-body p-4">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="/booking/update/{{ $Booking->code_booking }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('put')
                             
                             <div class="mb-3">
                                 <label for="code_booking" class="form-label">Kode Booking</label>
-                                <input type="text" name="code_booking" id="code_booking" class="form-control" required placeholder="Masukkan kode booking Anda">
+                                <input type="text" name="code_booking" id="code_booking" class="form-control" required placeholder="Masukkan kode booking Anda" value="{{ $Booking->code_booking }}" readonly>
                             </div>
 
                             <div class="mb-3">
                                 <label for="payment_proof" class="form-label">Unggah Bukti Pembayaran</label>
                                 <input type="file" name="payment_proof" id="payment_proof" class="form-control" required>
+                                <p id="file-name" class="mt-2 text-muted"></p> <!-- Tempat menampilkan nama file -->
+                                <small>Max file : <strong>1 mb</strong></small>
                             </div>
 
                             <div class="d-grid gap-2">

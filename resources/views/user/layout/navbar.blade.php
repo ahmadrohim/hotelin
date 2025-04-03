@@ -24,6 +24,12 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="userDropdown">
                                 <li>
+                                    <a class="dropdown-item text-capitalize" href="/booking/{{ Auth::user()->id }}">Pesanan Saya</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-capitalize" href="">Profil</a>
+                                </li>
+                                <li>
                                     <form action="/logout" method="POST">
                                         @csrf
                                         <button type="submit" class="dropdown-item">Logout</button>

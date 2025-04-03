@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use App\Models\Booking;
 use App\Models\Hotel;
@@ -20,9 +21,14 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($user_id)
     {
+        $data = [
+            'Hotel' => Hotel::first(),
+            'Bookings' => Booking::with(['room', 'room.category', 'user'])->where('user_id', $user_id)->get()
+        ];
         
+        return view('user.booking.index', $data);
     }
 
     public function create($code_room)
@@ -110,9 +116,40 @@ class BookingController extends Controller
 
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $code_booking)
     {
-        //
+        $validate = $request->validate([
+            'code_booking' => 'required',
+            'payment_proof' => ['required', 'mimes:jpg,jpeg,png,pdf', 'max:1024']
+        ]);
+
+        $booking = Booking::where('code_booking', $code_booking)->firstOrFail();
+
+        // proses upload file 
+        if($request->hasFile('payment_proof')){
+           if($booking->payment_proof && file_exists(public_path('files/paymentProof/' . $booking->payment_proof))){
+                unlink(public_path('files/paymentProof/' . $booking->payment_proof));
+           }
+
+           $file = $request->file('payment_proof');
+           $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+            //pastikan folder ada
+            File::ensureDirectoryExists(public_path('files/paymentProof'), 0755, true);
+
+            // pindahkan file ke path
+            $file->move(public_path('files/paymentProof'), $fileName);
+
+            // simpan path file ke database
+            $validate['payment_proof'] = $fileName;
+        }else{
+            $validate['payment_proof'] = $booking->payment_proof;
+        }
+
+        $booking->update($validate);
+
+        return redirect('/booking/' . $booking->user_id)->with('success', 'Bukti pembayaran berhasil dikirim. Pemesanan kamar segera diproses.');
+
     }
 
     public function destroy($id)

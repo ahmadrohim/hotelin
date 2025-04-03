@@ -9,7 +9,7 @@
             <td>
                 <table width="600" align="center" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                     <tr>
-                        <td style="background-color: #007bff; padding: 20px; color: white; text-align: center; border-radius: 8px 8px 0 0;">
+                        <td style="background-color: #7D0A0A; padding: 20px; color: white; text-align: center; border-radius: 8px 8px 0 0;">
                             <h2>Konfirmasi Pembayaran</h2>
                         </td>
                     </tr>
@@ -19,7 +19,7 @@
                             <p>Terima kasih telah melakukan pemesanan kamar di Hotelin.</p>
                             <p>Silakan lakukan pembayaran dan unggah bukti pembayaran Anda melalui link di bawah ini:</p>
                             <p style="text-align: center;">
-                                <a href="{{ $paymentLink }}" style="background-color: #7D0A0A; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+                                <a href="{{ $paymentLink }}" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
                                     Unggah Bukti Pembayaran
                                 </a>
                             </p>
