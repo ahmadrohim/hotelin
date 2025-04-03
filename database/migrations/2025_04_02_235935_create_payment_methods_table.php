@@ -17,6 +17,7 @@ class CreatePaymentMethodsTable extends Migration
             $table->id();
             $table->string('bank_name');
             $table->string('account_number');
+            $table->string('account_holder');
             $table->string('qris_image');
             $table->timestamps();
         });

@@ -15,6 +15,7 @@ use App\Models\HeroSection;
 use App\Models\HotelFaicilities;
 use App\Models\Gallery;
 use App\Models\Role;
+use App\Models\PaymentMethod;
 use Illuminate\Support\Str;
 
 class HotelSeeder extends Seeder
@@ -37,6 +38,13 @@ class HotelSeeder extends Seeder
                 'image' => 'hotelin.jpg',
             ]
         );
+
+        PaymentMethod::updateOrCreate([
+            'bank_name' => 'BRI',
+            'account_number' => '77345689012',
+            'account_holder' => 'Hotelin',
+            'qris_image' => 'qrcode.jpg'
+        ]);
 
         // Seeder untuk Room Categories
 

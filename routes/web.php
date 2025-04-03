@@ -85,6 +85,7 @@ Route::middleware(['auth'])->group(function(){
     // route user booking, 
     Route::get('/booking/create/{room:code_room}', [BookingController::class, 'create']);
     Route::post('/booking/store/{room:code_room}', [BookingController::class, 'store']);
+    Route::get('/booking/edit/{booking:code_booking}', [BookingController::class, 'edit']);
 });
 
 

@@ -23,7 +23,7 @@ class VerificationController extends Controller
         $user->email_verified_at = now();
         $user->save();
 
-        return redirect('/login')->with('verifySuccess', 'Email telah berhasil diverifikasi, silahkan Login!');
+        return redirect('/login')->with('success', 'Email telah berhasil diverifikasi, silahkan Login!');
     }
 }
 

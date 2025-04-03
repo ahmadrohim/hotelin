@@ -22,6 +22,7 @@ class CreateBookingsTable extends Migration
             $table->decimal('total_price', 10, 2); // Menambahkan kolom total harga
             $table->string('payment_method')->nullable();
             $table->enum('payment_status', ['pending', 'paid', 'failed'])->default('pending');
+            $table->string('payment_proof')->nullable();
             $table->date('check_in_date');
             $table->date('check_out_date');
             $table->enum('status', ['pending', 'confirmed', 'completed', 'cancelled'])->default('pending');

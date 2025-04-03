@@ -59,7 +59,7 @@
                             <div class="mb-3">
                                 <label for="payment_method" class="form-label">Metode Pembayaran</label>
                                 <select name="payment_method" id="payment_method" class="form-control">
-                                    <option value="" selected disabled>Pilih metode pembayaran:</option>
+                                    <option value="" disabled selected>Pilih metode pembayaran:</option>
                                     <option value="bank_transfer">Transfer Bank</option>
                                     <option value="qris">QRIS</option>
                                 </select>
@@ -67,13 +67,13 @@
 
                             <!-- Detail Transfer Bank -->
                             <div id="bank_transfer_details" class="payment-details mb-3" style="display: none;">
-                                <p><strong>Bank BCA</strong> - 123-456-7890 a.n. Hotel Dieng</p>
+                            <p><strong>Bank {{ $paymentMethod->bank_name }}</strong> - {{ $paymentMethod->account_number . '  a.n.  ' . $paymentMethod->account_holder }}</p>
                             </div>
 
                             <!-- Detail QRIS -->
                             <div id="qris_details" class="payment-details mb-3" style="display: none;">
                                 <p>Scan QRIS untuk pembayaran:</p>
-                                <img src="/images/qris.jpg" alt="QRIS Pembayaran" class="img-fluid">
+                                <img src="/images/{{ $paymentMethod->qris_image }}" alt="QRIS Pembayaran" class="img-fluid">
                             </div>
                         
                             <div class="d-grid gap-2">
