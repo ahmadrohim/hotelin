@@ -10,7 +10,7 @@
 
     <!-- Card Detail Pemesanan -->
     <div class="card shadow my-5">
-        <div class="card-header bg-primary"></div>
+        <div class="card-header bg-danger"></div>
         <div class="card-body">
             <div class="row no-gutters">
                 <!-- Gambar Kamar -->
@@ -19,7 +19,7 @@
                         <img src="/images/room/{{ $reservation->room->image }}" class="room-image img-fluid rounded" alt="Gambar {{ $reservation->room->name }}">
                     </div>
                     <div class="mt-3">
-                        <h4 class="card-title text-danger text-uppercase font-weight-bold">{{ $reservation->room->name . '|' . $reservation->room->category->name }}</h4>
+                        <h4 class="card-title text-danger text-uppercase font-weight-bold">{{ $reservation->room->name . ' | ' . $reservation->room->category->name }}</h4>
                     </div>
                 </div>
 
@@ -80,7 +80,6 @@
                     </div>
                 </div>
             </div>
-            <hr>
         </div>
     </div>
 </div>

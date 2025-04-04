@@ -29,20 +29,22 @@
                         </p>
                         <p><i class="fas fa-users"></i> <strong>Maksimal Tamu:</strong> {{ $category->max_guests }} Orang</p>
                         <hr>
-                        <a href="/categoryRoom/edit/{{ $category->code_category_room }}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
-                        <form action="/categoryRoom/destroy/{{ $category->code_category_room }}" class="d-inline" method="post">
-                            @csrf
-                            @method('delete')
-                            <button onclick="return confirm('Apakah anda yakin menghapus kategori {{ $category->name }} ? Data yang dihapus tidak bisa dipulihkan!')" type="submit" class="btn btn-danger"> <i class="fas fa-trash"></i> Hapus</button>
-                        </form>
+
+                        <div class="mt-3 d-flex justify-content-between">
+                            <a href="/categoryRoom" class="btn btn-primary mb-3">
+                                <i class="fas fa-arrow-left"></i> Kembali ke Daftar Kamar
+                            </a>
+                            <div class="">
+                                <a href="/categoryRoom/edit/{{ $category->code_category_room }}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                                <form action="/categoryRoom/destroy/{{ $category->code_category_room }}" class="d-inline" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button onclick="return confirm('Apakah anda yakin menghapus kategori {{ $category->name }} ? Data yang dihapus tidak bisa dipulihkan!')" type="submit" class="btn btn-danger"> <i class="fas fa-trash"></i> Hapus</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr>
-            <div class="row no-gutters">
-                <a href="/categoryRoom" class="btn btn-primary mb-3">
-                    <i class="fas fa-arrow-left"></i> Kembali ke Daftar Kamar
-                </a>
             </div>
         </div>
     </div>

@@ -15,15 +15,13 @@ use App\Http\Controllers\ReservationController;
 Route::get('/', [HomeController::class, 'index']);
 
 // Route untuk user yang belum login
-Route::middleware(['guest'])->group(function () {
-
+Route::middleware(['guest'])->controller(AuthController::class)->group(function () {
     // route register
-    Route::get('/register', [AuthController::class, 'register'])->name('register'); 
-    Route::post('/store', [AuthController::class, 'store'])->name('store');
-
+    Route::get('/register', 'register')->name('register'); 
+    Route::post('/store', 'store')->name('store');
     // route login
-    Route::get('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
+    Route::get('/login', 'login')->name('login');
+    Route::post('/authenticate', 'authenticate')->name('authenticate');
 });
 
 // Route untuk user yang sudah login
@@ -34,53 +32,46 @@ Route::middleware(['auth'])->group(function(){
 // route rooms
 Route::get('/rooms/{code_category_room}', [RoomController::class, 'index']);
 
-// route untuk role admin
-/*Route::middleware(['admin'])->group(function(){
-    Route::get('/admin', [AdminController::class, 'index']);
-});*/
-
 // ROUTE ADMIN
 Route::get('/dashboard', [AdminController::class, 'index']);
+
 // manajemen kamar
 Route::get('/ourRoom', [RoomController::class, 'ourRooms']);
-Route::get('/room/create', [RoomController::class, 'create']);
-Route::post('/room/store', [RoomController::class, 'store']);
-
-Route::get('/room/{room:code_room}', [RoomController::class, 'show']);
-
-Route::get('/room/edit/{room:code_room}', [RoomController::class, 'edit']);
-Route::put('/room/update/{room:code_room}', [RoomController::class, 'update']);
-
-Route::delete('/room/destroy/{room:code_room}', [RoomController::class, 'destroy']);
+Route::prefix('room')->controller(RoomController::class)->group(function(){
+    Route::get('/create', 'create');
+    Route::post('/store', 'store');
+    Route::get('/{room:code_room}', 'show');
+    Route::get('/edit/{room:code_room}', 'edit');
+    Route::put('/update/{room:code_room}', 'update');
+    Route::delete('/destroy/{room:code_room}', 'destroy');
+});
 
 // manajemen kategoi kamar
-Route::get('categoryRoom', [RoomCategoryController::class, 'index']);
-Route::get('/categoryRoom/create', [RoomCategoryController::class, 'create']);
-Route::post('/categoryRoom/store', [RoomCategoryController::class, 'store']);
-Route::get('/categoryRoom/{categoryRoom:code_category_room}', [RoomCategoryController::class, 'show']);
-
-Route::get('/categoryRoom/edit/{categoryRoom:code_category_room}', [RoomCategoryController::class, 'edit']);
-Route::put('/categoryRoom/update/{categoryRoom:code_category_room}', [RoomCategoryController::class, 'update']);
-
-Route::delete('/categoryRoom/destroy/{categoryRoom:code_category_room}', [RoomCategoryController::class, 'destroy']);
-
+Route::prefix('categoryRoom')->controller(RoomCategoryController::class)->group(function(){
+    Route::get('/', 'index');
+    Route::get('/create', 'create');
+    Route::post('/store', 'store');
+    Route::get('/{categoryRoom:code_category_room}', 'show');
+    Route::get('/edit/{categoryRoom:code_category_room}', 'edit');
+    Route::put('/update/{categoryRoom:code_category_room}', 'update');
+    Route::delete('/destroy/{categoryRoom:code_category_room}', 'destroy');
+});
 
 // route manajemen pemesanan
-Route::get('/reservation', [ReservationController::class, 'index']);
-Route::get('/reservation/{booking:code_booking}', [ReservationController::class, 'show']);
+Route::prefix('reservation')->controller(ReservationController::class)->group(function(){
+    route::get('/', 'index');
+    Route::get('/{booking:code_booking}', 'show');
+});
+
 
 // route email verify
 Route::get('/verifyEmail/{id}', [VerificationController::class, 'verify']);
 
-
 // Route untuk user yang sudah login
-Route::middleware(['auth'])->group(function(){
-    // route user booking, 
-    Route::get('/booking/create/{room:code_room}', [BookingController::class, 'create']);
-    Route::post('/booking/store/{room:code_room}', [BookingController::class, 'store']);
-    Route::get('/booking/edit/{booking:code_booking}', [BookingController::class, 'edit']);
-    Route::put('/booking/update/{booking:code_booking}', [BookingController::class, 'update']);
-    Route::get('/booking/{booking:user_id}', [BookingController::class, 'index']);
+Route::middleware(['auth'])->prefix('booking')->controller(BookingController::class)->group(function(){
+    Route::get('/create/{room:code_room}', 'create');
+    Route::post('/store/{room:code_room}', 'store');
+    Route::get('/edit/{booking:code_booking}', 'edit');
+    Route::put('/update/{booking:code_booking}', 'update');
+    Route::get('/{booking::user_id}', 'index');
 });
-
-
