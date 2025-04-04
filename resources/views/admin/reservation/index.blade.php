@@ -43,6 +43,7 @@
                             <th class="text-center">Kategori Kamar</th>
                             <th class="text-center">Check-in</th>
                             <th class="text-center">Check-out</th>
+                            <th class="text-center">Pembayaran</th>
                             <th class="text-center">Status</th>
                             <th class="text-center" colspan="3">Aksi</th>
                         </tr>
@@ -58,14 +59,15 @@
                             <td class="text-center">{{ $reservation->room->category->name }}</td>
                             <td class="text-center">{{ $reservation->check_in_date }}</td>
                             <td class="text-center">{{ $reservation->check_out_date }}</td>
-                            <td class="text-center badges-sm {{ $reservation->status == 'confirmed' ? 'badge-success' : 'badge-warning' }}">{{ ucfirst($reservation->status) }}</td>
+                            <td class="text-center text-capitalize badges-sm {{ $reservation->status == 'paid' ? 'badge-success' : 'badge-warning' }}">{{ $reservation->payment_status }}</td>
+                            <td class="text-center badges-sm text-capitalize {{ $reservation->status == 'confirmed' ? 'badge-success' : 'badge-warning' }}">{{ ucfirst($reservation->status) }}</td>
                             <td class="text-center m-0 p-1 align-middle">
                                 <a href="/reservation/{{ $reservation->code_booking }}" class="btn btn-info btn-sm m-0">
                                     <i class="fas fa-eye"></i>
                                 </a>
                             </td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <a href="/bookings/{{ $reservation->code_booking }}" class="btn btn-warning btn-sm m-0">
+                                <a href="/reservation/edit/{{ $reservation->code_booking }}" class="btn btn-warning btn-sm m-0">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </td>

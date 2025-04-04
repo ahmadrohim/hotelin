@@ -22,6 +22,7 @@ class CreateRoomsTable extends Migration
             $table->text('facilities');
             $table->enum('availability_status', ['available', 'unavailable'])->default('available');
             $table->string('image')->nullable();
+	        $table->softDeletes();
             $table->timestamps();
         });
     }

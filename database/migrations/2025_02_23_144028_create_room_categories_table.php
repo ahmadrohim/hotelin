@@ -22,6 +22,7 @@ class CreateRoomCategoriesTable extends Migration
             $table->decimal('base_price', 10, 2)->default(0); // Harga dasar kategori kamar
             $table->integer('max_guests')->default(1); // Maksimal jumlah tamu dalam satu kamar
             $table->boolean('status')->default(true); // Status kategori (aktif/nonaktif)
+	        $table->softDeletes();
             $table->timestamps(); // Tanggal dibuat dan diperbarui
         });
 

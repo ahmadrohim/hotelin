@@ -26,6 +26,7 @@ class CreateBookingsTable extends Migration
             $table->date('check_in_date');
             $table->date('check_out_date');
             $table->enum('status', ['pending', 'confirmed', 'completed', 'cancelled'])->default('pending');
+	        $table->softDeletes();
             $table->timestamps();
         });
     }

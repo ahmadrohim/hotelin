@@ -61,6 +61,7 @@ Route::prefix('categoryRoom')->controller(RoomCategoryController::class)->group(
 Route::prefix('reservation')->controller(ReservationController::class)->group(function(){
     route::get('/', 'index');
     Route::get('/{booking:code_booking}', 'show');
+    Route::get('/edit/{booking:code_booking}', 'edit');
 });
 
 

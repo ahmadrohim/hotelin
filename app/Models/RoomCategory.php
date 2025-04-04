@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -11,7 +12,7 @@ use App\Models\Room;
 
 class RoomCategory extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table = 'room_categories';
     protected $guarded = ['id'];
 

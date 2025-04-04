@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use App\Models\RoomCategory;
 
 class Room extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table = 'rooms';
     protected $guarded = ['id'];
 
@@ -30,6 +31,13 @@ class Room extends Model
     {
         return $this->belongsTo(RoomCategory::class, 'category_id');
     }
+
+    public function booking()
+    {
+        return $this->hasMany(Booking::class, 'bookings');
+    }
+
+    
 
     // create dan update code room
     protected static function boot()
