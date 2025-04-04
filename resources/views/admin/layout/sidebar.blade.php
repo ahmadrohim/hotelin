@@ -25,11 +25,10 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKamar"
                 aria-expanded="true" aria-controls="collapseKamar">
                 <i class="fas fa-fw fa-bed"></i>
-                <span>Manajemen Kamar</span>
+                <span>Kelola Kamar</span>
             </a>
             <div id="collapseKamar" class="collapse" aria-labelledby="headingKamar" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Kelola Kamar:</h6>
                     <a class="collapse-item" href="/ourRoom">Daftar Kamar</a>
                     <a class="collapse-item" href="/categoryRoom">Kategori Kamar</a>
                 </div>
@@ -37,16 +36,15 @@
         </li>
     
         <!-- Manajemen Pemesanan -->
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('reservation*') ? 'active' : '' }}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePemesanan"
                 aria-expanded="true" aria-controls="collapsePemesanan">
                 <i class="fas fa-fw fa-calendar-check"></i>
-                <span>Manajemen Pemesanan</span>
+                <span>Kelola Pemesanan</span>
             </a>
             <div id="collapsePemesanan" class="collapse" aria-labelledby="headingPemesanan" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Kelola Pemesanan:</h6>
-                    <a class="collapse-item" href="/admin/pemesanan">Semua Pemesanan</a>
+                    <a class="collapse-item" href="/reservation">Semua Pemesanan</a>
                     <a class="collapse-item" href="/admin/pemesanan/aktif">Pemesanan Aktif</a>
                     <a class="collapse-item" href="/admin/pemesanan/selesai">Pemesanan Selesai</a>
                 </div>
@@ -58,11 +56,10 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
                 aria-expanded="true" aria-controls="collapseUsers">
                 <i class="fas fa-users"></i>
-                <span>Manajemen Pengguna</span>
+                <span>Kelola Pengguna</span>
             </a>
             <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Kelola Pengguna:</h6>
                     <a class="collapse-item" href="admin.html">Admin</a>
                     <a class="collapse-item" href="users.html">Tamu/Pelanggan</a>
                 </div>
@@ -93,7 +90,6 @@
             </a>
             <div id="collapseSekitar" class="collapse" aria-labelledby="headingSekitar" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Wisata Terdekat:</h6>
                     <a class="collapse-item" href="/admin/sekitar-hotel">Daftar Wisata</a>
                     <a class="collapse-item" href="/admin/sekitar-hotel/kategori">Kategori Wisata</a>
                 </div>
@@ -113,7 +109,6 @@
             </a>
             <div id="collapseLaporan" class="collapse" aria-labelledby="headingLaporan" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Laporan:</h6>
                     <a class="collapse-item" href="/admin/laporan/pendapatan">Laporan Pendapatan</a>
                     <a class="collapse-item" href="/admin/laporan/pemesanan">Laporan Pemesanan</a>
                 </div>
@@ -129,7 +124,6 @@
             </a>
             <div id="collapsePengaturan" class="collapse" aria-labelledby="headingPengaturan" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Pengaturan Umum:</h6>
                     <a class="collapse-item" href="/admin/pengaturan/profil">Profil Hotel</a>
                     <a class="collapse-item" href="/admin/pengaturan/sosial-media">Sosial Media</a>
                     <a class="collapse-item" href="/admin/pengaturan/umum">Pengaturan Umum</a>

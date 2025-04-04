@@ -12,6 +12,20 @@ class Booking extends Model
     protected $guarded = ['id'];
 
 
+
+    // fitur filter pencarian (search)
+    public function scopeFilter($query, array $filter)
+    {
+        $query->when($filter['search'] ?? false, function($query, $search){
+            return $query->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('code_room', 'like', '%' . $search . '%')
+                        ->orWhere('price', 'like', '%' . $search . '%');
+        });
+    }
+ 
+
+
+    // relasi tabel
     public function user()
     {
         return $this->belongsTo(User::class);

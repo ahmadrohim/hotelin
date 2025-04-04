@@ -44,7 +44,7 @@
                             <th>Kode Kategori</th>
                             <th>Harga Mulai Dari</th>
                             <th class="text-center">Maksimal Tamu</th>
-                            <th class="text-center">Aksi</th>
+                            <th class="text-center" colspan="3">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="text-dark">
@@ -57,15 +57,20 @@
                             <td>{{ $category->code_category_room }}</td>
                             <td>Rp. {{ number_format($category->base_price, 0, ',', '.')  }}</td>
                             <td class="text-center">{{ $category->max_guests }}</td>
-                            <td class="text-center">
+                            <td class="text-center m-0 p-1 align-middle" style="">
                                 <a href="/categoryRoom/{{ $category->code_category_room }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td class="text-center m-0 p-1 align-middle">
                                 <a href="/categoryRoom/edit/{{ $category->code_category_room }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                            </td>
+                            <td class="text-center m-0 p-1 align-middle">
                                 <form class="d-inline" action="/categoryRoom/destroy/{{ $category->code_category_room }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button onclick="return confirm('Apakah anda yakin menghapus data kategori {{ $category->name }} ? data yang dihapus tidak bisa dipulihkan!')" type="submit" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button>
                                 </form>
                             </td>
+                            
                         </tr>
                         @endforeach
                         @else

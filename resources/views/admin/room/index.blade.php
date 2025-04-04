@@ -45,7 +45,7 @@
                             <th>Tipe Kamar</th>
                             <th>Harga per Malam</th>
                             <th class="text-center">Status</th>
-                            <th class="text-center">Aksi</th>
+                            <th class="text-center" colspan="3">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="text-dark">
@@ -59,9 +59,13 @@
                             <td>{{ $room->category->name }}</td>
                             <td>Rp. {{ number_format($room->price, 0, ',', '.')  }}</td>
                             <td class="text-center {{ $room->availability_status == 'available' ? 'text-success' : 'text-danger' }}">{{ $room->availability_status == 'available' ? 'Tersedia' : 'Tidak Tersedia' }}</td>
-                            <td class="text-center">
+                            <td class="text-center m-0 p-1 align-middle">
                                 <a href="/room/{{ $room->code_room }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                            </td>
+                            <td class="text-center m-0 p-1 align-middle">
                                 <a href="/room/edit/{{ $room->code_room }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                            </td>
+                            <td class="text-center m-0 p-1 align-middle">
                                 <form class="d-inline" action="/room/destroy/{{ $room->code_room }}" method="post">
                                     @csrf
                                     @method('delete')
