@@ -69,8 +69,8 @@
 
                 <!-- Tombol Simpan dan Kembali -->
                 <div class="form-group d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary mb-2 mx-2">Tambah</button>
-                    <a href="/categoryRoom" class="btn btn-secondary mb-2 mx-2">Kembali</a>
+                    <button type="submit" class="btn btn-success mb-2 mx-2">Tambah</button>
+                    <a href="/categoryRoom" class="btn btn-primary mb-2 mx-2">Kembali</a>
                 </div>
 
             </form>

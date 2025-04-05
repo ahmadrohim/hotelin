@@ -34,15 +34,14 @@ class ReservationController extends Controller
     {
         $data = [
             'reservation' => Booking::with(['room', 'room.category', 'user'])->where('code_booking', $code_booking)->first(),
-
         ];
 
         return view('admin.reservation.edit', $data);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $code_booking)
     {
-        //
+        return response()->json($request);
     }
 
     public function destroy($id)

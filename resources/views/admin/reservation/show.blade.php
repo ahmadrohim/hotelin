@@ -65,10 +65,10 @@
                             </a>
 
                             <div class="">
-                                <a href="/booking/edit/{{ $reservation->code_booking }}" class="btn btn-warning">
+                                <a href="/reservation/edit/{{ $reservation->code_booking }}" class="btn btn-warning">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="/booking/destroy/{{ $reservation->code_booking }}" class="d-inline" method="post">
+                                <form action="/reservation/destroy/{{ $reservation->code_booking }}" class="d-inline" method="post">
                                     @csrf
                                     @method('delete')
                                     <button onclick="return confirm('Yakin ingin menghapus booking {{ $reservation->code_booking }}?')" type="submit" class="btn btn-danger"> 

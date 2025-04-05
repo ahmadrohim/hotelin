@@ -89,14 +89,14 @@
                 <!-- Tombol Simpan dan Kembali -->
                 <div class="form-group d-flex justify-content-end">
                     <button type="submit" class="btn btn-success mb-2 mx-2">Simpan</button>
-                    <a href="/ourRoom" class="btn btn-secondary mb-2 mx-2">Kembali</a>
+                    <a href="/ourRoom" class="btn btn-primary mb-2 mx-2">Kembali</a>
                 </div>
     
             </form>
         </div>
     </div>
     
-    </div>
+</div>
     
 
 

@@ -62,6 +62,7 @@ Route::prefix('reservation')->controller(ReservationController::class)->group(fu
     route::get('/', 'index');
     Route::get('/{booking:code_booking}', 'show');
     Route::get('/edit/{booking:code_booking}', 'edit');
+    Route::put('/update/{booking:code_booking}', 'update');
 });
 
 
