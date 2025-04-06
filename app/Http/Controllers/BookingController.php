@@ -108,6 +108,7 @@ class BookingController extends Controller
         $booking = Booking::where('code_booking', $code_booking)->firstOrFail();
 
         $data = [
+            'PaymentMethod' => PaymentMethod::first(),
             'Hotel' => Hotel::first(),
             'Booking' => $booking
         ];
@@ -152,8 +153,16 @@ class BookingController extends Controller
 
     }
 
-    public function destroy($id)
+    public function destroy($code_booking)
     {
-        //
+        $booking = Booking::where('code_booking', $code_booking)->firstOrFail();
+
+        if(!$booking){
+            return redirect('/booking/'. $booking->user_id)->with('error', 'Data tidak ditemukan!');
+        }
+
+        $booking->delete();
+
+        return redirect('/booking/'. $booking->user_id)->with('success', 'Pesanan berhasil dibatalkan!');
     }
 }

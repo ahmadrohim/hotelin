@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\BookingStatusUpdated;
+use Illuminate\Support\Facades\Mail;
 
 use App\Models\Booking;
 
@@ -41,11 +43,35 @@ class ReservationController extends Controller
 
     public function update(Request $request, $code_booking)
     {
-        return response()->json($request);
+        $validate = $request->validate([
+            'payment_status' => 'required',
+            'status' => 'required'
+        ]);
+
+        $reservation = Booking::where('code_booking', $code_booking)->firstOrFail();
+
+        if(!$reservation->payment_proof){
+            return redirect('/reservation')->with('error', 'Bukti pembayaran belum diunggah!');
+        }
+
+        $reservation->update($validate);
+
+         // Kirim email ke user
+        Mail::to($reservation->user->email)->send(new BookingStatusUpdated($reservation));
+
+        return redirect('/reservation')->with('success', 'Status pemesanan berhasil diperbarui!');
     }
 
-    public function destroy($id)
+    public function destroy($code_booking)
     {
-        //
+        $reservation = Booking::where('code_booking', $code_booking)->firstOrFail();
+
+        if(!$reservation){
+            return redirect('/reservation')->with('error', 'Data pesanan tidak ditemukan!');
+        }
+
+        $reservation->delete();
+
+        return redirect('/reservation')->with('success', 'Data pesanan berhasil dihapus');
     }
 }

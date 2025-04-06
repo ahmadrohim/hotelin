@@ -54,7 +54,7 @@
                         </p>
 
                         <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> 
-                            <span class="badge {{ $reservation->status == 'pending' ? 'badge-warning' : ($reservation->status == 'approved' ? 'badge-success' : 'badge-danger') }} p-2">
+                            <span class="badge {{ $reservation->status == 'pending' ? 'badge-warning' : ($reservation->status == 'approved' || 'confirmed' ? 'badge-success' : 'badge-danger') }} p-2">
                                 {{ ucfirst($reservation->status) }}
                             </span>
                         </p>
@@ -71,7 +71,7 @@
                                 <form action="/reservation/destroy/{{ $reservation->code_booking }}" class="d-inline" method="post">
                                     @csrf
                                     @method('delete')
-                                    <button onclick="return confirm('Yakin ingin menghapus booking {{ $reservation->code_booking }}?')" type="submit" class="btn btn-danger"> 
+                                    <button onclick="return confirm('Yakin ingin menghapus data pemesanan?')" type="submit" class="btn btn-danger"> 
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>

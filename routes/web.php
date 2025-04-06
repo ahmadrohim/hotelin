@@ -63,6 +63,7 @@ Route::prefix('reservation')->controller(ReservationController::class)->group(fu
     Route::get('/{booking:code_booking}', 'show');
     Route::get('/edit/{booking:code_booking}', 'edit');
     Route::put('/update/{booking:code_booking}', 'update');
+    Route::delete('/destroy/{booking:code_booking}', 'destroy');
 });
 
 
@@ -76,4 +77,5 @@ Route::middleware(['auth'])->prefix('booking')->controller(BookingController::cl
     Route::get('/edit/{booking:code_booking}', 'edit');
     Route::put('/update/{booking:code_booking}', 'update');
     Route::get('/{booking::user_id}', 'index');
+    Route::delete('/destroy/{boking::code_booking}', 'destroy');
 });

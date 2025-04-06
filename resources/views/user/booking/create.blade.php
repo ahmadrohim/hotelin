@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="page-section section-texture" id="booking">
+<section class="page-section" id="booking">
     <div class="container">
         <div class="text-center">
             <h2 class="text-uppercase title-heading mt-3">Formulir Pemesanan</h2>
@@ -29,40 +29,71 @@
             <div class="col-lg-6 col-md-8">
                 <div class="card shadow-lg border-0 rounded">
                     <div class="card-body p-4">
+
+                        <div class="mb-4">
+                            <h4 class="h4 mb-0 text-gray-800 text-uppercase">Form Pemesanan Kamar</h4>
+                            @if(session()->has('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('error') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            @endif   
+                        </div>
                         
                         <form action="/booking/store/{{ $room->code_room }}" method="POST">
                             @csrf
                         
                             <div class="mb-3">
                                 <label for="check_in_date" class="form-label">Tanggal Check-in</label>
-                                <input type="date" name="check_in_date" id="check_in_date" class="form-control" required>
+                                <input type="date" name="check_in_date" id="check_in_date" 
+                                    class="form-control @error('check_in_date') is-invalid @enderror" required 
+                                    value="{{ old('check_in_date') }}">
+                                @error('check_in_date')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                        
+                            
                             <div class="mb-3">
                                 <label for="check_out_date" class="form-label">Tanggal Check-out</label>
-                                <input type="date" name="check_out_date" id="check_out_date" class="form-control" required>
+                                <input type="date" name="check_out_date" id="check_out_date" 
+                                    class="form-control @error('check_out_date') is-invalid @enderror" required 
+                                    value="{{ old('check_out_date') }}">
+                                @error('check_out_date')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                        
+                            
                             <div class="mb-3">
                                 <label for="extra_bed" class="form-label">Tambahan Kasur</label>
-                                <input type="number" name="extra_bed" id="extra_bed" class="form-control" required value='0' min='0' max="2">
+                                <input type="number" name="extra_bed" id="extra_bed" 
+                                    class="form-control @error('extra_bed') is-invalid @enderror" 
+                                    required value="{{ old('extra_bed', 0) }}" min="0" max="2">
                                 <small id="extra_bed_help" class="form-text text-muted">Max Tambahan Kasur: 2</small>
+                                @error('extra_bed')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                        
+                            
                             <div class="mb-3">
                                 <label for="total_price" class="form-label">Total Harga</label>
-                                <input type="text" name="total_price" id="total_price" class="form-control" readonly>
+                                <input type="text" name="total_price" id="total_price" 
+                                    class="form-control" readonly 
+                                    value="{{ old('total_price') }}">
                             </div>
-                        
                             
-                            <!-- Metode Pembayaran -->
                             <div class="mb-3">
                                 <label for="payment_method" class="form-label">Metode Pembayaran</label>
-                                <select name="payment_method" id="payment_method" class="form-control">
-                                    <option value="" disabled selected>Pilih metode pembayaran:</option>
-                                    <option value="bank_transfer">Transfer Bank</option>
-                                    <option value="qris">QRIS</option>
+                                <select name="payment_method" id="payment_method" 
+                                    class="form-control @error('payment_method') is-invalid @enderror">
+                                    <option value="" disabled {{ old('payment_method') ? '' : 'selected' }}>Pilih metode pembayaran:</option>
+                                    <option value="bank_transfer" {{ old('payment_method') == 'bank_transfer' ? 'selected' : '' }}>Transfer Bank</option>
+                                    <option value="qris" {{ old('payment_method') == 'qris' ? 'selected' : '' }}>QRIS</option>
                                 </select>
+                                @error('payment_method')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <!-- Detail Transfer Bank -->
@@ -73,7 +104,7 @@
                             <!-- Detail QRIS -->
                             <div id="qris_details" class="payment-details mb-3" style="display: none;">
                                 <p>Scan QRIS untuk pembayaran:</p>
-                                <img src="/images/{{ $paymentMethod->qris_image }}" alt="QRIS Pembayaran" class="img-fluid">
+                                <img src="/images/paymentmethods/{{ $paymentMethod->qris_image }}" alt="QRIS Pembayaran" class="img-fluid">
                             </div>
                         
                             <div class="d-grid gap-2">

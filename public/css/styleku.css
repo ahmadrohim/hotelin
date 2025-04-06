@@ -243,7 +243,6 @@
 .card-body {
     padding: 20px;
     background: #ffff;
-    border-radius: 0 0 12px 12px;
     text-align: center;
     transition: color 0.3s ease;
     border-top: 5px solid #BF3131;
@@ -263,6 +262,7 @@
     font-size: 1rem;
     color: #1e1d1d;
     transition: color 0.3s ease;
+    margin-top: -10px;
 }
 
 
@@ -606,6 +606,23 @@
 
 .btn-read-more:hover {
     background: #0056b3;
+    transform: scale(1.05);
+}
+
+.btn-success {
+    display: inline-block;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    background:rgb(6, 146, 48);
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-success:hover{
+    background: rgb(8, 122, 42);
     transform: scale(1.05);
 }
 

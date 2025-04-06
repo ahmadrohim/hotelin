@@ -7,14 +7,15 @@
     <!-- Page Heading -->
     <div class="mb-4">
         <h1 class="h4 mb-0 text-gray-800 text-uppercase">Daftar Pemesanan Kamar</h1>
-        @if(session()->has('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
+        @if(session()->has("success") || session()->has("error"))
+        <div class="alert alert-{{ session()->has("success") ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
+            {{ session("success") ?? session("error") }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        @endif   
+        @endif
+      
     </div>
 
     <!-- DataTales Example -->
@@ -59,8 +60,10 @@
                             <td class="text-center">{{ $reservation->room->category->name }}</td>
                             <td class="text-center">{{ $reservation->check_in_date }}</td>
                             <td class="text-center">{{ $reservation->check_out_date }}</td>
-                            <td class="text-center text-capitalize badges-sm {{ $reservation->status == 'paid' ? 'badge-success' : 'badge-warning' }}">{{ $reservation->payment_status }}</td>
-                            <td class="text-center badges-sm text-capitalize {{ $reservation->status == 'confirmed' ? 'badge-success' : 'badge-warning' }}">{{ ucfirst($reservation->status) }}</td>
+                            <td class="text-center text-capitalize badges-sm {{ $reservation->payment_status == 'paid' ? 'badge-success' : 
+                            ($reservation->payment_status == 'failed' ? 'badge-danger' : 'badge-warning')  }}">{{ $reservation->payment_status }}</td>
+                            <td class="text-center badges-sm text-capitalize {{ $reservation->status == 'pending' ? 'badge-warning' : 
+                            ($reservation->status == 'cancelled' ? 'badge-danger' : 'badge-success')  }}">{{ ucfirst($reservation->status) }}</td>
                             <td class="text-center m-0 p-1 align-middle">
                                 <a href="/reservation/{{ $reservation->code_booking }}" class="btn btn-info btn-sm m-0">
                                     <i class="fas fa-eye"></i>
@@ -72,10 +75,10 @@
                                 </a>
                             </td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <form action="/bookings/destroy/{{ $reservation->code_booking }}" method="post">
+                                <form action="/reservation/destroy/{{ $reservation->code_booking }}" method="post">
                                     @csrf
                                     @method('delete')
-                                    <button onclick="return confirm('Apakah anda yakin menghapus pemesanan {{ $reservation->code_booking }} ?')" 
+                                    <button onclick="return confirm('Apakah anda yakin menghapus data pemesanan?')" 
                                             type="submit" class="btn btn-danger btn-sm m-0">
                                         <i class="fas fa-trash"></i>
                                     </button>

@@ -4,7 +4,7 @@
 
 <!-- Bagian Kamar Berdasarkan Kategori -->
 <!-- Bagian Kamar -->
-<section class="page-section section-texture" id="rooms">
+<section class="page-section" id="rooms">
     <div class="container">
         <br>
         <div class="text-center">

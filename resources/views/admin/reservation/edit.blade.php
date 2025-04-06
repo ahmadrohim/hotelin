@@ -87,7 +87,7 @@
                 <!-- Tombol -->
                 <div class="form-group d-flex justify-content-end mt-4">
                     <button type="submit" class="btn btn-success mx-2">Simpan</button>
-                    <a href="" class="btn btn-primary mx-2">Kembali</a>
+                    <a href="/reservation" class="btn btn-primary mx-2">Kembali</a>
                 </div>
             </form>
         </div>

@@ -17,10 +17,20 @@ class Booking extends Model
     // fitur filter pencarian (search)
     public function scopeFilter($query, array $filter)
     {
-        $query->when($filter['search'] ?? false, function($query, $search){
-            return $query->where('name', 'like', '%' . $search . '%')
-                        ->orWhere('code_room', 'like', '%' . $search . '%')
-                        ->orWhere('price', 'like', '%' . $search . '%');
+        $query->when($filter['search'] ?? false, function ($query, $search) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            })
+            ->orWhereHas('room', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            })
+            ->orWhereHas('room.category', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%'); // atau 'category_name' tergantung kolom di tabel
+            })
+            ->orWhere('check_in_date', 'like', '%' . $search . '%')
+            ->orWhere('check_out_date', 'like', '%' . $search . '%')
+            ->orWhere('payment_status', 'like', '%' . $search . '%')
+            ->orWhere('status', 'like', '%' . $search . '%');
         });
     }
  
