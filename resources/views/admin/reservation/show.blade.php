@@ -60,7 +60,21 @@
                         </p>
                         <hr>
                         <div class="mt-3 d-flex justify-content-between">
-                            <a href="/reservation" class="btn btn-primary mb-3">
+
+                            @php
+                                $from = request('from');
+                                if ($from === 'active') {
+                                    $backUrl = '/reservation/active';
+                                } elseif ($from === 'completed') {
+                                    $backUrl = '/reservation/completed';
+                                } elseif ($from === 'canceled') {
+                                    $backUrl = '/reservation/canceled';
+                                } else {
+                                    $backUrl = '/reservation';
+                                }
+                            @endphp
+
+                            <a href="{{ $backUrl }}" class="btn btn-primary mb-3">
                                 <i class="fas fa-arrow-left"></i> Kembali ke Daftar Pemesanan
                             </a>
 

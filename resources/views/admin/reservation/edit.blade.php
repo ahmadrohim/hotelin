@@ -87,7 +87,21 @@
                 <!-- Tombol -->
                 <div class="form-group d-flex justify-content-end mt-4">
                     <button type="submit" class="btn btn-success mx-2">Simpan</button>
-                    <a href="/reservation" class="btn btn-primary mx-2">Kembali</a>
+
+                    @php
+                        $from = request('from');
+                        if ($from === 'active') {
+                            $backUrl = '/reservation/active';
+                        } elseif ($from === 'completed') {
+                            $backUrl = '/reservation/completed';
+                        } elseif ($from === 'canceled') {
+                            $backUrl = '/reservation/canceled';
+                        } else {
+                            $backUrl = '/reservation';
+                        }
+                    @endphp
+
+                    <a href="{{ $backUrl }}" class="btn btn-primary mx-2">Kembali</a>
                 </div>
             </form>
         </div>

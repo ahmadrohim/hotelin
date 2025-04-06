@@ -52,7 +52,7 @@
 
                             <div class="card-body p-3 d-flex flex-column gap-2">
 
-                                @if($booking->payment_status == 'pending' || 'failed')
+                                @if($booking->payment_status == 'pending' || $booking->payment_status == 'failed')
                                 <a href="/booking/edit/{{ $booking->code_booking }}" class="btn btn-success btn-sm w-100">
                                     <i class="fas fa-upload me-1"></i> Upload Bukti Pembayaran
                                 </a>

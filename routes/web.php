@@ -60,6 +60,7 @@ Route::prefix('categoryRoom')->controller(RoomCategoryController::class)->group(
 // route manajemen pemesanan
 Route::prefix('reservation')->controller(ReservationController::class)->group(function(){
     route::get('/', 'index');
+    route::get('/active', 'active');
     Route::get('/{booking:code_booking}', 'show');
     Route::get('/edit/{booking:code_booking}', 'edit');
     Route::put('/update/{booking:code_booking}', 'update');
