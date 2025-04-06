@@ -15,6 +15,9 @@ class ReservationController extends Controller
     {
         $data = [
             'halaman' => request('page') ? request('page') : 1,
+            'url' => '/reservation',
+            'from' => ' ',
+            'title' => 'Daftar Semua Pemesanan',
             'reservations' => Booking::with(['room', 'room.category', 'user'])->filter(request(['search']))->paginate(10)->withQueryString(),
         ];
 
@@ -51,7 +54,7 @@ class ReservationController extends Controller
         $reservation = Booking::where('code_booking', $code_booking)->firstOrFail();
 
         if(!$reservation->payment_proof){
-            return redirect('/reservation')->with('error', 'Bukti pembayaran belum diunggah!');
+            return redirect()->back()->with('error', 'Bukti pembayaran belum diunggah!');
         }
 
         $reservation->update($validate);
@@ -59,11 +62,11 @@ class ReservationController extends Controller
          // Kirim email ke user
         Mail::to($reservation->user->email)->send(new BookingStatusUpdated($reservation));
 
-        return redirect('/reservation')->with('success', 'Status pemesanan berhasil diperbarui!');
+        return redirect()->back()->with('success', 'Status pemesanan berhasil diperbarui!');
     }
 
     // hapus sementara
-    public function destroy(Request $request, $code_booking)
+    public function destroy($code_booking)
     {
         $reservation = Booking::where('code_booking', $code_booking)->firstOrFail();
 
@@ -81,12 +84,26 @@ class ReservationController extends Controller
     {
         $data = [
             'halaman' => request('page') ? request('page') : 1,
+            'url' => '/reservation/active',
+            'from' => 'active',
+            'title' => 'Daftar Pemesanan Aktif',
             'reservations' => Booking::with(['user', 'room', 'room.category'])->whereIn('status', ['pending', 'confirmed'])->filter(request(['search']))->paginate(10)->withQueryString(),
         ];
 
-        return view('admin.reservation.active', $data);
+        return view('admin.reservation.index', $data);
+    }
 
+    // pemesanan selesai
+    public function completed()
+    {
+        $data = [
+            'halaman' => request('page') ? request('page') : 1,
+            'url' => '/reservation/completed',
+            'from' => 'completed',
+            'title' => 'Daftar Pemesanan Selesai',
+            'reservations' => Booking::with(['user', 'room', 'room.category'])->whereIn('status', ['completed'])->filter(request(['search']))->paginate(10)->withQueryString(),
+        ];
 
-
+        return view('admin.reservation.index', $data);
     }
 }

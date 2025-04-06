@@ -6,7 +6,9 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="mb-4">
-        <h1 class="h4 mb-0 text-gray-800 text-uppercase">Daftar Pemesanan Kamar</h1>
+        <h1 class="h4 mb-0 text-gray-800 text-uppercase">{{ $title }}</h1>
+    </div>
+    <div class="mb-4">
         @if(session()->has("success") || session()->has("error"))
         <div class="alert alert-{{ session()->has("success") ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
             {{ session("success") ?? session("error") }}
@@ -15,13 +17,12 @@
             </button>
         </div>
         @endif
-      
     </div>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-end">
-            <form action="/reservation" class="d-none d-sm-inline-block form-inline ml-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <form action="{{ $url }}" class="d-none d-sm-inline-block form-inline ml-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
                     <input type="text" class="form-control bg-light border-1 small" placeholder="Cari pemesanan..."
                         aria-label="Search" aria-describedby="basic-addon2" name="search" value="{{ request('search') }}">
@@ -65,12 +66,12 @@
                             <td class="text-center badges-sm text-capitalize {{ $reservation->status == 'pending' ? 'badge-warning' : 
                             ($reservation->status == 'cancelled' ? 'badge-danger' : 'badge-success')  }}">{{ ucfirst($reservation->status) }}</td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <a href="/reservation/{{ $reservation->code_booking }}" class="btn btn-info btn-sm m-0">
+                                <a href="/reservation/{{ $reservation->code_booking }}?from={{ $from }}" class="btn btn-info btn-sm m-0">
                                     <i class="fas fa-eye"></i>
                                 </a>
                             </td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <a href="/reservation/edit/{{ $reservation->code_booking }}" class="btn btn-warning btn-sm m-0">
+                                <a href="/reservation/edit/{{ $reservation->code_booking }}?from={{ $from }}" class="btn btn-warning btn-sm m-0">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </td>

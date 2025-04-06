@@ -46,7 +46,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="/reservation">Semua Pemesanan</a>
                     <a class="collapse-item" href="/reservation/active">Pemesanan Aktif</a>
-                    <a class="collapse-item" href="/admin/pemesanan/selesai">Pemesanan Selesai</a>
+                    <a class="collapse-item" href="/reservation/completed">Pemesanan Selesai</a>
                     <a class="collapse-item" href="/admin/pemesanan/arsip">Arsip Pemesanan</a>
                 </div>
             </div>

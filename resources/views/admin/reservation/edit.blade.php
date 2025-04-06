@@ -8,6 +8,17 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h4 mb-0 text-gray-800 text-uppercase">Kelola Status Pesanan</h1>
     </div>
+
+    <div class="mb-4">
+        @if(session()->has("success") || session()->has("error"))
+        <div class="alert alert-{{ session()->has("success") ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
+            {{ session("success") ?? session("error") }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+    </div>
     
     <div class="card shadow mb-4">
         <div class="card-header bg-danger text-white">

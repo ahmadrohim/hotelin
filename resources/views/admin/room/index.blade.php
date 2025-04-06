@@ -6,7 +6,9 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="mb-4">
-        <h1 class="h4 mb-0 text-gray-800 text-uppercase">Daftar Kamar</h1>
+        <h1 class="h4 mb-0 text-gray-800 text-uppercase">Daftar Kamar</h1> 
+    </div>
+    <div class="mb-4">
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -14,7 +16,7 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        @endif   
+        @endif  
     </div>
 
     <!-- DataTales Example -->

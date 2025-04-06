@@ -7,6 +7,8 @@
     <!-- Page Heading -->
     <div class="mb-4">
         <h1 class="h4 mb-0 text-gray-800 text-uppercase">Daftar Kategori Kamar</h1>
+    </div>
+    <div class="mb-4">
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
             {{ session('success') }}

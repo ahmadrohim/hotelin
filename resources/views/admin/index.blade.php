@@ -19,7 +19,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                             Total Kamar</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $rooms->count() }}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-hotel fa-2x text-gray-300"></i>
