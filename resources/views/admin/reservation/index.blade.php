@@ -70,20 +70,42 @@
                                     <i class="fas fa-eye"></i>
                                 </a>
                             </td>
+
                             <td class="text-center m-0 p-1 align-middle">
-                                <a href="/reservation/edit/{{ $reservation->code_booking }}?from={{ $from }}" class="btn btn-warning btn-sm m-0">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                            </td>
+                                @if($reservation->trashed())
+                                    <form action="/reservation/restore/{{ $reservation->code_booking }}" method="POST" onsubmit="return confirm('Yakin ingin memulihkan data pemesanan ini?')">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-success btn-sm m-0">
+                                            <i class="fas fa-undo"></i>
+                                        </button>
+                                    </form>                          
+                                @else
+                                    <a href="/reservation/edit/{{ $reservation->code_booking }}?from={{ $from }}" class="btn btn-warning btn-sm m-0">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                @endif
+                            </td>  
+
                             <td class="text-center m-0 p-1 align-middle">
-                                <form action="/reservation/destroy/{{ $reservation->code_booking }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button onclick="return confirm('Apakah anda yakin menghapus data pemesanan?')" 
-                                            type="submit" class="btn btn-danger btn-sm m-0">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
+                                @if($reservation->trashed())
+                                    <form action="/reservation/forceDelete/{{ $reservation->code_booking }}" method="POST" class="d-inline" onsubmit="return confirm('Data akan dihapus secara permanen. Apakah kamu yakin?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm m-0">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                @else
+                                    <form action="/reservation/destroy/{{ $reservation->code_booking }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button onclick="return confirm('Apakah anda yakin menghapus data pemesanan?')" 
+                                                type="submit" class="btn btn-danger btn-sm m-0">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                @endif
                             </td>
 
                         </tr>

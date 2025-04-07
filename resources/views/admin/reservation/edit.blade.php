@@ -105,9 +105,12 @@
                             $backUrl = '/reservation/active';
                         } elseif ($from === 'completed') {
                             $backUrl = '/reservation/completed';
-                        } elseif ($from === 'canceled') {
+                        } elseif ($from === 'archived') {
+                            $backUrl = '/reservation/archived';
+                        } elseif($from === 'canceled'){
                             $backUrl = '/reservation/canceled';
-                        } else {
+                        } 
+                        else {
                             $backUrl = '/reservation';
                         }
                     @endphp

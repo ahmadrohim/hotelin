@@ -62,6 +62,10 @@ Route::prefix('reservation')->controller(ReservationController::class)->group(fu
     Route::get('/', 'index');
     Route::get('/active', 'active');
     Route::get('/completed', 'completed');
+    Route::get('/archived', 'archived');
+    Route::get('/canceled', 'canceled');
+    Route::put('/restore/{booking:code_booking}', 'restore');
+    Route::delete('/forceDelete/{booking:code_booking}', 'forceDelete');
     Route::get('/{booking:code_booking}', 'show');
     Route::get('/edit/{booking:code_booking}', 'edit');
     Route::put('/update/{booking:code_booking}', 'update');

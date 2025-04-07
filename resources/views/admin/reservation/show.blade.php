@@ -19,8 +19,37 @@
                         <img src="/images/room/{{ $reservation->room->image }}" class="room-image img-fluid rounded" alt="Gambar {{ $reservation->room->name }}">
                     </div>
                     <div class="mt-3">
-                        <h4 class="card-title text-danger text-uppercase font-weight-bold">{{ $reservation->room->name . ' | ' . $reservation->room->category->name }}</h4>
+                        <h4 class="card-title text-dark text-uppercase font-weight-bold">{{ $reservation->room->name . ' | ' . $reservation->room->category->name }}</h4>
+                        <hr>
                     </div>
+
+                    <div class="mt-3">
+                        @if ($reservation->trashed())
+                            <p class="p-1 badges badge-warning"><strong>Pesanan ini sudah diarsipkan.</strong></p>
+                            <form action="/reservation/restore/{{ $reservation->code_booking }}" method="POST" style="display:inline" onsubmit="return confirm('Yakin ingin memulihkan data pemesanan ini?')">
+                                @csrf
+                                @method('PUT')
+                                <button class="btn btn-success" type="submit">Pulihkan Pesanan</button>
+                            </form>
+                            <form action="/reservation/forceDelete/{{ $reservation->code_booking }}" method="POST" style="display:inline" onsubmit="return confirm('Data akan dihapus secara permanen. Apakah kamu yakin?')">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Hapus Permanen</button>
+                            </form>
+                        @else
+                                <a href="/reservation/edit/{{ $reservation->code_booking }}" class="btn btn-warning">
+                                    Edit Pesanan
+                                </a>
+                                <form action="/reservation/destroy/{{ $reservation->code_booking }}" class="d-inline" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button onclick="return confirm('Yakin ingin menghapus data pemesanan?')" type="submit" class="btn btn-danger"> 
+                                       Hapus Pesanan
+                                    </button>
+                                </form>
+                        @endif
+                    </div>
+
                 </div>
 
                 <!-- Detail Pemesanan -->
@@ -67,7 +96,9 @@
                                     $backUrl = '/reservation/active';
                                 } elseif ($from === 'completed') {
                                     $backUrl = '/reservation/completed';
-                                } elseif ($from === 'canceled') {
+                                } elseif ($from === 'archived') {
+                                    $backUrl = '/reservation/archived';
+                                } elseif($from === 'canceled'){
                                     $backUrl = '/reservation/canceled';
                                 } else {
                                     $backUrl = '/reservation';
@@ -78,18 +109,6 @@
                                 <i class="fas fa-arrow-left"></i> Kembali ke Daftar Pemesanan
                             </a>
 
-                            <div class="">
-                                <a href="/reservation/edit/{{ $reservation->code_booking }}" class="btn btn-warning">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <form action="/reservation/destroy/{{ $reservation->code_booking }}" class="d-inline" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button onclick="return confirm('Yakin ingin menghapus data pemesanan?')" type="submit" class="btn btn-danger"> 
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
                         </div>
                     </div>
                 </div>

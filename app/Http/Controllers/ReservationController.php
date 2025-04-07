@@ -28,7 +28,7 @@ class ReservationController extends Controller
     public function show($code_booking)
     {
         $data = [
-            'reservation' => Booking::with(['room', 'room.category', 'user'])->where('code_booking', $code_booking)->first(),
+            'reservation' => Booking::withTrashed()->with(['room', 'room.category', 'user'])->where('code_booking', $code_booking)->first(),
         ];
         return view('admin.reservation.show', $data);
     }
@@ -37,7 +37,7 @@ class ReservationController extends Controller
     public function edit($code_booking)
     {
         $data = [
-            'reservation' => Booking::with(['room', 'room.category', 'user'])->where('code_booking', $code_booking)->first(),
+            'reservation' => Booking::withTrashed()->with(['room', 'room.category', 'user'])->where('code_booking', $code_booking)->first(),
         ];
 
         return view('admin.reservation.edit', $data);
@@ -55,6 +55,10 @@ class ReservationController extends Controller
 
         if(!$reservation->payment_proof){
             return redirect()->back()->with('error', 'Bukti pembayaran belum diunggah!');
+        }
+
+        if($reservation->payment_status == 'paid' && $validate['status'] == 'cancelled'){
+            return redirect()->back()->with('error', 'Pesanan tidak dapat dibatalkan!');
         }
 
         $reservation->update($validate);
@@ -105,5 +109,62 @@ class ReservationController extends Controller
         ];
 
         return view('admin.reservation.index', $data);
+    }
+
+    // pemesanan dibatlkan
+    public function canceled()
+    {
+        $data = [
+            'halaman' => request('page') ? request('page') : 1,
+            'url' => '/reservation/canceled',
+            'from' => 'canceled',
+            'title' => 'Daftar Pemesanan Dibatalkan',
+            'reservations' => Booking::with(['user', 'room', 'room.category'])->whereIn('status', ['cancelled'])->filter(request(['search']))->paginate(10)->withQueryString()
+        ];
+
+        return view('admin.reservation.index', $data);
+    }
+
+    // arsip pemesanan (dihapus)
+    public function archived()
+    {
+        $data = [
+            'halaman' => request('page') ? request('page') : 1,
+            'url' => '/reservation/archived',
+            'from' => 'archived',
+            'title' => 'Daftar Pemesanan Yang Diarsipkan',
+            'reservations' => Booking::onlyTrashed()->with(['user', 'room', 'room.category'])->filter(request(['search']))->paginate(10)->withQueryString()
+        ];
+
+        return view('admin.reservation.index', $data);
+    }
+
+
+    // restore arsip pemesanan
+    public function restore($code_booking)
+    {
+        $reservation = Booking::onlyTrashed()->where('code_booking', $code_booking)->first();
+
+        if(!$reservation){
+            return redirect('/reservation/archived')->with('error', 'Data pemesanan tidak ditemukan!');
+        }
+
+        $reservation->restore();
+
+        return redirect('/reservation/archived')->with('success', 'Data pemesanan berhasil dipulihkan!');
+    }
+
+    // hapus permanen
+    public function forceDelete($code_booking)
+    {
+        $reservation = Booking::onlyTrashed()->where('code_booking', $code_booking)->first();
+
+        if(!$reservation){
+            return redirect('/reservation/archived')->with('error', 'Data pemesanan tidak ditemukan!');
+        }
+
+        $reservation->forceDelete();
+
+        return redirect('/reservation/archived')->with('success', 'Data pemesanan berhasil dihapus secara permanen!');
     }
 }
