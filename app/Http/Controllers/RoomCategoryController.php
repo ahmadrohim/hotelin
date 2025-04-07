@@ -14,7 +14,7 @@ class RoomCategoryController extends Controller
 
         $data = [
             'halaman' => request('page') ? request('page') : 1,
-            'categories' => RoomCategory::with('rooms')->filter(request(['search']))->paginate(10)->withQueryString()
+            'categories' => RoomCategory::with('rooms')->filter(request(['search']))->latest()->paginate(10)->withQueryString()
         ];
 
         return view('admin.roomcategory.index', $data);

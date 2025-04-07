@@ -53,13 +53,27 @@ class ReservationController extends Controller
 
         $reservation = Booking::where('code_booking', $code_booking)->firstOrFail();
 
-        if(!$reservation->payment_proof){
-            return redirect()->back()->with('error', 'Bukti pembayaran belum diunggah!');
-        }
+         // Jika ingin cancel, pastikan hanya bisa jika belum dibayar
+            if ($validate['status'] == 'cancelled') {
+                if ($reservation->payment_status != 'pending') {
+                    return redirect()->back()->with('error', 'Pesanan hanya bisa dibatalkan jika pembayaran belum dilakukan.');
+                }
 
-        if($reservation->payment_status == 'paid' && $validate['status'] == 'cancelled'){
-            return redirect()->back()->with('error', 'Pesanan tidak dapat dibatalkan!');
-        }
+                if($validate['payment_status'] == 'paid'){
+                    return redirect()->back()->with('error', 'Status pesanan gagal diperbarui!');
+                }
+            }
+
+            // Jika ingin lanjut ke confirmed atau completed, pastikan pembayaran sudah dilakukan dan ada bukti
+            if (in_array($validate['status'], ['confirmed', 'completed'])) {
+                if ($reservation->payment_status == 'pending') {
+                    return redirect()->back()->with('error', 'Pembayaran belum diselesaikan!');
+                }
+
+                if (!$reservation->payment_proof) {
+                    return redirect()->back()->with('error', 'Bukti pembayaran belum diunggah!');
+                }
+            }
 
         $reservation->update($validate);
 
@@ -83,6 +97,21 @@ class ReservationController extends Controller
         return redirect()->back()->with('success', 'Data pesanan berhasil dihapus');
     }
 
+
+    // pemesanan pending
+    public function pending()
+    {
+        $data = [
+            'halaman' => request('page') ? request('page') : 1,
+            'url' => '/reservation/pending',
+            'from' => 'pending',
+            'title' => 'Daftar Pemesanan Pending',
+            'reservations' => Booking::with(['user', 'room', 'room.category'])->whereIn('status', ['pending'])->filter(request(['search']))->latest()->paginate(10)->withQueryString(),
+        ];
+
+        return view('admin.reservation.index', $data);
+    }
+
     // pemesanan aktiv
     public function active()
     {
@@ -91,7 +120,7 @@ class ReservationController extends Controller
             'url' => '/reservation/active',
             'from' => 'active',
             'title' => 'Daftar Pemesanan Aktif',
-            'reservations' => Booking::with(['user', 'room', 'room.category'])->whereIn('status', ['pending', 'confirmed'])->filter(request(['search']))->paginate(10)->withQueryString(),
+            'reservations' => Booking::with(['user', 'room', 'room.category'])->whereIn('status', ['confirmed'])->filter(request(['search']))->latest()->paginate(10)->withQueryString(),
         ];
 
         return view('admin.reservation.index', $data);
@@ -105,7 +134,7 @@ class ReservationController extends Controller
             'url' => '/reservation/completed',
             'from' => 'completed',
             'title' => 'Daftar Pemesanan Selesai',
-            'reservations' => Booking::with(['user', 'room', 'room.category'])->whereIn('status', ['completed'])->filter(request(['search']))->paginate(10)->withQueryString(),
+            'reservations' => Booking::with(['user', 'room', 'room.category'])->whereIn('status', ['completed'])->filter(request(['search']))->latest()->paginate(10)->withQueryString(),
         ];
 
         return view('admin.reservation.index', $data);
@@ -119,7 +148,7 @@ class ReservationController extends Controller
             'url' => '/reservation/canceled',
             'from' => 'canceled',
             'title' => 'Daftar Pemesanan Dibatalkan',
-            'reservations' => Booking::with(['user', 'room', 'room.category'])->whereIn('status', ['cancelled'])->filter(request(['search']))->paginate(10)->withQueryString()
+            'reservations' => Booking::with(['user', 'room', 'room.category'])->whereIn('status', ['cancelled'])->filter(request(['search']))->latest()->paginate(10)->withQueryString()
         ];
 
         return view('admin.reservation.index', $data);
@@ -133,7 +162,7 @@ class ReservationController extends Controller
             'url' => '/reservation/archived',
             'from' => 'archived',
             'title' => 'Daftar Pemesanan Yang Diarsipkan',
-            'reservations' => Booking::onlyTrashed()->with(['user', 'room', 'room.category'])->filter(request(['search']))->paginate(10)->withQueryString()
+            'reservations' => Booking::onlyTrashed()->with(['user', 'room', 'room.category'])->filter(request(['search']))->latest()->paginate(10)->withQueryString()
         ];
 
         return view('admin.reservation.index', $data);

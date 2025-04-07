@@ -100,6 +100,8 @@
                                     $backUrl = '/reservation/archived';
                                 } elseif($from === 'canceled'){
                                     $backUrl = '/reservation/canceled';
+                                }elseif($from === 'pending'){
+                                    $backUrl = '/reservation/pending';
                                 } else {
                                     $backUrl = '/reservation';
                                 }

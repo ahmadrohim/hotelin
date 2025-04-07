@@ -152,6 +152,8 @@
             // Tambahkan event listener ketika user mengganti kategori kamar
             categorySelect.addEventListener("change", updatePrice);
         });
+
+       
     </script>
 
 </body>

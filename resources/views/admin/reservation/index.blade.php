@@ -62,7 +62,12 @@
                             <td class="text-center">{{ $reservation->check_in_date }}</td>
                             <td class="text-center">{{ $reservation->check_out_date }}</td>
                             <td class="text-center text-capitalize badges-sm {{ $reservation->payment_status == 'paid' ? 'badge-success' : 
-                            ($reservation->payment_status == 'failed' ? 'badge-danger' : 'badge-warning')  }}">{{ $reservation->payment_status }}</td>
+                            ($reservation->payment_status == 'failed' ? 'badge-danger' : 'badge-warning')  }}">
+                                {{ $reservation->payment_status }}
+                                @if($reservation->payment_proof)
+                                <span class="ml-1"><i class="fas fa-check-circle " title="Bukti pembayaran tersedia"></i></span>
+                                @endif
+                            </td>
                             <td class="text-center badges-sm text-capitalize {{ $reservation->status == 'pending' ? 'badge-warning' : 
                             ($reservation->status == 'cancelled' ? 'badge-danger' : 'badge-success')  }}">{{ ucfirst($reservation->status) }}</td>
                             <td class="text-center m-0 p-1 align-middle">

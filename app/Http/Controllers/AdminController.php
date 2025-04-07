@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -16,6 +17,8 @@ class AdminController extends Controller
     {
         $data = [
             'rooms' => Room::all(),
+            'pendingBookingCount' => Booking::where('status', 'pending')->count(),
+            'roomsActive' => Booking::where('status', 'confirmed')->count()
         ];
         return view('admin.index', $data);
     }

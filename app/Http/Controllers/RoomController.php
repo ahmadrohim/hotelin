@@ -29,7 +29,7 @@ class RoomController extends Controller
     {
         $data = [
             'halaman' => request('page') ? request('page') : 1,
-            'rooms' => Room::with('category')->filter(request(['search']))->paginate(10)->withQueryString(),
+            'rooms' => Room::with('category')->filter(request(['search']))->latest()->paginate(10)->withQueryString(),
         ];
 
         return view('admin.room.index', $data);
