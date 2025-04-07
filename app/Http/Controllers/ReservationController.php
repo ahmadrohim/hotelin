@@ -18,7 +18,7 @@ class ReservationController extends Controller
             'url' => '/reservation',
             'from' => ' ',
             'title' => 'Daftar Semua Pemesanan',
-            'reservations' => Booking::with(['room', 'room.category', 'user'])->filter(request(['search']))->paginate(10)->withQueryString(),
+            'reservations' => Booking::with(['room', 'room.category', 'user'])->filter(request(['search']))->latest()->paginate(10)->withQueryString(),
         ];
 
         return view('admin.reservation.index', $data);

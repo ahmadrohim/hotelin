@@ -9,7 +9,7 @@ use App\Http\Controllers\RoomCategoryController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\ReservationController;
-
+use App\Http\Controllers\UserController;
 
 // route home
 Route::get('/', [HomeController::class, 'index']);
@@ -84,4 +84,9 @@ Route::middleware(['auth'])->prefix('booking')->controller(BookingController::cl
     Route::put('/update/{booking:code_booking}', 'update');
     Route::get('/{booking::user_id}', 'index');
     Route::delete('/destroy/{boking::code_booking}', 'destroy');
+});
+
+// route untuk menajemen user
+Route::prefix('users')->controller(UserController::class)->group(function(){
+    Route::get('/', 'index');
 });

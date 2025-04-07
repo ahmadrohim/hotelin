@@ -12,6 +12,7 @@ use App\Models\Hotel;
 use App\Models\PaymentMethod;
 use App\Models\Room;
 use App\Mail\PaymentUploadMail;
+use App\Mail\NewBookingNotificationMail;
 
 
 class BookingController extends Controller
@@ -99,6 +100,8 @@ class BookingController extends Controller
 
         // Kirim email ke user
         Mail::to($user->email)->send(new PaymentUploadMail($booking));
+        // kirim email notif ke admin
+        Mail::to('ahmadrohim552@gmail.com')->send(new NewBookingNotificationMail($booking));
 
         return redirect('/booking/edit/'. $validate['code_booking'])->with('success', 'Lakukan pembayaran!');
     }
