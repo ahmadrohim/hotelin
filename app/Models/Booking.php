@@ -33,7 +33,6 @@ class Booking extends Model
             ->orWhere('status', 'like', '%' . $search . '%');
         });
     }
- 
 
 
     // relasi tabel

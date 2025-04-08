@@ -9,7 +9,7 @@
             <!-- Gambar -->
             <div class="col-lg-6 text-center position-relative">
                 <div class="about-image-wrapper">
-                    <img class="img-fluid shadow-lg" src="/images/room/room3.webp" alt="Tentang Kami">
+                    <img class="img-fluid shadow-lg" src="/images/room/3.webp" alt="Tentang Kami">
                 </div>
             </div>
             <!-- Deskripsi & Fakta Singkat -->
