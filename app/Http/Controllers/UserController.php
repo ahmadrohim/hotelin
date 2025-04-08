@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
     
     public function index()
     {
-        return view('admin.users.index');
+        $data = [
+            'halaman' => request('page') ? request('page') : 1,
+            'users' => User::filter(request(['search']))->latest()->paginate(10)->withQueryString()
+        ];
+        return view('admin.users.index', $data);
     }
 
     

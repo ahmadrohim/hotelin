@@ -55,7 +55,7 @@
         </li>
 
          <!-- Manajemen Pengguna -->
-        <li class="nav-item">
+        <li class="nav-item {{Request::is('users*') ? 'active' : ''}}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
                 aria-expanded="true" aria-controls="collapseUsers">
                 <i class="fas fa-users"></i>
@@ -63,7 +63,9 @@
             </a>
             <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="admin.html">Admin</a>
+                    <a class="collapse-item" href="/users">Semua Pengguna</a>
+                    <a class="collapse-item" href="/user/admin">Admin</a>
+                    <a class="collapse-item" href="admin.html">Staf</a>
                     <a class="collapse-item" href="users.html">Tamu/Pelanggan</a>
                 </div>
             </div>
