@@ -30,9 +30,14 @@ class UserController extends Controller
     }
 
    
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $data = [
+            'user' => User::with(['bookings'])->where('slug', $slug)->firstOrFail()
+        ];
+
+        return view('admin.users.show', $data);
+        
     }
 
   

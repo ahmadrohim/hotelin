@@ -90,4 +90,5 @@ Route::middleware(['auth'])->prefix('booking')->controller(BookingController::cl
 // route untuk menajemen user
 Route::prefix('users')->controller(UserController::class)->group(function(){
     Route::get('/', 'index');
+    Route::get('/{user:slug}', 'show');
 });

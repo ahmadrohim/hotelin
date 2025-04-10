@@ -62,13 +62,13 @@
                             <td>{{ $user->role->role_name ?? '-' }}</td>
                             <td>{{ $user->created_at->format('d M Y') }}</td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <a href="/user/{{ $user->id }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                                <a href="/users/{{ $user->slug }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                             </td>
                             <td class="text-center m-0 p-1 align-middle">
                                 <a href="/user/edit/{{ $user->id }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                             </td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <form class="d-inline" action="/user/destroy/{{ $user->id }}" method="post">
+                                <form class="d-inline" action="/user/" method="post">
                                     @csrf
                                     @method('delete')
                                     <button onclick="return confirm('Apakah anda yakin ingin menghapus pengguna {{ $user->name }}?')" type="submit" class="btn btn-danger btn-sm">
