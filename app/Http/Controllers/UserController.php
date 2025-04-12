@@ -12,6 +12,7 @@ class UserController extends Controller
     {
         $data = [
             'halaman' => request('page') ? request('page') : 1,
+            'from' => '',
             'users' => User::filter(request(['search']))->latest()->paginate(10)->withQueryString()
         ];
         return view('admin.users.index', $data);

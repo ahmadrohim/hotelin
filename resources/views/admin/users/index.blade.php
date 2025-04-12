@@ -62,7 +62,7 @@
                             <td>{{ $user->role->role_name ?? '-' }}</td>
                             <td>{{ $user->created_at->format('d M Y') }}</td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <a href="/users/{{ $user->slug }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                                <a href="/users/{{ $user->slug }}?from={{ $from }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                             </td>
                             <td class="text-center m-0 p-1 align-middle">
                                 <a href="/user/edit/{{ $user->id }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
@@ -93,6 +93,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection
