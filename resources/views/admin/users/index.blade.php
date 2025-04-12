@@ -23,7 +23,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <a class="btn btn-danger" href="/user/create">Tambah Pengguna</a>
+            <a class="btn btn-danger" href="/users/create">Tambah Pengguna</a>
             <form action="/users"
                 class="d-none d-sm-inline-block form-inline ml-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
@@ -62,13 +62,13 @@
                             <td>{{ $user->role->role_name ?? '-' }}</td>
                             <td>{{ $user->created_at->format('d M Y') }}</td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <a href="/users/{{ $user->slug }}?from={{ $from }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                                <a href="/users/{{ $user->code_user }}?from={{ $from }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                             </td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <a href="/user/edit/{{ $user->id }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                <a href="/users/edit/{{ $user->code_user }}?from={{ $from }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                             </td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <form class="d-inline" action="/user/" method="post">
+                                <form class="d-inline" action="/users/destroy/{{ $user->code_user }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button onclick="return confirm('Apakah anda yakin ingin menghapus pengguna {{ $user->name }}?')" type="submit" class="btn btn-danger btn-sm">

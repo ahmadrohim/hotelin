@@ -56,7 +56,7 @@
 
                         <div class="mt-3 d-flex justify-content-between">
                             <a href="/ourRoom" class="btn btn-primary mb-3">
-                                <i class="fas fa-arrow-left"></i> Kembali ke Daftar Kamar
+                                <i class="fas fa-arrow-left"></i> Kembali
                             </a>
                             <div class="">
                                 <a href="/room/edit/{{ $room->code_room }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>

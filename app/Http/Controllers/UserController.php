@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 
 class UserController extends Controller
@@ -21,7 +23,7 @@ class UserController extends Controller
     
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
  
@@ -31,31 +33,59 @@ class UserController extends Controller
     }
 
    
-    public function show($slug)
+    public function show($code_user)
     {
         $data = [
-            'user' => User::with(['bookings'])->where('slug', $slug)->firstOrFail()
+            'user' => User::with(['bookings', 'role'])->where('code_user', $code_user)->firstOrFail()
         ];
-
         return view('admin.users.show', $data);
-        
+    }
+
+
+  
+    public function edit($code_user)
+    {
+        $data = [
+            'user' => User::with(['bookings', 'role'])->where('code_user', $code_user)->firstOrFail(),
+        ]; 
+
+        return view('admin.users.edit', $data);
+       
     }
 
   
-    public function edit($id)
+    public function update(Request $request, $code_user)
     {
-        //
-    }
+        $user = User::where('code_user', $code_user)->firstOrFail();
+        $validate = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id . ',id',
+            'phone' => 'required|string|max:15',
+            'role_id' => 'required|integer|exists:roles,id',
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+    
 
-  
-    public function update(Request $request, $id)
-    {
-        //
+         // Jika password diisi, hash dan masukkan ke array validasi
+
+         if($request->filled('password')){
+            $validate['password'] = Hash::make($validate['password']);
+         }else{
+            unset($validate['password']);
+         }
+
+        $user->update($validate);
+
+        return redirect()->back()->with('success', 'Data pengguna berhasil diperbarui!');
     }
 
    
-    public function destroy($id)
+    public function destroy($code_user)
     {
-        //
+        $user = User::where('code_user', $code_user)->firstOrFail();
+
+        $user->delete();
+
+        return redirect()->back()->with('success', 'Data pengguna berhasil dihapus!');
     }
 }

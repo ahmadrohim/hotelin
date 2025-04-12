@@ -16,63 +16,78 @@
                 @csrf
                 @method('PUT')
 
-                <!-- Nama Kategori -->
-                <div class="form-group">
-                    <label class="text-dark" for="name">Nama Kategori</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" 
-                        id="name" name="name" placeholder="Masukkan nama kategori" 
-                        value="{{ old('name', $category->name) }}" required>
-                    @error('name')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <!-- Harga per Malam -->
-                <div class="form-group">
-                    <label class="text-dark" for="base_price">Harga Mulai Dari (Rp)</label>
-                    <input type="number" class="form-control @error('base_price') is-invalid @enderror" 
-                        id="base_price" name="base_price" placeholder="Masukkan harga awal" 
-                        value="{{ old('base_price', $category->base_price) }}" required>
-                    @error('base_price')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <!-- Maksimal Tamu -->
-                <div class="form-group">
-                    <label class="text-dark" for="max_guests">Maksimal Tamu</label>
-                    <input type="text" class="form-control @error('max_guests') is-invalid @enderror" 
-                    id="max_guests" name="max_guests" placeholder="Masukkan maksimal tamu" 
-                    value="{{ old('max_guests', $category->max_guests) }}" required>
-                    @error('max_guests')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <!-- Upload Gambar Kategori -->
-                <div class="form-group">
-                    <label class="text-dark" for="image">Upload Gambar Kategori Kamar</label>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input @error('image') is-invalid @enderror" 
-                            id="image" name="image" accept="image/jpg, image/jpeg, image/webp" onchange="previewImage()">
-                        <label class="custom-file-label text-white bg-danger" for="image">Pilih Gambar</label>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <!-- Nama Kategori -->
+                        <div class="form-group">
+                            <label class="text-dark" for="name">Nama Kategori</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" 
+                                id="name" name="name" placeholder="Masukkan nama kategori" 
+                                value="{{ old('name', $category->name) }}" required>
+                            @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    @error('image')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                    <small class="form-text text-muted">Format yang diperbolehkan: JPG, JPEG. Maksimal ukuran: 1MB.</small>
+                    <div class="col-md-6">
+                         <!-- Harga per Malam -->
+                         <div class="form-group">
+                            <label class="text-dark" for="base_price">Harga Mulai Dari (Rp)</label>
+                            <input type="number" class="form-control @error('base_price') is-invalid @enderror" 
+                                id="base_price" name="base_price" placeholder="Masukkan harga awal" 
+                                value="{{ old('base_price', $category->base_price) }}" required>
+                            @error('base_price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- Tempat Preview Gambar -->
-                <div class="form-group">
-                    <img id="preview" src="/images/categoriesroom/{{ $category->image }}" class="img-thumbnail" style="max-width: 300px; max-height: 200px;">
-                </div>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                          <!-- Maksimal Tamu -->
+                          <div class="form-group">
+                            <label class="text-dark" for="max_guests">Maksimal Tamu</label>
+                            <input type="text" class="form-control @error('max_guests') is-invalid @enderror" 
+                            id="max_guests" name="max_guests" placeholder="Masukkan maksimal tamu" 
+                            value="{{ old('max_guests', $category->max_guests) }}" required>
+                            @error('max_guests')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                <!-- Tombol Simpan dan Kembali -->
-                <div class="form-group d-flex justify-content-end">
-                    <button type="submit" class="btn btn-success mb-2 mx-2">Simpan</button>
-                    <a href="/categoryRoom" class="btn btn-primary mb-2 mx-2">Kembali</a>
+                    </div>
+                    <div class="col-md-6">
+                         <!-- Tombol Simpan dan Kembali -->
+                        <div class="form-group d-flex justify-content-end">
+                            <button type="submit" class="btn btn-success mb-2 mx-2">Simpan</button>
+                            <a href="/categoryRoom" class="btn btn-primary mb-2 mx-2">Kembali</a>
+                        </div>
+                    </div>
                 </div>
+               <div class="row-mb-4">
+                <div class="col-md-6">
+                    <!-- Upload Gambar Kategori -->
+                    <div class="form-group">
+                        <label class="text-dark" for="image">Upload Gambar Kategori Kamar</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input @error('image') is-invalid @enderror" 
+                                id="image" name="image" accept="image/jpg, image/jpeg, image/webp" onchange="previewImage()">
+                            <label class="custom-file-label text-white bg-danger" for="image">Pilih Gambar</label>
+                        </div>
+                        @error('image')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        <small class="form-text text-muted">Format yang diperbolehkan: JPG, JPEG. Maksimal ukuran: 1MB.</small>
+                    </div>
+                    
+                    <!-- Tempat Preview Gambar -->
+                    <div class="form-group">
+                        <img id="preview" src="/images/categoriesroom/{{ $category->image }}" class="img-thumbnail" style="max-width: 300px; max-height: 200px;">
+                    </div>
+                </div>
+               </div>
+
             </form>
         </div>
     </div>

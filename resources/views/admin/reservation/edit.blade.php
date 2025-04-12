@@ -116,7 +116,7 @@
                         }
                     @endphp
 
-                    <a href="{{ $backUrl }}" class="btn btn-primary mx-2">Kembali</a>
+                    <a href="{{ $backUrl }}" class="btn btn-primary mx-2"> <i class="fas fa-arrow-left"></i> Kembali</a>
                 </div>
             </form>
         </div>

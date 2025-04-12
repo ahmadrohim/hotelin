@@ -108,7 +108,7 @@
                             @endphp
 
                             <a href="{{ $backUrl }}" class="btn btn-primary mb-3">
-                                <i class="fas fa-arrow-left"></i> Kembali ke Daftar Pemesanan
+                                <i class="fas fa-arrow-left"></i> Kembali
                             </a>
 
                         </div>

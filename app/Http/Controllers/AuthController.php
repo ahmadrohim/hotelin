@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -21,20 +22,30 @@ class AuthController extends Controller
     {
        $validate = $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:users|email:dns',
+            'email' => [
+                'required','unique:users','email:dns', Rule::unique('users')->whereNull('deleted_at')
+            ],
             'password' => 'required|min:8|max:10',
             'phone' => 'required'
        ]);
 
        $validate['password'] = Hash::make($validate['password']);
-       $validate['role_id'] = 3;
+       if($request->input('via_admin')){
+            $validate['role_id'] = $request->role_id;
+       }else{
+           $validate['role_id'] = 3;
+       }
        $user = User::create($validate);
 
        Mail::send([],[], function($message) use ($user){
             $message->to($user->email)->subject('Verifikasi Email Anda')->setBody('Klik link ini untuk verifikasi akun Anda: <a href="'. url('/verifyEmail/' . $user->id) . '">Verifikasi Email</a>', 'text/html');
        });
 
-       return redirect('/login')->with('success', 'Registrasi berhasil! Silahkan cek email untuk verifikasi.');
+       if($request->input('via_admin')){
+           return redirect('/users')->with('success', 'Data pengguna berhasil ditambahkan. Silahkan cek email untuk verifikasi!');
+       }else{
+           return redirect('/login')->with('success', 'Registrasi berhasil. Silahkan cek email untuk verifikasi!');
+       }
    
     }
 

@@ -15,12 +15,12 @@ use App\Http\Controllers\UserController;
 Route::get('/', [HomeController::class, 'index']);
 
 // Route untuk user yang belum login
-Route::middleware(['guest'])->controller(AuthController::class)->group(function () {
+Route::controller(AuthController::class)->group(function () {
     // route register
-    Route::get('/register', 'register')->name('register'); 
+    Route::get('/register', 'register')->name('register')->middleware('guest'); 
     Route::post('/store', 'store')->name('store');
     // route login
-    Route::get('/login', 'login')->name('login');
+    Route::get('/login', 'login')->name('login')->middleware('guest');
     Route::post('/authenticate', 'authenticate')->name('authenticate');
 });
 
@@ -40,10 +40,10 @@ Route::get('/ourRoom', [RoomController::class, 'ourRooms']);
 Route::prefix('room')->controller(RoomController::class)->group(function(){
     Route::get('/create', 'create');
     Route::post('/store', 'store');
-    Route::get('/{room:code_room}', 'show');
     Route::get('/edit/{room:code_room}', 'edit');
     Route::put('/update/{room:code_room}', 'update');
     Route::delete('/destroy/{room:code_room}', 'destroy');
+    Route::get('/{room:code_room}', 'show');
 });
 
 // manajemen kategoi kamar
@@ -51,10 +51,10 @@ Route::prefix('categoryRoom')->controller(RoomCategoryController::class)->group(
     Route::get('/', 'index');
     Route::get('/create', 'create');
     Route::post('/store', 'store');
-    Route::get('/{categoryRoom:code_category_room}', 'show');
     Route::get('/edit/{categoryRoom:code_category_room}', 'edit');
     Route::put('/update/{categoryRoom:code_category_room}', 'update');
     Route::delete('/destroy/{categoryRoom:code_category_room}', 'destroy');
+    Route::get('/{categoryRoom:code_category_room}', 'show');
 });
 
 // route manajemen pemesanan
@@ -67,10 +67,10 @@ Route::prefix('reservation')->controller(ReservationController::class)->group(fu
     Route::get('/canceled', 'canceled');
     Route::put('/restore/{booking:code_booking}', 'restore');
     Route::delete('/forceDelete/{booking:code_booking}', 'forceDelete');
-    Route::get('/{booking:code_booking}', 'show');
     Route::get('/edit/{booking:code_booking}', 'edit');
     Route::put('/update/{booking:code_booking}', 'update');
     Route::delete('/destroy/{booking:code_booking}', 'destroy');
+    Route::get('/{booking:code_booking}', 'show');
 });
 
 
@@ -83,12 +83,18 @@ Route::middleware(['auth'])->prefix('booking')->controller(BookingController::cl
     Route::post('/store/{room:code_room}', 'store');
     Route::get('/edit/{booking:code_booking}', 'edit');
     Route::put('/update/{booking:code_booking}', 'update');
-    Route::get('/{booking::user_id}', 'index');
     Route::delete('/destroy/{boking::code_booking}', 'destroy');
+    Route::get('/{booking::user_id}', 'index');
 });
 
 // route untuk menajemen user
 Route::prefix('users')->controller(UserController::class)->group(function(){
     Route::get('/', 'index');
-    Route::get('/{user:slug}', 'show');
+    Route::get('/create', 'create');
+    Route::get('/edit/{user:code_user}', 'edit');
+    Route::put('/update/{user:code_user}', 'update');
+    Route::delete('/destroy/{user:code_user}', 'destroy');
+    Route::put('/restore/{user:code_user}', 'restore');
+    Route::delete('/forceDelete/{user:code_user}', 'forceDelete');
+    Route::get('/{user:code_user}', 'show');
 });

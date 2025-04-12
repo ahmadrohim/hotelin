@@ -26,8 +26,27 @@ class User extends Authenticatable implements MustVerifyEmail
         });
     }
 
+
+    // generate code_user
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function($user){
+            $user->code_user = self::generateCode();
+        });
+    }
+
+    public static function generateCode()
+    {
+        do {
+            // format kode user
+            $code = 'USR' . now()->format('Ymd') . '-' . strtoupper(Str::random(6));
+        }while(self::where('code_user', $code)->exists());
+
+        return $code;
+    }
    
-    
 
 
     // relasi tabel
@@ -51,21 +70,5 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-
-
-
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function($User){
-            $User->slug = Str::slug($User->name, '-');
-        });
-
-        static::updating(function($User){
-            $User->slug = Str::slug($User->name, '-');
-        });
-    }
 
 }

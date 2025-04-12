@@ -67,6 +67,7 @@
                     <a class="collapse-item" href="/user/admin">Admin</a>
                     <a class="collapse-item" href="admin.html">Staf</a>
                     <a class="collapse-item" href="users.html">Tamu/Pelanggan</a>
+                    <a class="collapse-item" href="/users/archived">Arsip Pengguna</a>
                 </div>
             </div>
         </li>
