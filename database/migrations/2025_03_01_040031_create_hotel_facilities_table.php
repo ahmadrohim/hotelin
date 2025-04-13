@@ -16,7 +16,7 @@ class CreateHotelFacilitiesTable extends Migration
         Schema::create('hotel_facilities', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('slug')->unique();
+            $table->string('code_facilities')->unique();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->string('icon')->nullable();

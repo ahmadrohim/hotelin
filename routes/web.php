@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\RoomCategoryController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\VerificationController;
@@ -105,3 +106,9 @@ Route::prefix('users')->controller(UserController::class)->group(function(){
     Route::delete('/forceDelete/{user:code_user}', 'forceDelete');
     Route::get('/{user:code_user}', 'show');
 });
+
+// Route fasilitas hotel
+Route::prefix('facilities')->controller(FacilitiesController::class)->group(function(){
+    Route::get('/', 'index');
+});
+

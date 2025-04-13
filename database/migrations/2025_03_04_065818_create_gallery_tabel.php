@@ -16,7 +16,7 @@ class CreateGalleryTabel extends Migration
         Schema::create('gallery_tabel', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->string('slug')->unique();
+            $table->string('code_gallery')->unique();
             $table->string('image');
             $table->string('description')->nullable();
             $table->timestamps();

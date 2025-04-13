@@ -17,7 +17,7 @@ class CreateTestimonialsTable extends Migration
             $table->id();
             $table->foreignId('booking_id')->constrained('bookings')->onDelete('cascade'); // Relasi ke table booking
             $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('code_tesimoni')->unique();
             $table->string('location')->nullable();
             $table->integer('rating')->default(5);
             $table->text('message');

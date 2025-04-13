@@ -31,7 +31,6 @@ class HotelSeeder extends Seeder
             ['email' => 'info@hotelin.com'],
             [
                 'name' => 'Hotelin',
-                'slug' => Str::slug('Hotelin'),
                 'address' => 'Jl. Raya Kalikajar No.1, Wonosobo, Jawa Tengah',
                 'description' => 'Hotel dengan fasilitas lengkap dan nyaman.',
                 'phone' => '081234567890',
@@ -228,7 +227,6 @@ class HotelSeeder extends Seeder
                     'description' => $f['description'],
                     'image' => $f['image'],
                     'icon' => $f['icon'],
-                    'slug' => Str::slug($f['name']),
                 ]
             );
         }
@@ -236,103 +234,36 @@ class HotelSeeder extends Seeder
                 $galleryData = [
                     [
                         'title' => 'Pemandangan Indah',
-                        'slug' => Str::slug('Pemandangan Indah'),
                         'description' => 'Foto pemandangan indah dengan gunung dan langit biru.',
                     ],
                     [
                         'title' => 'Pantai Eksotis',
-                        'slug' => Str::slug('Pantai Eksotis'),
                         'description' => 'Gambar pantai dengan pasir putih dan air laut jernih.',
                     ],
                     [
                         'title' => 'Hutan Hijau',
-                        'slug' => Str::slug('Hutan Hijau'),
                         'description' => 'Pemandangan hutan hijau yang asri dan sejuk.',
                     ],
                     [
                         'title' => 'Pegunungan Bersalju',
-                        'slug' => Str::slug('Pegunungan Bersalju'),
                         'description' => 'Pemandangan pegunungan tinggi yang diselimuti salju.',
                     ],
                     [
                         'title' => 'Kota Malam Hari',
-                        'slug' => Str::slug('Kota Malam Hari'),
                         'description' => 'Pemandangan gedung-gedung tinggi dengan lampu kota yang menyala di malam hari.',
                     ],
                     [
                         'title' => 'Sawah yang Hijau',
-                        'slug' => Str::slug('Sawah yang Hijau'),
                         'description' => 'Pemandangan sawah hijau yang luas dengan petani yang sedang bekerja.',
                     ],
                     [
                         'title' => 'Air Terjun Alami',
-                        'slug' => Str::slug('Air Terjun Alami'),
                         'description' => 'Keindahan air terjun alami dengan aliran air yang jernih.',
                     ],
                     [
                         'title' => 'Danau Biru',
                         'slug' => Str::slug('Danau Biru'),
                         'description' => 'Pemandangan danau biru yang tenang dan damai.',
-                    ],
-                    [
-                        'title' => 'Ladang Bunga',
-                        'slug' => Str::slug('Ladang Bunga'),
-                        'description' => 'Ladang bunga warna-warni yang terlihat indah di musim semi.',
-                    ],
-                    [
-                        'title' => 'Gunung Merapi',
-                        'slug' => Str::slug('Gunung Merapi'),
-                        'description' => 'Pemandangan megah Gunung Merapi yang aktif.',
-                    ],
-                    [
-                        'title' => 'Jembatan Kayu',
-                        'slug' => Str::slug('Jembatan Kayu'),
-                        'description' => 'Jembatan kayu kecil yang menyeberangi sungai jernih.',
-                    ],
-                    [
-                        'title' => 'Pulau Tropis',
-                        'slug' => Str::slug('Pulau Tropis'),
-                        'description' => 'Sebuah pulau tropis dengan pantai berpasir putih dan pohon kelapa.',
-                    ],
-                    [
-                        'title' => 'Sunset di Pantai',
-                        'slug' => Str::slug('Sunset di Pantai'),
-                        'description' => 'Pemandangan matahari terbenam yang indah di tepi pantai.',
-                    ],
-                    [
-                        'title' => 'Desa Tradisional',
-                        'slug' => Str::slug('Desa Tradisional'),
-                        'description' => 'Desa tradisional dengan rumah-rumah khas pedesaan.',
-                    ],
-                    [
-                        'title' => 'Hutan Pinus',
-                        'slug' => Str::slug('Hutan Pinus'),
-                        'description' => 'Hutan pinus yang memberikan suasana sejuk dan segar.',
-                    ],
-                    [
-                        'title' => 'Kampung Nelayan',
-                        'slug' => Str::slug('Kampung Nelayan'),
-                        'description' => 'Sebuah kampung nelayan dengan perahu-perahu kecil di tepi laut.',
-                    ],
-                    [
-                        'title' => 'Pasar Tradisional',
-                        'slug' => Str::slug('Pasar Tradisional'),
-                        'description' => 'Keramaian pasar tradisional dengan pedagang yang menjual berbagai produk lokal.',
-                    ],
-                    [
-                        'title' => 'Benteng Tua',
-                        'slug' => Str::slug('Benteng Tua'),
-                        'description' => 'Sebuah benteng tua peninggalan sejarah yang masih kokoh berdiri.',
-                    ],
-                    [
-                        'title' => 'Gua Misterius',
-                        'slug' => Str::slug('Gua Misterius'),
-                        'description' => 'Sebuah gua alami yang memiliki keindahan stalaktit dan stalagmit.',
-                    ],
-                    [
-                        'title' => 'Lapangan Hijau',
-                        'slug' => Str::slug('Lapangan Hijau'),
-                        'description' => 'Lapangan rumput hijau yang luas, cocok untuk piknik dan olahraga.',
                     ],
                 ];
                 
@@ -343,7 +274,6 @@ class HotelSeeder extends Seeder
                     'title' => $g['title'],
                     'description' => $g['description'],
                     'image' => rand(1,6). '.webp',
-                    'slug' => $g['slug'],
                 ]
             );
         }

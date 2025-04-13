@@ -11,17 +11,26 @@ class Hotel extends Model
     use HasFactory;
     protected $table = 'hotels';
     protected $guarded = ['id'];
+   
+
+    // code hotel
     protected static function boot()
     {
         parent::boot();
 
-        static::creating(function ($hotel) {
-            $hotel->slug = Str::slug($hotel->name, '-');
+        static::creating(function($hotel){
+            $hotel->code_hotel = self::generateCode();
         });
+    }
 
-        static::updating(function ($hotel) {
-            $hotel->slug = Str::slug($hotel->name, '-');
-        });
+    // generate code hotel
+    public static function generateCode()
+    {
+        do{
+            $code = 'HTL' . now()->format('Ymd') . '_' . strtoupper(Str::random(6));
+        }while(self::where('code_hotel', $code)->exists());
+
+        return $code;
     }
 
 }
