@@ -152,13 +152,7 @@ class RoomController extends Controller
     public function destroy($code_room)
     {
         // ambil data kamar
-        $room = Room::where('code_room', $code_room)->first();
-
-
-        // cek apakah kamar ada
-        if(!$room){
-            return redirect()->back()->with('error', 'Kamar tidak ditemukan!');
-        }
+        $room = Room::where('code_room', $code_room)->firstOrFail();
         
         // hapus data dari database
         $room->deleteRoom();

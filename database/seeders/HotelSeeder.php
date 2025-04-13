@@ -198,25 +198,21 @@ class HotelSeeder extends Seeder
                 'name' => 'Spa, Kecantikan & Kesehatan',
                 'description' => 'Nikmati relaksasi spa, perawatan kecantikan, dan fasilitas kebugaran untuk menjaga tubuh tetap sehat selama menginap di Hotelin.',
                 'image' => 'service1.webp',
-                'icon' => 'service-icon1.webp'
             ],
             [
                 'name' => 'Restoran',
                 'description' => 'Nikmati beragam hidangan lezat dengan cita rasa terbaik di restoran kami. Sajian spesial untuk melengkapi pengalaman menginap Anda di Hotelin.',
                 'image' => 'service2.webp',
-                'icon' => 'service-icon2.webp'
             ],
             [
                 'name' => 'Kolam Renang',
                 'description' => 'Rasakan kesegaran dengan berenang di kolam renang kami, tempat yang sempurna untuk bersantai dan menikmati suasana Hotelin.',
                 'image' => 'service3.webp',
-                'icon' => 'service-icon3.webp'
             ],
             [
                 'name' => 'Ruang Pertemuan',
                 'description' => 'Tempat ideal untuk rapat, seminar, dan acara penting Anda, dengan fasilitas lengkap dan suasana yang nyaman di Hotelin.',
                 'image' => 'service4.webp',
-                'icon' => 'service-icon4.webp'
             ],
         ];
 
@@ -226,7 +222,6 @@ class HotelSeeder extends Seeder
                     'name' => $f['name'],
                     'description' => $f['description'],
                     'image' => $f['image'],
-                    'icon' => $f['icon'],
                 ]
             );
         }

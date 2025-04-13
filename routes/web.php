@@ -110,5 +110,13 @@ Route::prefix('users')->controller(UserController::class)->group(function(){
 // Route fasilitas hotel
 Route::prefix('facilities')->controller(FacilitiesController::class)->group(function(){
     Route::get('/', 'index');
+    Route::get('/create', 'create');
+    Route::post('/store', 'store');
+    Route::get('/edit/{hotelfacilities:code_facilities}', 'edit');
+    Route::put('/update/{hotelfacilities:code_facilities}', 'update');
+    Route::delete('/destroy/{hotelfacilities:code_facilities}', 'destroy');
+
+
+    Route::get('/{hotelfacilities:code_facilities}', 'show');
 });
 

@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
       // fitur filter pencarian (search)
     public function scopeFilter($query, array $filter)
     {
-        $query->when($filte['search'] ?? false, function($query, $search){
+        $query->when($filter['search'] ?? false, function($query, $search){
             $query->whereHas('roles', function($q) use ($search){
                 $q->where('role_name', 'like'. '%' . $search . '%');
             })->orWhere('name', 'like', '%' . $search . '%')->orWhere('email', 'like', '%' . $search . '%')->orWhere('created_at', 'like', '%' . $search . '%');

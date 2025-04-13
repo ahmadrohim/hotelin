@@ -76,8 +76,8 @@
         <div class="sidebar-heading">Fasilitas</div>
 
           <!-- Fasilitas-->
-          <li class="nav-item">
-            <a class="nav-link" href="/admin/dashboard">
+          <li class="nav-item {{ Request::is('facilities*') ? 'active' : '' }}">
+            <a class="nav-link" href="/facilities">
                 <i class="fas fa-fw fa-concierge-bell"></i>
                 <span>Fasilitas Hotel</span>
             </a>

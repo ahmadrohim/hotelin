@@ -19,7 +19,6 @@ class CreateHotelFacilitiesTable extends Migration
             $table->string('code_facilities')->unique();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->string('icon')->nullable();
             $table->timestamps();
         });
     }
