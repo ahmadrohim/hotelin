@@ -64,9 +64,9 @@
             <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="/users">Semua Pengguna</a>
-                    <a class="collapse-item" href="/user/admin">Admin</a>
-                    <a class="collapse-item" href="admin.html">Staf</a>
-                    <a class="collapse-item" href="users.html">Tamu/Pelanggan</a>
+                    <a class="collapse-item" href="/users/admin">Admin</a>
+                    <a class="collapse-item" href="/users/staf">Staf</a>
+                    <a class="collapse-item" href="/users/customer">Tamu/Pelanggan</a>
                     <a class="collapse-item" href="/users/archived">Arsip Pengguna</a>
                 </div>
             </div>

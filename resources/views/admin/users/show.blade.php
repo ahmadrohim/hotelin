@@ -18,14 +18,14 @@
                 <!-- Kolom Kiri: Detail Pengguna -->
                 <div class="col-md-6">
                     <div class="text-dark">
-                        <p><i class="fas fa-user"></i> <strong>Nama:</strong> {{ $user->name }}</p>
-                        <p><i class="fas fa-id-card"></i> <strong>Kode Pengguna:</strong> {{ $user->code_user }}</p>
-                        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> {{ $user->email }}</p>
-                        <p><i class="fas fa-check-circle"></i> <strong>Email Terverifikasi:</strong> 
+                        <p><i class="fas fa-user"></i> <strong class="mr-2">Nama:</strong> {{ $user->name }}</p>
+                        <p><i class="fas fa-id-card"></i> <strong class="mr-2">Kode Pengguna:</strong> {{ $user->code_user }}</p>
+                        <p><i class="fas fa-envelope"></i> <strong class="mr-2">Email:</strong> {{ $user->email }}</p>
+                        <p><i class="fas fa-check-circle"></i> <strong class="mr-2">Email Terverifikasi:</strong> 
                             {!! $user->email_verified_at ? '<span class="btn-sm btn-success">Sudah</span>' : '<span class="btn-sm btn-danger">Belum</span>' !!}
                         </p>
-                        <p><i class="fas fa-phone"></i> <strong>Telepon:</strong> {{ $user->phone }}</p>
-                        <p><i class="fas fa-user-tag"></i> <strong>Role:</strong> {{ $user->role->role_name ?? '-' }}</p>
+                        <p><i class="fas fa-phone"></i> <strong class="mr-2">WhatsApp:</strong> {{ $user->phone }}</p>
+                        <p><i class="fas fa-user-tag"></i> <strong class="mr-2">Role:</strong> {{ $user->role->role_name ?? '-' }}</p>
                     </div>
                     <hr>
                     @if ($user->trashed())

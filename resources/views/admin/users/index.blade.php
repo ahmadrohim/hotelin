@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="mb-4">
-        <h1 class="h4 mb-0 text-gray-800 text-uppercase">Manajemen Pengguna</h1> 
+        <h1 class="h4 mb-0 text-gray-800 text-uppercase">Manajemen Pengguna {{ $url == '/users/archived' ? 'Diarsipkan' : '' }}</h1> 
     </div>
 
     <div class="mb-4">
@@ -23,8 +23,8 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <a class="btn btn-danger" href="/users/create">Tambah Pengguna</a>
-            <form action="/users"
+            <a class="btn btn-danger" href="/users/create?from={{ $from }}">Tambah Pengguna</a>
+            <form action="{{ $url }}"
                 class="d-none d-sm-inline-block form-inline ml-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
                     <input type="text" class="form-control bg-light border-1 small" placeholder="Cari pengguna..."
@@ -65,16 +65,36 @@
                                 <a href="/users/{{ $user->code_user }}?from={{ $from }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                             </td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <a href="/users/edit/{{ $user->code_user }}?from={{ $from }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                @if($user->trashed())
+                                    <form action="/users/restore/{{ $user->code_user }}" method="POST" onsubmit="return confirm('Yakin ingin memulihkan data pengguna ini?')">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-success btn-sm m-0">
+                                            <i class="fas fa-undo"></i>
+                                        </button>
+                                    </form>                          
+                                @else
+                                    <a href="/users/edit/{{ $user->code_user }}?from={{ $from }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                @endif
                             </td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <form class="d-inline" action="/users/destroy/{{ $user->code_user }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button onclick="return confirm('Apakah anda yakin ingin menghapus pengguna {{ $user->name }}?')" type="submit" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
+                                @if($user->trashed())
+                                    <form action="/users/forceDelete/{{ $user->code_user }}" method="POST" class="d-inline" onsubmit="return confirm('Data akan dihapus secara permanen. Apakah kamu yakin?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm m-0">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                @else
+                                    <form class="d-inline" action="/users/destroy/{{ $user->code_user }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button onclick="return confirm('Apakah anda yakin ingin menghapus pengguna {{ $user->name }}?')" type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

@@ -38,7 +38,7 @@
                         @enderror
                     </div>
                     <div class="col-md-6">
-                        <label>Nomor Telepon</label>
+                        <label>Nomor WhatsApp</label>
                         <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone', $user->phone) }}">
                         @error('phone')
                             <div class="invalid-feedback">{{ $message }}</div>

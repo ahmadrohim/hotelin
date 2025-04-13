@@ -30,14 +30,14 @@
                 <div class="row mb-4">
                     <div class="col-md-6">
                         <label>Nama Pengguna</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Masukan nama kamu...">
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-md-6">
-                        <label>Nomor Telepon</label>
-                        <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}">
+                        <label>Nomor WhatsApp</label>
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="Masukan no WA kamu...">
                         @error('phone')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -57,7 +57,7 @@
                     </div>
                     <div class="col-md-6">
                         <label>Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukan password yang kuat...">
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -66,7 +66,7 @@
                 <div class="row mb-4">
                     <div class="col-md-6">
                         <label>Email</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Masukan email kamu...">
                         @error('email')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -76,7 +76,19 @@
                         <div class="form-group d-flex justify-content-end mt-4">
                             <button type="submit" class="btn btn-success mx-2">Tambah</button>
 
-                            <a href="/users" class="btn btn-primary">
+                            @php
+                                $from = request('from');
+                                if ($from === 'admin') {
+                                    $backUrl = '/users/admin';
+                                } elseif ($from === 'staf') {
+                                    $backUrl = '/users/staf';
+                                } elseif ($from === 'customer') {
+                                    $backUrl = '/users/customer';
+                                } else {
+                                    $backUrl = '/users';
+                                }
+                            @endphp
+                            <a href="{{ $backUrl }}" class="btn btn-primary">
                                 <i class="fas fa-arrow-left"></i> Kembali
                             </a>
                         </div>

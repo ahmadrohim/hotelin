@@ -29,11 +29,14 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [AuthController::class, 'logout']); 
 });
 
+
+// route admin
+Route::controller(AdminController::class)->group(function(){
+    Route::get('/dashboard', [AdminController::class, 'index']);
+});
+
 // route rooms
 Route::get('/rooms/{code_category_room}', [RoomController::class, 'index']);
-
-// ROUTE ADMIN
-Route::get('/dashboard', [AdminController::class, 'index']);
 
 // manajemen kamar
 Route::get('/ourRoom', [RoomController::class, 'ourRooms']);
@@ -90,6 +93,10 @@ Route::middleware(['auth'])->prefix('booking')->controller(BookingController::cl
 // route untuk menajemen user
 Route::prefix('users')->controller(UserController::class)->group(function(){
     Route::get('/', 'index');
+    Route::get('/admin', 'admin');
+    Route::get('/staf', 'staf');
+    Route::get('/customer', 'customer');
+    Route::get('/archived', 'archived');
     Route::get('/create', 'create');
     Route::get('/edit/{user:code_user}', 'edit');
     Route::put('/update/{user:code_user}', 'update');
