@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AttractionCategoryController;
+use App\Http\Controllers\AttractionController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FacilitiesController;
@@ -11,6 +13,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
+use App\Models\AttractionCategory;
 
 // route home
 Route::get('/', [HomeController::class, 'index']);
@@ -115,8 +118,19 @@ Route::prefix('facilities')->controller(FacilitiesController::class)->group(func
     Route::get('/edit/{hotelfacilities:code_facilities}', 'edit');
     Route::put('/update/{hotelfacilities:code_facilities}', 'update');
     Route::delete('/destroy/{hotelfacilities:code_facilities}', 'destroy');
-
-
     Route::get('/{hotelfacilities:code_facilities}', 'show');
+});
+
+// Route category attraction
+Route::prefix('categoryAttraction')->controller(AttractionCategoryController::class)->group(function(){
+    Route::get('/', 'index');
+    Route::get('/create', 'create');
+    Route::post('/store', 'store');
+});
+
+// Route attraction
+Route::prefix('attraction')->controller(AttractionController::class)->group(function(){
+    Route::get('/', 'index');
+    
 });
 

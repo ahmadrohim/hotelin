@@ -88,7 +88,7 @@
         <div class="sidebar-heading">Informasi Sekitar</div>
 
         <!-- Sekitar Hotel -->
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('attraction*') || Request::is('categoryAttraction*') ? 'active' : '' }}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSekitar"
                 aria-expanded="true" aria-controls="collapseSekitar">
                 <i class="fas fa-fw fa-map-marker-alt"></i>
@@ -96,8 +96,8 @@
             </a>
             <div id="collapseSekitar" class="collapse" aria-labelledby="headingSekitar" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/admin/sekitar-hotel">Daftar Wisata</a>
-                    <a class="collapse-item" href="/admin/sekitar-hotel/kategori">Kategori Wisata</a>
+                    <a class="collapse-item" href="/attraction">Daftar Wisata</a>
+                    <a class="collapse-item" href="/categoryAttraction">Kategori Wisata</a>
                 </div>
             </div>
         </li>
