@@ -20,8 +20,7 @@ class CreateAttractionHotelTable extends Migration
             $table->string('code_attraction')->unique();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->decimal('latitude', 10, 7);
-            $table->decimal('longitude', 10, 7);
+            $table->string('map_link')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

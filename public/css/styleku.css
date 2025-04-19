@@ -343,7 +343,7 @@
 
 /* BACKGROUND TEXTURE */
 .section-texture {
-    background-image: url('/images/texture1.png');
+    background-color:rgb(228, 224, 224);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

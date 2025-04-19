@@ -1,27 +1,65 @@
-<!-- Bagian Kamar di Beranda -->
 <section class="page-section section-texture" id="rooms">
     <div class="container">
-        <div class="text-center">
+        <div class="text-center mb-5">
             <h2 class="text-uppercase title-heading">Pilihan Kamar</h2>
-            <h3 class="section-subheading subtitle">Temukan kenyamanan terbaik dengan berbagai pilihan kamar kami.</h3>
+            <div class="title-underline"></div>
+            <p class="section-subheading subtitle">Pilih kamar terbaik untuk pengalaman menginap Anda.</p>
         </div>
 
-        <div class="row">
-
-            @foreach($RoomCategory as $Room)
-            <!-- Kamar 1 -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card shadow-sm" style="color:white; border:none;">
-                    <img src="/images/categoriesroom/{{ $Room->image }}" class="card-img-top" alt="{{ $Room->name }}">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ $Room->name }}</h5>
-                        <p class="card-text">Mulai dari <strong>Rp. {{ number_format($Room->base_price, 0, ',', '.') }}</strong> / malam</p>
-                        <p class="card-text">Kapasitas: <strong>{{ $Room->max_guests }} orang </strong></p> <!-- Menambahkan kapasitas tamu -->
-                        <a href="/rooms/{{ $Room->code_category_room }}" class=" btn-read-more">Lihat Kamar</a>
+        @foreach($Rooms as $room)
+        <div class="row align-items-center pb-4 border-bottom">
+            <div class="col-md-7">
+                <div id="carouselRoom{{ $room->id }}" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner rounded-3 shadow-sm" style="height: 350px; overflow: hidden;">
+                        @forelse($room->images as $key => $image)
+                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                <img src="/images/room/{{ $image->image }}"
+                                     class="d-block w-100"
+                                     alt="{{ $room->name_image }}"
+                                     style="height: 350px; object-fit: cover;">
+                            </div>
+                        @empty
+                            <div class="carousel-item active">
+                                <img src="{{ asset('images/room/default.jpg') }}"
+                                     class="d-block w-100"
+                                     alt="Default"
+                                     style="height: 350px; object-fit: cover;">
+                            </div>
+                        @endforelse
+                    </div>
+                    @if($room->images->count() > 1)
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselRoom{{ $room->id }}" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselRoom{{ $room->id }}" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                    @endif
+                </div>
+            </div>
+            <div class="col-md-5 mt-3 mt-md-0">
+               <div class="card shadow-sm border-0 rounded-4 mb-4">
+                    <div class="card-body p-4">
+                        <h3 class="fw-bold mb-3">{{ $room->name_image }}</h3>
+                        <p class="text-muted mb-2">{{ $room->description }}</p>
+                        <div class="mb-2">
+                            <strong>Tempat Tidur:</strong> {{ $room->bed_type }} <br>
+                            <strong>Harga:</strong> Rp{{ number_format($room->price, 0, ',', '.') }}
+                        </div>
+                        <div class="mb-3 mt-2">
+                            @foreach($room->facilities as $facility)
+                                <span class="badge bg-light text-dark border me-1 mb-1">{{ $facility->name }}</span>
+                            @endforeach
+                        </div>
+                        <a href="https://wa.me/085870831024?text=Saya%20ingin%20memesan%20kamar%20{{ urlencode($room->name_image) }}" class="btn btn-success rounded-pill px-4" target="_blank">
+                            Pesan Kamar
+                        </a>
                     </div>
                 </div>
-            </div>            
-            @endforeach
+
+            </div>
         </div>
+        @endforeach
     </div>
 </section>
+

@@ -12,4 +12,13 @@ class Attraction extends Model
 
     protected $table = 'attractionshotel';
     protected $guarded = ['id'];
+
+    
+
+
+    public function category()
+    {
+        return $this->belongsTo(AttractionCategory::class, 'category_id');
+    }
+
 }

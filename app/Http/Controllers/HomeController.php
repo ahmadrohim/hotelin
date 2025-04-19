@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
 use App\Models\HeroSection;
-use App\Models\RoomCategory;
-use App\Models\HotelFaicilities;
+use App\Models\Room;
 use App\Models\Gallery;
+use App\Models\Attraction;
 
 
 class HomeController extends Controller
@@ -22,9 +22,9 @@ class HomeController extends Controller
       
         $data = [
             'Hotel' => Hotel::first(),
-            'RoomCategory' => RoomCategory::all(),
+            'Rooms' =>  Room::with('facilities', 'images')->get(),
             'HeroSection' => HeroSection::all(),
-            'HotelFacilities' => HotelFaicilities::all(),
+            'Attractions' => Attraction::with('category')->get(),
             'Gallery' => Gallery::all()
         ];
 

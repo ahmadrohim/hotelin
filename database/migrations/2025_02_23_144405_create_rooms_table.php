@@ -14,16 +14,17 @@ class CreateRoomsTable extends Migration
     public function up()
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('code_room')->unique();
-            $table->foreignId('category_id')->constrained('room_categories')->onDelete('cascade');
-            $table->decimal('price', 10, 2);
-            $table->text('facilities');
-            $table->enum('availability_status', ['available', 'unavailable'])->default('available');
-            $table->string('image')->nullable();
-	        $table->softDeletes();
-            $table->timestamps();
+                $table->id();
+                $table->string('name_image');
+                $table->string('code_room')->unique();
+                $table->decimal('price', 10, 2);
+                $table->integer('max_guest');
+                $table->text('description')->nullable(); // Deskripsi kamar
+                $table->string('bed_type')->nullable(); // Tipe tempat tidur (e.g., Queen, King, Twin)
+                $table->string('image')->nullable();
+                $table->softDeletes();
+                $table->timestamps();
+            
         });
     }
 

@@ -1,48 +1,28 @@
-<section class="page-section bg-light" id="about">
+<section class="page-section" id="about">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="text-uppercase title-heading">Tentang Kami</h2>
             <div class="title-underline"></div>
-            <h3 class="section-subheading subtitle">Hotel nyaman dengan pemandangan terbaik di Dieng.</>
+            <p class="section-subheading subtitle">Mengenal Lebih Dekat Tentang Hotel Kami</p>
         </div>
+
         <div class="row align-items-center">
-            <!-- Gambar -->
-            <div class="col-lg-6 text-center position-relative">
-                <div class="about-image-wrapper">
-                    <img class="img-fluid shadow-lg" src="/images/room/3.webp" alt="Tentang Kami">
-                </div>
-            </div>
-            <!-- Deskripsi & Fakta Singkat -->
-            <div class="col-lg-6 mt-4 mt-lg-0">
-                <p class="text-muted description-text">
-                    {{ $Hotel->description }}
+            <div class="col-md-6 mb-4 mb-md-0">
+                <p style="text-align: justify">
+                    Selamat datang di <strong>Hotelin Dieng</strong>, tempat sempurna untuk menikmati keindahan alam dan budaya Dieng. 
+                    Kami menghadirkan kenyamanan dan pelayanan terbaik bagi para tamu yang mencari pengalaman menginap yang berkesan.
                 </p>
-                <div class="row mt-4">
-                    <div class="col-md-6">
-                        <div class="about-stat">
-                            <h3>50+</h3>
-                            <p>Kamar Nyaman</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="about-stat">
-                            <h3>10.000+</h3>
-                            <p>Tamu Puas</p>
-                        </div>
-                    </div>                    
-                </div>
-                <a href="#contact" class=" btn-read-more mt-4">Hubungi Kami</a>
+                <p style="text-align: justify">
+                    Terletak strategis di jantung kawasan wisata Dieng, hotel kami menawarkan berbagai fasilitas unggulan seperti kamar modern, 
+                    restoran dengan menu lokal khas, layanan spa, dan ruang pertemuan yang representatif. 
+                </p>
+                <p style="text-align: justify">
+                    Komitmen kami adalah memberikan pelayanan ramah, profesional, dan berkelas, sehingga setiap tamu merasa seperti di rumah sendiri.
+                </p>
+            </div>
+            <div class="col-md-6 text-center" style="max-height: 350px">
+                <img src="images/gallery/5.webp" alt="Hotelin Dieng" class="img-fluid rounded shadow">
             </div>
         </div>
     </div>
 </section>
-
-
-
-
-
-
-    
-
-
-

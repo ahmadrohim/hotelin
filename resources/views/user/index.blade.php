@@ -10,7 +10,6 @@
                 <div class="container d-flex flex-column justify-content-center align-items-center text-center text-white h-100">
                     <h1 class="fw-bold text-uppercase">{{ $hero->title }}</h1>
                     <p class="lead">{{ $hero->subtitle }}</p>
-                    <a href="#rooms" class="btn btn-dark btn-lg text-uppercase">Pesan Sekarang</a>
                 </div>
             </div>
             @endforeach
@@ -31,21 +30,13 @@
 
       <!-- Rooms-->
     @include('user.layout.rooms')
-
-    <!-- Services-->
-    @include('user.layout.services')
     
     <!-- Gallery -->
     @include('user.layout.gallery')
 
-    <!-- Around The Hotel -->
-    @include('user.layout.aroundthehotel')
+     {{-- Attractions --}}
+    @include('user.layout.attractions')
 
-    <!-- Testimonial -->
-   @include('user.layout.testimonial')
-        
-        {{-- client --}}
-    @include('user.layout.client')
         
    
 

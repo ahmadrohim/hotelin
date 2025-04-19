@@ -1,5 +1,5 @@
 <!-- Section Galeri -->
-<section class="page-section section-texture" id="gallery">
+<section class="page-section" id="gallery">
     <div class="container">
         <div class="text-center">
             <h2 class="text-uppercase title-heading">Galeri Hotelin</h2>

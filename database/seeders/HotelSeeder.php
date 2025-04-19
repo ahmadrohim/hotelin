@@ -3,30 +3,20 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
-
-namespace Database\Seeders;
-
-use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Models\Hotel;
-use App\Models\RoomCategory;
-use App\Models\Room;
-use App\Models\HeroSection;
-use App\Models\HotelFaicilities;
-use App\Models\Gallery;
 use App\Models\Role;
-use App\Models\PaymentMethod;
+use App\Models\HeroSection;
+use App\Models\Facility;
+use App\Models\Gallery;
+use App\Models\Room;
 use Illuminate\Support\Str;
 
 class HotelSeeder extends Seeder
 {
-
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        // Seeder untuk Hotels
+        // Seeder untuk Hotel
         Hotel::updateOrCreate(
             ['email' => 'info@hotelin.com'],
             [
@@ -38,242 +28,192 @@ class HotelSeeder extends Seeder
             ]
         );
 
-        PaymentMethod::updateOrCreate([
-            'bank_name' => 'BRI',
-            'account_number' => '77345689012',
-            'account_holder' => 'Hotelin',
-            'qris_image' => 'qrcode.jpg'
-        ]);
+        // Seeder Role User
+        $roleUser = ['admin', 'staff', 'customer'];
 
-        // Seeder untuk Room Categories
-
-        $categories = [
-            [
-                'name' => 'Deluxe',
-                'image' => 'room1.webp',
-                'description' => 'Kamar nyaman dengan fasilitas lengkap untuk pengalaman menginap terbaik.',
-                'base_price' => 500000,
-                'max_guests' => 2,
-                'status' => true
-            ],
-            [
-                'name' => 'Superior',
-                'image' => 'room2.webp',
-                'description' => 'Kamar dengan ruang lebih luas dan fasilitas tambahan.',
-                'base_price' => 700000,
-                'max_guests' => 3,
-                'status' => true
-            ],
-            [
-                'name' => 'Suite',
-                'image' => 'room3.webp',
-                'description' => 'Kamar eksklusif dengan pemandangan indah dan fasilitas premium.',
-                'base_price' => 1200000,
-                'max_guests' => 4,
-                'status' => true
-            ],
-        ];
-
-        foreach ($categories as $category){
-            RoomCategory::updateOrCreate(
-                ['code_category_room' => Str::slug($category['name'])],
-                [
-                    'name' => $category['name'],
-                    'image' => $category['image'],
-                    'description' => $category['description'],
-                    'base_price' => $category['base_price'],
-                    'max_guests' => $category['max_guests'],
-                    'status' => $category['status']
-                ]
-                );
-        }
-
-        // Seeder role user
-        $roleUser = [
-            ['role_name' => 'admin'],
-            ['role_name' => 'staff'],
-            ['role_name' => 'customer']
-        ];
-
-        foreach ($roleUser as $role){
-            Role::updateOrCreate(
-            [
-                'role_name' => $role['role_name']
+        foreach ($roleUser as $roleName) {
+            Role::updateOrCreate([
+                'role_name' => $roleName
             ]);
         }
 
-
-        // Seeder untuk Rooms
-        $roomData = [
-            ['name'=> 'kamar 1', 'category' => 'Deluxe', 'price' => 500000, 'facilities' => 'AC, TV, WiFi, Breakfast', 'availability_status' => 'available', 'image' => 'room1.webp'],
-            ['name'=> 'kamar 2', 'category' => 'Superior', 'price' => 700000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar', 'availability_status' => 'available', 'image' => 'room2.webp'],
-            ['name'=> 'kamar 3', 'category' => 'Suite', 'price' => 1200000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar, Jacuzzi', 'availability_status' => 'available', 'image' => 'room3.webp'],
-            ['name'=> 'kamar 4', 'category' => 'Deluxe', 'price' => 500000, 'facilities' => 'AC, TV, WiFi, Breakfast', 'availability_status' => 'available', 'image' => 'room3.webp'],
-            ['name'=> 'kamar 5', 'category' => 'Suite', 'price' => 1200000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar, Jacuzzi', 'availability_status' => 'available', 'image' => 'room2.webp'],
-            ['name'=> 'kamar 6', 'category' => 'Superior', 'price' => 700000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar', 'availability_status' => 'available', 'image' => 'room1.webp'],
-            ['name'=> 'kamar 7', 'category' => 'Deluxe', 'price' => 500000, 'facilities' => 'AC, TV, WiFi, Breakfast', 'availability_status' => 'available', 'image' => 'room1.webp'],
-            ['name'=> 'kamar 8', 'category' => 'Suite', 'price' => 1200000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar, Jacuzzi', 'availability_status' => 'available', 'image' => 'room2.webp'],
-            ['name'=> 'kamar 9', 'category' => 'Superior', 'price' => 700000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar', 'availability_status' => 'available', 'image' => 'room3.webp'],
-            ['name'=> 'kamar 10', 'category' => 'Deluxe', 'price' => 500000, 'facilities' => 'AC, TV, WiFi, Breakfast', 'availability_status' => 'available', 'image' => 'room1.webp'],
-            ['name'=> 'kamar 11', 'category' => 'Suite', 'price' => 1200000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar, Jacuzzi', 'availability_status' => 'available', 'image' => 'room1.webp'],
-            ['name'=> 'kamar 12', 'category' => 'Superior', 'price' => 700000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar', 'availability_status' => 'available', 'image' => 'room2.webp'],
-            ['name'=> 'kamar 13', 'category' => 'Deluxe', 'price' => 500000, 'facilities' => 'AC, TV, WiFi, Breakfast', 'availability_status' => 'available', 'image' => 'room3.webp'],
-            ['name'=> 'kamar 14', 'category' => 'Suite', 'price' => 1200000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar, Jacuzzi', 'availability_status' => 'available', 'image' => 'room1.webp'],
-            ['name'=> 'kamar 15', 'category' => 'Superior', 'price' => 700000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar', 'availability_status' => 'available', 'image' => 'room2.webp'],
-            ['name'=> 'kamar 16', 'category' => 'Deluxe', 'price' => 500000, 'facilities' => 'AC, TV, WiFi, Breakfast', 'availability_status' => 'available', 'image' => 'room3.webp'],
-            ['name'=> 'kamar 17', 'category' => 'Suite', 'price' => 1200000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar, Jacuzzi', 'availability_status' => 'available', 'image' => 'room1.webp'],
-            ['name'=> 'kamar 18', 'category' => 'Superior', 'price' => 700000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar', 'availability_status' => 'available', 'image' => 'room2.webp'],
-            ['name'=> 'kamar 19', 'category' => 'Deluxe', 'price' => 500000, 'facilities' => 'AC, TV, WiFi, Breakfast', 'availability_status' => 'available', 'image' => 'room1.webp'],
-            ['name'=> 'kamar 20', 'category' => 'Suite', 'price' => 1200000, 'facilities' => 'AC, TV, WiFi, Breakfast, Mini Bar, Jacuzzi', 'availability_status' => 'available', 'image' => 'room3.webp'],
-        ];
-
-        foreach ($roomData as $room) {
-            // Cari kategori berdasarkan nama
-            $category = RoomCategory::where('name', $room['category'])->first();
-        
-            if ($category) {
-                // Ambil prefix dari kode kategori
-                $prefix = strtoupper($category->code_category_room);
-        
-                // Hitung jumlah kamar yang sudah ada dalam kategori ini
-                $roomCount = Room::where('category_id', $category->id)->count() + 1;
-        
-                // Format code_room jadi "DEL001", "DEL002", dst.
-                $codeRoom = $prefix . str_pad($roomCount, 3, '0', STR_PAD_LEFT);
-        
-                Room::updateOrCreate(
-                    ['name' => $room['name']],
-                    [
-                        'category_id' => $category->id,
-                        'price' => $room['price'],
-                        'facilities' => $room['facilities'],
-                        'availability_status' => $room['availability_status'],
-                        'image' => rand(1, 6) . '.webp',
-                        'code_room' => $codeRoom, // Kode unik
-                    ]
-                );
-            } else {
-                // Jika kategori tidak ditemukan, tampilkan pesan untuk debugging
-                \Illuminate\Support\Facades\Log::warning("Kategori tidak ditemukan: " . $room['category']);
-
-            }
-        }
-        
-        
-
-        // Data Seeder untuk Hero Section
-        $HeroSection = [
+        // Seeder Hero Section
+        $heroSections = [
             [
                 'title' => 'Welcome to Hotelin',
                 'subtitle' => 'Nikmati kenyamanan dan fasilitas terbaik bersama kami.',
                 'button_text' => 'Pesan Sekarang',
                 'button_link' => '/booking',
-                'image' => 'slider1.webp',],
+                'image' => 'slider1.webp',
+            ],
             [
                 'title' => 'Welcome to Hotelin',
                 'subtitle' => 'Nikmati kenyamanan dan fasilitas terbaik bersama kami.',
                 'button_text' => 'Pesan Sekarang',
                 'button_link' => '/booking',
-                'image' => 'slider2.webp',],
+                'image' => 'slider2.webp',
+            ],
         ];
-        // Seeder untuk Hero Section
-       
-        foreach ($HeroSection as $hero) {
-            HeroSection::updateOrCreate(
-               [
+
+        foreach ($heroSections as $hero) {
+            HeroSection::updateOrCreate([
                 'title' => $hero['title'],
                 'subtitle' => $hero['subtitle'],
                 'button_text' => $hero['button_text'],
                 'button_link' => $hero['button_link'],
                 'image' => $hero['image']
-               ]
-
-            );
+            ]);
         }
 
-
-        // seeder untuk Hotel Facilities
+        // Seeder Facilities
         $facilities = [
-            [
-                'name' => 'Spa, Kecantikan & Kesehatan',
-                'description' => 'Nikmati relaksasi spa, perawatan kecantikan, dan fasilitas kebugaran untuk menjaga tubuh tetap sehat selama menginap di Hotelin.',
-                'image' => 'service1.webp',
-            ],
-            [
-                'name' => 'Restoran',
-                'description' => 'Nikmati beragam hidangan lezat dengan cita rasa terbaik di restoran kami. Sajian spesial untuk melengkapi pengalaman menginap Anda di Hotelin.',
-                'image' => 'service2.webp',
-            ],
-            [
-                'name' => 'Kolam Renang',
-                'description' => 'Rasakan kesegaran dengan berenang di kolam renang kami, tempat yang sempurna untuk bersantai dan menikmati suasana Hotelin.',
-                'image' => 'service3.webp',
-            ],
-            [
-                'name' => 'Ruang Pertemuan',
-                'description' => 'Tempat ideal untuk rapat, seminar, dan acara penting Anda, dengan fasilitas lengkap dan suasana yang nyaman di Hotelin.',
-                'image' => 'service4.webp',
-            ],
+            'AC', 'Wi-Fi', 'TV', 'Kamar Mandi Dalam', 'Fridge', 'Coffee Maker', 'Kulkas'
         ];
 
-        foreach ($facilities as $f){
-            HotelFaicilities::updateOrCreate(
-                [
-                    'name' => $f['name'],
-                    'description' => $f['description'],
-                    'image' => $f['image'],
-                ]
-            );
+        foreach ($facilities as $facility) {
+            Facility::updateOrCreate(['name' => $facility]);
         }
 
-                $galleryData = [
-                    [
-                        'title' => 'Pemandangan Indah',
-                        'description' => 'Foto pemandangan indah dengan gunung dan langit biru.',
-                    ],
-                    [
-                        'title' => 'Pantai Eksotis',
-                        'description' => 'Gambar pantai dengan pasir putih dan air laut jernih.',
-                    ],
-                    [
-                        'title' => 'Hutan Hijau',
-                        'description' => 'Pemandangan hutan hijau yang asri dan sejuk.',
-                    ],
-                    [
-                        'title' => 'Pegunungan Bersalju',
-                        'description' => 'Pemandangan pegunungan tinggi yang diselimuti salju.',
-                    ],
-                    [
-                        'title' => 'Kota Malam Hari',
-                        'description' => 'Pemandangan gedung-gedung tinggi dengan lampu kota yang menyala di malam hari.',
-                    ],
-                    [
-                        'title' => 'Sawah yang Hijau',
-                        'description' => 'Pemandangan sawah hijau yang luas dengan petani yang sedang bekerja.',
-                    ],
-                    [
-                        'title' => 'Air Terjun Alami',
-                        'description' => 'Keindahan air terjun alami dengan aliran air yang jernih.',
-                    ],
-                    [
-                        'title' => 'Danau Biru',
-                        'slug' => Str::slug('Danau Biru'),
-                        'description' => 'Pemandangan danau biru yang tenang dan damai.',
-                    ],
-                ];
-                
+        // Seeder Gallery
+        $galleryData = [
+            ['title' => 'Pemandangan Indah', 'description' => 'Foto pemandangan indah dengan gunung dan langit biru.'],
+            ['title' => 'Pantai Eksotis', 'description' => 'Gambar pantai dengan pasir putih dan air laut jernih.'],
+            ['title' => 'Hutan Hijau', 'description' => 'Pemandangan hutan hijau yang asri dan sejuk.'],
+            ['title' => 'Pegunungan Bersalju', 'description' => 'Pemandangan pegunungan tinggi yang diselimuti salju.'],
+            ['title' => 'Kota Malam Hari', 'description' => 'Pemandangan gedung-gedung tinggi dengan lampu kota yang menyala di malam hari.'],
+            ['title' => 'Sawah yang Hijau', 'description' => 'Pemandangan sawah hijau yang luas dengan petani yang sedang bekerja.'],
+            ['title' => 'Air Terjun Alami', 'description' => 'Keindahan air terjun alami dengan aliran air yang jernih.'],
+            ['title' => 'Danau Biru', 'description' => 'Pemandangan danau biru yang tenang dan damai.'],
+        ];
 
-        foreach ($galleryData as $g){
-            Gallery::updateOrCreate(
-                [
-                    'title' => $g['title'],
-                    'description' => $g['description'],
-                    'image' => rand(1,6). '.webp',
-                ]
-            );
+        foreach ($galleryData as $g) {
+            Gallery::updateOrCreate([
+                'title' => $g['title'],
+                'description' => $g['description'],
+                'image' => rand(1, 6) . '.webp',
+            ]);
         }
 
+        // Kamar 1 - Deluxe Room
+        $room1 = Room::create([
+            'name_image' => 'Deluxe Room',
+            'code_room' => Str::random(8),
+            'price' => 750000,
+            'max_guest' => 2,
+            'description' => 'Kamar Deluxe dengan pemandangan indah.',
+            'bed_type' => 'Queen',
+            'image' => 'deluxe.jpg',
+        ]);
+        $room1->facilities()->attach(Facility::whereIn('name', ['AC', 'Wi-Fi', 'TV'])->get());
+        $room1->images()->createMany([
+            ['image' => '6.webp'],
+            ['image' => '5.webp'],
+        ]);
 
+        // Kamar 2 - Family Room
+        $room2 = Room::create([
+            'name_image' => 'Family Room',
+            'code_room' => Str::random(8),
+            'price' => 950000,
+            'max_guest' => 4,
+            'description' => 'Kamar luas cocok untuk keluarga.',
+            'bed_type' => 'King',
+            'image' => 'family.jpg',
+        ]);
+        $room2->facilities()->attach(Facility::whereIn('name', ['AC', 'Wi-Fi', 'TV', 'Kulkas'])->get());
+        $room2->images()->createMany([
+            ['image' => '4.webp'],
+            ['image' => '3.webp'],
+        ]);
+
+        // Kamar 3 - Standard Room
+        $room3 = Room::create([
+            'name_image' => 'Standard Room',
+            'code_room' => Str::random(8),
+            'price' => 500000,
+            'max_guest' => 2,
+            'description' => 'Kamar sederhana dengan fasilitas standar.',
+            'bed_type' => 'Twin',
+            'image' => 'standard.jpg',
+        ]);
+        $room3->facilities()->attach(Facility::whereIn('name', ['Wi-Fi', 'TV'])->get());
+        $room3->images()->createMany([
+            ['image' => '1.webp'],
+            ['image' => '2.webp'],
+        ]);
+
+
+        DB::table('attraction_categories')->insert([
+            [
+                'name' => 'Gunung',
+                'code_category_attraction' => 'gunung',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Danau',
+                'code_category_attraction' => 'danau',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Tempat Sejarah',
+                'code_category_attraction' => 'tempat-sejarah',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Wisata Alam',
+                'code_category_attraction' => 'wisata-alam',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ]);
+        
+
+        // Menambahkan wisata sekitar hotel
+       DB::table('attractionshotel')->insert([
+    [
+        'category_id' => 1, // Gunung
+        'name' => 'Gunung Dieng',
+        'code_attraction' => 'DGN001',
+        'description' => 'Nikmati keindahan alam dan panorama dari puncak Gunung Dieng.',
+        'image' => '5.webp', // Pastikan gambar ada di folder /images/attractions/
+        'map_link' => 'https://www.google.com/maps/search/Gunung+Dieng',
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'category_id' => 2, // Danau
+        'name' => 'Danau Telaga Warna',
+        'code_attraction' => 'DTW002',
+        'description' => 'Danau dengan air berwarna-warni yang sangat indah, cocok untuk berfoto.',
+        'image' => '1.webp',
+        'map_link' => 'https://www.google.com/maps/search/Telaga+Warna+Dieng',
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'category_id' => 3, // Tempat Sejarah
+        'name' => 'Candi Arjuna',
+        'code_attraction' => 'CAJ003',
+        'description' => 'Candi bersejarah yang ada di Dieng, yang memiliki nilai sejarah tinggi.',
+        'image' => '4.webp',
+        'map_link' => 'https://www.google.com/maps/search/Candi+Arjuna+Dieng',
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'category_id' => 4, // Wisata Alam
+        'name' => 'Kawah Sikidang',
+        'code_attraction' => 'KSK004',
+        'description' => 'Kawah aktif dengan pemandangan alam yang menakjubkan dan udara yang segar.',
+        'image' => '3.webp',
+        'map_link' => 'https://www.google.com/maps/search/Kawah+Sikidang',
+        'created_at' => now(),
+        'updated_at' => now()
+    ]
+]);
 
     }
 }

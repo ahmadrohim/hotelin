@@ -35,11 +35,7 @@ class AuthController extends Controller
        }else{
            $validate['role_id'] = 3;
        }
-       $user = User::create($validate);
 
-       Mail::send([],[], function($message) use ($user){
-            $message->to($user->email)->subject('Verifikasi Email Anda')->setBody('Klik link ini untuk verifikasi akun Anda: <a href="'. url('/verifyEmail/' . $user->id) . '">Verifikasi Email</a>', 'text/html');
-       });
 
        if($request->input('via_admin')){
            return redirect('/users')->with('success', 'Data pengguna berhasil ditambahkan. Silahkan cek email untuk verifikasi!');
@@ -62,12 +58,6 @@ class AuthController extends Controller
             'email' => 'required|email:dns',
             'password' => 'required'
         ]);
-
-        if ($user =  User::where('email', $request['email'])->first()) {
-            if ($user['email_verified_at'] == null) {
-                return back()->with('loginError', 'Akun belum diaktifkan!');
-            }
-        }
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
