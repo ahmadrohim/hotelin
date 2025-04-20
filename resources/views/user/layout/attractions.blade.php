@@ -1,16 +1,15 @@
-<section class="page-section section-texture" id="attractions">
+<section class="page-section section-texture" id="nearby-attractions">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="text-uppercase title-heading">Wisata Sekitar Hotel</h2>
             <div class="title-underline"></div>
-            <p class="section-subheading subtitle">Temukan tempat menarik yang bisa Anda kunjungi di sekitar hotel kami.</p>
+            <h3 class="section-subheading subtitle">Temukan tempat menarik yang bisa Anda kunjungi di sekitar hotel kami.</h3>
         </div>
-
         @foreach($Attractions as $attraction)
-        <div class="row align-items-center mb-5 pb-4 border-bottom">
+        <div class="row mb-2 pb-4">
             <div class="col-md-7">
                 <div id="carouselAttraction{{ $attraction->id }}" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner rounded-3 shadow-sm" style="height: 350px; overflow: hidden;">
+                    <div class="carousel-inner rounded-3 shadow align-items-center" style="height: 300px; overflow: hidden;">
                         @if($attraction->image)
                             <div class="carousel-item active">
                                 <img src="/images/attractions/{{ $attraction->image }}"
@@ -27,14 +26,6 @@
                             </div>
                         @endif
                     </div>
-                    @if($attraction->image)
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselAttraction{{ $attraction->id }}" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselAttraction{{ $attraction->id }}" data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </button>
-                    @endif
                 </div>
             </div>
             <div class="col-md-5 mt-3 mt-md-0">
@@ -43,16 +34,9 @@
                 <div class="mb-3">
                     <strong>Kategori:</strong> {{ $attraction->category->name }} <br>
                 </div>
-                <a href="{{ $attraction->map_link }}" target="_blank" class="btn btn-success rounded-pill px-4">
+                <a href="{{ $attraction->map_link }}" target="_blank" class="btn btn-outline-success rounded-pill px-4">
                     Lihat Lokasi
                 </a>
-                <div class="mt-2" style="border: 1px solid grey">
-                <iframe
-                    src="https://www.google.com/maps?q={{ urlencode($attraction->name) }}&output=embed"
-                    width="100%" height="150" style="border:0;" allowfullscreen loading="lazy">
-                </iframe>
-                </div>
-
             </div>
         </div>
         @endforeach

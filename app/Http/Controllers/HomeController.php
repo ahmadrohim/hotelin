@@ -8,7 +8,7 @@ use App\Models\HeroSection;
 use App\Models\Room;
 use App\Models\Gallery;
 use App\Models\Attraction;
-
+use App\Models\Feedback;
 
 class HomeController extends Controller
 {
@@ -25,7 +25,8 @@ class HomeController extends Controller
             'Rooms' =>  Room::with('facilities', 'images')->get(),
             'HeroSection' => HeroSection::all(),
             'Attractions' => Attraction::with('category')->get(),
-            'Gallery' => Gallery::all()
+            'Gallery' => Gallery::all(),
+            'Feedbacks' => Feedback::all()
         ];
 
         return view('user.index', $data);

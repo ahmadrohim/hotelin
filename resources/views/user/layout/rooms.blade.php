@@ -3,14 +3,14 @@
         <div class="text-center mb-5">
             <h2 class="text-uppercase title-heading">Pilihan Kamar</h2>
             <div class="title-underline"></div>
-            <p class="section-subheading subtitle">Pilih kamar terbaik untuk pengalaman menginap Anda.</p>
+            <h3 class="section-subheading subtitle">Pilih kamar terbaik untuk pengalaman menginap Anda.</h3>
         </div>
 
         @foreach($Rooms as $room)
-        <div class="row align-items-center pb-4 border-bottom">
+        <div class="row align-items-center pb-4">
             <div class="col-md-7">
                 <div id="carouselRoom{{ $room->id }}" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner rounded-3 shadow-sm" style="height: 350px; overflow: hidden;">
+                    <div class="carousel-inner rounded-3 shadow" style="height: 300px; overflow: hidden;">
                         @forelse($room->images as $key => $image)
                             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                 <img src="/images/room/{{ $image->image }}"
@@ -48,10 +48,10 @@
                         </div>
                         <div class="mb-3 mt-2">
                             @foreach($room->facilities as $facility)
-                                <span class="badge bg-light text-dark border me-1 mb-1">{{ $facility->name }}</span>
+                                <span class="badge bg-warning text-dark border me-1 mb-1">{{ $facility->name }}</span>
                             @endforeach
                         </div>
-                        <a href="https://wa.me/085870831024?text=Saya%20ingin%20memesan%20kamar%20{{ urlencode($room->name_image) }}" class="btn btn-success rounded-pill px-4" target="_blank">
+                        <a href="https://wa.me/085870831024?text=Saya%20ingin%20memesan%20kamar%20{{ urlencode($room->name_image) }}" class="btn btn-outline-success rounded-pill px-4" target="_blank">
                             Pesan Kamar
                         </a>
                     </div>

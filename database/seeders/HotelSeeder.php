@@ -10,6 +10,7 @@ use App\Models\HeroSection;
 use App\Models\Facility;
 use App\Models\Gallery;
 use App\Models\Room;
+use App\Models\Feedback;
 use Illuminate\Support\Str;
 
 class HotelSeeder extends Seeder
@@ -214,6 +215,44 @@ class HotelSeeder extends Seeder
         'updated_at' => now()
     ]
 ]);
+
+
+$feedbacks = [
+    [
+        'name' => 'Budi Santoso',
+        'email' => 'budi@example.com',
+        'message' => 'Pelayanan yang sangat ramah dan kamar yang bersih. Sangat puas menginap di Hotelin!',
+    ],
+    [
+        'name' => 'Rina Putri',
+        'email' => 'rina@example.com',
+        'message' => 'Tempatnya nyaman, dekat dengan tempat wisata. Rekomendasi banget!',
+    ],
+    [
+        'name' => 'Dedi Kurniawan',
+        'email' => 'dedi@example.com',
+        'message' => 'Saya dan keluarga sangat menikmati pengalaman menginap di sini. Terima kasih Hotelin!',
+    ],
+    [
+        'name' => 'Siti Rahma',
+        'email' => 'siti@example.com',
+        'message' => 'Staf hotel sangat membantu dan ramah. Lokasi juga strategis!',
+    ],
+    [
+        'name' => 'Ahmad Fauzi',
+        'email' => 'ahmad@example.com',
+        'message' => 'Check-in cepat, fasilitas lengkap, dan suasana tenang. Top!',
+    ],
+    [
+        'name' => 'Maya Dewi',
+        'email' => 'maya@example.com',
+        'message' => 'Kamar luas, bersih, dan pemandangannya bagus. Akan kembali lagi ke sini!',
+    ],
+];
+
+foreach ($feedbacks as $data) {
+    Feedback::create($data);
+}
 
     }
 }

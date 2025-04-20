@@ -37,6 +37,9 @@
      {{-- Attractions --}}
     @include('user.layout.attractions')
 
+    {{-- Feedback --}}
+    @include('user.layout.feedback')
+
         
    
 

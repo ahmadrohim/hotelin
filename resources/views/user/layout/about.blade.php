@@ -3,10 +3,10 @@
         <div class="text-center mb-5">
             <h2 class="text-uppercase title-heading">Tentang Kami</h2>
             <div class="title-underline"></div>
-            <p class="section-subheading subtitle">Mengenal Lebih Dekat Tentang Hotel Kami</p>
+            <h3 class="section-subheading subtitle">Mengenal Lebih Dekat Tentang Hotel Kami</h3>
         </div>
 
-        <div class="row align-items-center">
+        <div class="row">
             <div class="col-md-6 mb-4 mb-md-0">
                 <p style="text-align: justify">
                     Selamat datang di <strong>Hotelin Dieng</strong>, tempat sempurna untuk menikmati keindahan alam dan budaya Dieng. 
