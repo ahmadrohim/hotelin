@@ -13,6 +13,9 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $data = [
+            
+        ];
         return view('admin.index');
     }
 

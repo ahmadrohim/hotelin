@@ -32,47 +32,6 @@
             </div>
         </li>
 
-        <!-- Nav Item - Alerts -->
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">{{ $pendingBookingCount }}</span>
-            </a>
-            <!-- Dropdown - Alerts -->
-            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header bg-danger" style="border: none">
-                    Pesanan Belum Ditindaklanjuti
-                </h6>
-
-                @forelse ($pendingBookings as $booking)
-                    <a class="dropdown-item d-flex align-items-center" href="/reservation/{{ $booking->code_booking }}">
-                        <div class="mr-3">
-                            <div class="icon-circle bg-warning">
-                                <i class="fas fa-bed text-white"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="small text-gray-500">{{ $booking->created_at->format('d M Y H:i') }}</div>
-                            <span class="font-weight-bold">
-                                Kode: {{ $booking->code_booking }}<br>
-                                Atas nama: {{ $booking->user->name }}
-                            </span>
-                        </div>
-                    </a>
-                @empty
-                    <div class="dropdown-item text-center small text-gray-500">
-                        Tidak ada pesanan baru
-                    </div>
-                @endforelse
-
-                <a class="bg-danger dropdown-item text-center text-white" href="/reservation/pending">
-                    Lihat Semua Pesanan Pending
-                </a>
-            </div>
-        </li>
 
         <!-- Nav Item - Messages -->
         <li class="nav-item dropdown no-arrow mx-1">

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use App\Models\Facility;
 use App\Models\RoomImage;
 
@@ -25,6 +26,25 @@ class Room extends Model
                         ->orWhere('code_room', 'like', '%' . $search . '%')
                         ->orWhere('price', 'like', '%' . $search . '%');
         });
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+       static::creating(function($room){
+            $room->code_room = self::generateCode();
+       });
+    }
+
+
+    public static function generateCode()
+    {
+        do {
+            // format kode user
+            $code = 'ROOM' . now()->format('Ymd') . '-' . strtoupper(Str::random(6));
+        }while(self::where('code_room', $code)->exists());
+        return $code;
     }
 
 
@@ -53,11 +73,5 @@ class Room extends Model
     public function facilities()
     {
         return $this->belongsToMany(Facility::class, 'room_facility');
-    }
-
-
-    public function getRouteKeyName()
-    {
-        return 'code_room';
     }
 }

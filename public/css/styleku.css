@@ -57,6 +57,7 @@
     height: 40vh;
 }
 
+
 /* Tambahkan shadow di bawah hero */
 .carousel-item::after {
     content: "";
@@ -67,12 +68,12 @@
     pointer-events: none;
 }
 
-.carousel-control-prev {
+.prev-feedback {
     bottom: -170px;
    
   }
 
-  .carousel-control-next {
+  .next-feedback {
     bottom: -170px;
     
   }

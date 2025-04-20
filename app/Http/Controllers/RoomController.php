@@ -2,34 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Facility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use App\Models\Hotel;
-use App\Models\RoomCategory;
 use App\Models\Room;
 
 class RoomController extends Controller
 {
     
-    //  semua pengguna
-    public function index($code_category_room)
-    {
-        $room = RoomCategory::where('code_category_room', $code_category_room)->firstOrFail();
-        $data = [
-            'Hotel' => Hotel::first(),
-            'room' => $room,
-            'rooms' => $room->rooms
-        ];
-        return view('user.room.index', $data);
-    }
-
-
     // admin 
-    public function ourRooms()
+    public function index()
     {
         $data = [
             'halaman' => request('page') ? request('page') : 1,
-            'rooms' => Room::with('category')->filter(request(['search']))->latest()->paginate(10)->withQueryString(),
+            'rooms' => Room::with('facilities', 'images')->filter(request(['search']))->latest()->paginate(10)->withQueryString(),
         ];
 
         return view('admin.room.index', $data);
@@ -38,8 +24,8 @@ class RoomController extends Controller
     public function create()
     {
         $data = [
-            'url' => '/room/store',
-            'roomCategory' => RoomCategory::all()
+            'url' => '/rooms/store',
+            'facilities' => Facility::all()
         ];
         return view('admin.room.create', $data);
     }
@@ -47,39 +33,52 @@ class RoomController extends Controller
    
     public function store(Request $request)
     {
-         // Validasi input
-        $validate = $request->validate([
-            'name' => 'required',
-            'category_id' => ['required', 'exists:room_categories,id'],
-            'price' => 'required|numeric',
-            'facilities' => 'required', // Bisa array
-            'image' => ['required', 'image', 'mimes:jpeg,jpg,webp', 'max:1024']
-        ]);
+        
+          // Validasi input
+            $request->validate([
+                'name' => 'required',
+                'price' => 'required|numeric',
+                'max_guest' => 'required|integer',
+                'description' => 'nullable',
+                'bed_type' => 'nullable|string',
+                'facilities.*' => 'exists:facilities,id', // Pastikan id fasilitas valid
+                'images.*' => 'image|mimes:jpg,jpeg,png,webp',
+            ]);
 
-        // Konversi `facilities` ke string (pisahkan dengan koma jika array)
-        $validate['facilities'] = is_array($validate['facilities']) 
-            ? implode(',', $validate['facilities']) 
-            : $validate['facilities'];
+            // Buat data kamar dulu
+            $room = Room::create([
+                'name' => $request->name,
+                'price' => $request->price,
+                'max_guest' => $request->max_guest,
+                'description' => $request->description,
+                'bed_type' => $request->bed_type,
+            ]);
 
-        // Proses upload gambar ke `public/image/room`
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            // Simpan fasilitas ke pivot table
+            if ($request->has('facilities')) {
+                $room->facilities()->sync($request->facilities); // Menyimpan fasilitas dalam pivot table
+            }
 
-            // Pastikan folder ada
-            File::ensureDirectoryExists(public_path('images/room'), 0755, true);
+            // Proses upload gambar dan simpan ke pivot table room_images
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
-            // Pindahkan file ke `public/image/room`
-            $image->move(public_path('images/room'), $imageName);
+                    // Pastikan folder ada
+                    File::ensureDirectoryExists(public_path('images/room'), 0755, true);
 
-            // Simpan path gambar ke database
-            $validate['image'] = $imageName;
-        }
+                    // Pindahkan file ke folder public/images/room
+                    $image->move(public_path('images/room'), $imageName);
 
-        // Simpan data ke database
-        Room::create($validate);
+                    // Simpan data gambar di pivot table room_images
+                    $room->images()->create([
+                        'image' => $imageName
+                    ]);
+                }
+            }
 
-        return redirect('/ourRoom')->with('success', 'Data kamar berhasil ditambahkan!');
+            return redirect('/rooms')->with('success', 'Kamar berhasil ditambahkan');
+       
     }
 
    
@@ -96,7 +95,6 @@ class RoomController extends Controller
     public function edit($code_room)
     {
         $data = [
-            'roomCategory' => RoomCategory::all(),
             'room' => Room::where('code_room', $code_room)->firstOrFail(),
             'url' => '/room/update/'
         ];

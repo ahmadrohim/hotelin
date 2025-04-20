@@ -22,8 +22,8 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <a class="btn btn-danger" href="/room/create">Tambah Kamar</a>
-            <form action="/ourRoom"
+            <a class="btn btn-danger" href="/rooms/create">Tambah Kamar</a>
+            <form action="/rooms"
             class="d-none d-sm-inline-block form-inline ml-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
                 <input type="text" class="form-control bg-light border-1 small" placeholder="Kata kunci..."
@@ -44,9 +44,7 @@
                             <th class="text-center">No</th>
                             <th>Nama Kamar</th>
                             <th>Kode Kamar</th>
-                            <th>Tipe Kamar</th>
                             <th>Harga per Malam</th>
-                            <th class="text-center">Status</th>
                             <th class="text-center" colspan="3">Aksi</th>
                         </tr>
                     </thead>
@@ -58,17 +56,15 @@
                             <td class="text-center">{{ $no++ }}</td>
                             <td>{{ $room->name }}</td>
                             <td>{{ $room->code_room }}</td>
-                            <td>{{ $room->category->name }}</td>
                             <td>Rp. {{ number_format($room->price, 0, ',', '.')  }}</td>
-                            <td class="text-center {{ $room->availability_status == 'available' ? 'text-success' : 'text-danger' }}">{{ $room->availability_status == 'available' ? 'Tersedia' : 'Tidak Tersedia' }}</td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <a href="/room/{{ $room->code_room }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                                <a href="/rooms/{{ $room->code_room }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                             </td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <a href="/room/edit/{{ $room->code_room }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                <a href="/rooms/edit/{{ $room->code_room }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                             </td>
                             <td class="text-center m-0 p-1 align-middle">
-                                <form class="d-inline" action="/room/destroy/{{ $room->code_room }}" method="post">
+                                <form class="d-inline" action="/rooms/destroy/{{ $room->code_room }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button onclick="return confirm('Apakah anda yakin menghapus data kamar {{ $room->name }} ? data yang dihapus tidak bisa dipulihkan!')" type="submit" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button>
@@ -78,7 +74,7 @@
                         @endforeach
                         @else
                         <tr>
-                            <td class="text-center" colspan="7">Tidak ada kamar untuk ditampilkan</td>
+                            <td class="text-center" colspan="5">Tidak ada kamar untuk ditampilkan</td>
                         </tr>
                         @endif
                     </tbody>

@@ -15,13 +15,12 @@ class CreateRoomsTable extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
                 $table->id();
-                $table->string('name_image');
+                $table->string('name');
                 $table->string('code_room')->unique();
                 $table->decimal('price', 10, 2);
                 $table->integer('max_guest');
                 $table->text('description')->nullable(); // Deskripsi kamar
                 $table->string('bed_type')->nullable(); // Tipe tempat tidur (e.g., Queen, King, Twin)
-                $table->string('image')->nullable();
                 $table->softDeletes();
                 $table->timestamps();
             

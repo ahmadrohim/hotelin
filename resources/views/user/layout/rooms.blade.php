@@ -7,10 +7,10 @@
         </div>
 
         @foreach($Rooms as $room)
-        <div class="row align-items-center pb-4">
+        <div class="row pb-4">
             <div class="col-md-7">
                 <div id="carouselRoom{{ $room->id }}" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner rounded-3 shadow" style="height: 300px; overflow: hidden;">
+                    <div class="carousel-inner rounded-3 shadow" style="height: 350px; overflow: hidden;">
                         @forelse($room->images as $key => $image)
                             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                 <img src="/images/room/{{ $image->image }}"
@@ -40,11 +40,14 @@
             <div class="col-md-5 mt-3 mt-md-0">
                <div class="card shadow-sm border-0 rounded-4 mb-4">
                     <div class="card-body p-4">
-                        <h3 class="fw-bold mb-3">{{ $room->name_image }}</h3>
+                        <h3 class="fw-bold mb-3">{{ $room->name }}</h3>
                         <p class="text-muted mb-2">{{ $room->description }}</p>
                         <div class="mb-2">
-                            <strong>Tempat Tidur:</strong> {{ $room->bed_type }} <br>
-                            <strong>Harga:</strong> Rp{{ number_format($room->price, 0, ',', '.') }}
+                            <span><i class="fas fa-bed"></i> Tipe Tempat Tidur: <strong>{{ $room->bed_type }} </strong></span>
+                            <br>
+                            <span><i class="fas fa-users"></i> Maksimal Tamu: <strong> {{ $room->max_guest }} </strong></span>
+                            <br>
+                            <span><i class="fas fa-money-bill-wave"></i> Harga: <strong>Rp{{ number_format($room->price, 0, ',', '.') }}</strong></span>
                         </div>
                         <div class="mb-3 mt-2">
                             @foreach($room->facilities as $facility)

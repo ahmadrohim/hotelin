@@ -17,41 +17,42 @@
             </a>
         </li>
     
-        <!-- Heading: Manajemen -->
-        <div class="sidebar-heading">Manajemen</div>
-    
-        <!-- Manajemen Kamar -->
-        <li class="nav-item {{ Request::is('ourRoom*') || Request::is('categoryRoom*') ? 'active' : '' }}">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKamar"
-                aria-expanded="true" aria-controls="collapseKamar">
+
+        
+        <li class="nav-item {{ Request::is('rooms*') ? 'active' : '' }}">
+            <a class="nav-link" href="/rooms">
                 <i class="fas fa-fw fa-bed"></i>
-                <span>Kelola Kamar</span>
+                <span>Daftar Kamar</span>
             </a>
-            <div id="collapseKamar" class="collapse" aria-labelledby="headingKamar" data-parent="#accordionSidebar">
+        </li>
+
+         <li class="nav-item {{ Request::is('facilities*') ? 'active' : '' }}">
+           <a class="nav-link" href="/facilities">
+                <i class="fas fa-fw fa-swimming-pool"></i>
+               <span>Fasilitas Hotel</span>
+           </a>
+       </li>
+
+        <li class="nav-item {{ Request::is('attraction*') || Request::is('categoryAttraction*') ? 'active' : '' }}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSekitar"
+                aria-expanded="true" aria-controls="collapseSekitar">
+                <i class="fas fa-fw fa-map-marker-alt"></i>
+                <span>Sekitar Hotel</span>
+            </a>
+            <div id="collapseSekitar" class="collapse" aria-labelledby="headingSekitar" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/ourRoom">Daftar Kamar</a>
-                    <a class="collapse-item" href="/categoryRoom">Kategori Kamar</a>
+                    <a class="collapse-item" href="/attraction">Daftar Wisata</a>
+                    <a class="collapse-item" href="/categoryAttraction">Kategori Wisata</a>
                 </div>
             </div>
         </li>
-    
-        <!-- Manajemen Pemesanan -->
-        <li class="nav-item {{ Request::is('reservation*') ? 'active' : '' }}">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePemesanan"
-                aria-expanded="true" aria-controls="collapsePemesanan">
-                <i class="fas fa-fw fa-calendar-check"></i>
-                <span>Kelola Pemesanan</span>
+
+        
+        <li class="nav-item {{ Request::is('facilities*') ? 'active' : '' }}">
+            <a class="nav-link" href="/facilities">
+                <i class="fas fa-fw fa-comments"></i>
+                <span>Ulasan Tamu</span>
             </a>
-            <div id="collapsePemesanan" class="collapse" aria-labelledby="headingPemesanan" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/reservation">Semua Pemesanan</a>
-                    <a class="collapse-item" href="/reservation/pending">Pemesanan Pending</a>
-                    <a class="collapse-item" href="/reservation/active">Pemesanan Aktif</a>
-                    <a class="collapse-item" href="/reservation/completed">Pemesanan Selesai</a>
-                    <a class="collapse-item" href="/reservation/canceled">Pemesanan Dibatalkan</a>
-                    <a class="collapse-item" href="/reservation/archived">Arsip Pemesanan</a>
-                </div>
-            </div>
         </li>
 
          <!-- Manajemen Pengguna -->
@@ -72,54 +73,10 @@
             </div>
         </li>
     
-        <!-- Heading: Fasilitas -->
-        <div class="sidebar-heading">Fasilitas</div>
-
-          <!-- Fasilitas-->
-          <li class="nav-item {{ Request::is('facilities*') ? 'active' : '' }}">
-            <a class="nav-link" href="/facilities">
-                <i class="fas fa-fw fa-concierge-bell"></i>
-                <span>Fasilitas Hotel</span>
-            </a>
-        </li>
-
-
-        <!-- Heading: Informasi Sekitar -->
-        <div class="sidebar-heading">Informasi Sekitar</div>
-
-        <!-- Sekitar Hotel -->
-        <li class="nav-item {{ Request::is('attraction*') || Request::is('categoryAttraction*') ? 'active' : '' }}">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSekitar"
-                aria-expanded="true" aria-controls="collapseSekitar">
-                <i class="fas fa-fw fa-map-marker-alt"></i>
-                <span>Sekitar Hotel</span>
-            </a>
-            <div id="collapseSekitar" class="collapse" aria-labelledby="headingSekitar" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/attraction">Daftar Wisata</a>
-                    <a class="collapse-item" href="/categoryAttraction">Kategori Wisata</a>
-                </div>
-            </div>
-        </li>
-
+       
     
         <!-- Heading: Laporan & Pengaturan -->
-        <div class="sidebar-heading">Laporan & Pengaturan</div>
-    
-        <!-- Laporan -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
-                aria-expanded="true" aria-controls="collapseLaporan">
-                <i class="fas fa-fw fa-chart-line"></i>
-                <span>Laporan</span>
-            </a>
-            <div id="collapseLaporan" class="collapse" aria-labelledby="headingLaporan" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/admin/laporan/pendapatan">Laporan Pendapatan</a>
-                    <a class="collapse-item" href="/admin/laporan/pemesanan">Laporan Pemesanan</a>
-                </div>
-            </div>
-        </li>
+        <div class="sidebar-heading">Pengaturan</div>
     
         <!-- Pengaturan -->
         <li class="nav-item">
@@ -134,8 +91,6 @@
                     <a class="collapse-item" href="/admin/pengaturan/sosial-media">Sosial Media</a>
                     <a class="collapse-item" href="/admin/pengaturan/umum">Pengaturan Umum</a>
                     <a class="collapse-item" href="/admin/pengaturan/galeri">Galeri Hotel</a>
-                    <a class="collapse-item" href="/admin/pengaturan/email">Email & Notifikasi</a>
-                    <a class="collapse-item" href="/admin/pengaturan/pembayaran">Metode Pembayaran</a>
                 </div>
             </div>
         </li>

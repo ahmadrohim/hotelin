@@ -97,13 +97,12 @@ class HotelSeeder extends Seeder
 
         // Kamar 1 - Deluxe Room
         $room1 = Room::create([
-            'name_image' => 'Deluxe Room',
-            'code_room' => Str::random(8),
+            'name' => 'Deluxe Room',
+            'code_room' => 'ROOM' . now()->format('Ymd') . '_' . strtoupper(Str::random(6)),
             'price' => 750000,
             'max_guest' => 2,
             'description' => 'Kamar Deluxe dengan pemandangan indah.',
             'bed_type' => 'Queen',
-            'image' => 'deluxe.jpg',
         ]);
         $room1->facilities()->attach(Facility::whereIn('name', ['AC', 'Wi-Fi', 'TV'])->get());
         $room1->images()->createMany([
@@ -113,13 +112,12 @@ class HotelSeeder extends Seeder
 
         // Kamar 2 - Family Room
         $room2 = Room::create([
-            'name_image' => 'Family Room',
-            'code_room' => Str::random(8),
+            'name' => 'Family Room',
+            'code_room' => 'ROOM' . now()->format('Ymd') . '_' . strtoupper(Str::random(6)),
             'price' => 950000,
             'max_guest' => 4,
             'description' => 'Kamar luas cocok untuk keluarga.',
             'bed_type' => 'King',
-            'image' => 'family.jpg',
         ]);
         $room2->facilities()->attach(Facility::whereIn('name', ['AC', 'Wi-Fi', 'TV', 'Kulkas'])->get());
         $room2->images()->createMany([
@@ -129,13 +127,12 @@ class HotelSeeder extends Seeder
 
         // Kamar 3 - Standard Room
         $room3 = Room::create([
-            'name_image' => 'Standard Room',
-            'code_room' => Str::random(8),
+            'name' => 'Standard Room',
+            'code_room' => 'ROOM' . now()->format('Ymd') . '_' . strtoupper(Str::random(6)),
             'price' => 500000,
             'max_guest' => 2,
             'description' => 'Kamar sederhana dengan fasilitas standar.',
             'bed_type' => 'Twin',
-            'image' => 'standard.jpg',
         ]);
         $room3->facilities()->attach(Facility::whereIn('name', ['Wi-Fi', 'TV'])->get());
         $room3->images()->createMany([

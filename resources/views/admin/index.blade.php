@@ -19,7 +19,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                             Total Kamar</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $rooms->count() }}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-hotel fa-2x text-gray-300"></i>
@@ -36,7 +36,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Kamar Terisi</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $roomsActive }}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-bed fa-2x text-gray-300"></i>
@@ -46,23 +46,6 @@
         </div>
     </div>
 
-    <!-- Reservasi Belum Diproses -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2 card-custom fade-in" onclick="location.href='pemesanan_aktif.html'">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Reservasi Belum Diproses</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $pendingBookingCount }}</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-receipt fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Wisata Terdaftar -->
     <div class="col-xl-3 col-md-6 mb-4">
@@ -76,43 +59,6 @@
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-map-marker-alt fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Pendapatan Bulanan -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2 card-custom fade-in" onclick="location.href='laporan_pendapatan.html'">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Pendapatan Bulanan</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Rp 40.000.000</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pendapatan Tahunan -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2 card-custom fade-in" onclick="location.href='laporan_pendapatan.html'">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Pendapatan Tahunan</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Rp 215.000.000</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
